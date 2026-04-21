@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Postal Service | Official Logistics Portal</title>
+    <style>
+        body { background-color: #002366; color: #FFD700; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { max-width: 650px; width: 100%; border: 4px double #FFD700; background-color: #001a4d; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .header { border-bottom: 2px solid #FFD700; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
+        h1 { font-size: 24px; margin: 0; text-transform: uppercase; }
+        .status-badge { display: inline-block; padding: 5px 15px; border: 1px solid #FFD700; font-size: 14px; font-weight: bold; background-color: #FFD700; color: #002366; margin-top: 15px; }
+        
+        /* Logistics Table */
+        .logistics-table { width: 100%; font-size: 14px; border-collapse: collapse; margin-bottom: 30px; }
+        .logistics-table td { padding: 12px 5px; border-bottom: 1px solid rgba(255, 215, 0, 0.3); }
+        .label { font-weight: bold; color: rgba(255, 215, 0, 0.7); width: 150px; text-transform: uppercase; }
+
+        /* Indifferent Chatbot */
+        .chat-box { border: 1px solid #FFD700; padding: 15px; background: rgba(0,0,0,0.2); }
+        .chat-header { font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #FFD700; padding-bottom: 5px; font-size: 12px; }
+        #chat-output { height: 100px; overflow-y: auto; font-size: 13px; margin-bottom: 10px; color: #ffffff; }
+        .chat-input-area { display: flex; gap: 5px; }
+        input { background: #002366; border: 1px solid #FFD700; color: #FFD700; padding: 5px; flex-grow: 1; }
+        button { background: #FFD700; border: none; color: #002366; font-weight: bold; cursor: pointer; padding: 5px 15px; }
+
+        .footer { margin-top: 50px; font-size: 11px; text-align: center; border-top: 1px solid #FFD700; padding-top: 20px; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span>[HERMES POSTAL SERVICE]</span>
+            <h1>Logistics Portal: Administrative Dispatch</h1>
+            <div class="status-badge">EMBARGO LIFTED</div>
+        </div>
+
+        <table class="logistics-table">
+            <tr><td class="label">Release Status:</td><td>Scheduled Release</td></tr>
+            <tr><td class="label">Logistics:</td><td>Delivered on time</td></tr>
+            <tr><td class="label">Courier ID:</td><td>H-01 (Hermes)</td></tr>
+            <tr><td class="label">Payload:</td><td>High-Frequency Audio Transcript</td></tr>
+            <tr><td class="label">Condition:</td><td>Traces of Lab Spill (Tissue Particulates)</td></tr>
+        </table>
+
+        <div class="chat-box">
+            <div class="chat-header">H-BOT v1.0 (BETA): SUPPORT CHAT</div>
+            <div id="chat-output">H-BOT: Welcome to the automated support queue. Current wait time: 4,000 years. How can I ignore you today?</div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Type complaint here...">
+                <button onclick="handleChat()">SEND</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            To OPT OUT, please consult the Fates or reply "GO AWAY".<br>
+            Official Communications of the Underworld Postal Infrastructure.
+        </div>
+    </div>
+
+    <script>
+        const responses = [
+            "H-BOT: Request received. Filing under 'Irrelevant'.",
+            "H-BOT: I don't get paid enough for this. Consult the Fates.",
+            "H-BOT: Error 404: Empathy Not Found.",
+            "H-BOT: The Sender is currently 'activated.' Please try again when he stops yelling about micropipettes.",
+            "H-BOT: Your message has been converted to soul-matter and flushed.",
+            "H-BOT: I'm literally in my pajamas. Go away.",
+            "H-BOT: System busy. Currently dodging a hazardous lab spill."
+        ];
+
+        function handleChat() {
+            const input = document.getElementById('user-input');
+            const output = document.getElementById('chat-output');
+            if (input.value.trim() === "") return;
+
+            output.innerHTML += `<div style="color:#FFD700; margin-top:5px;">YOU: ${input.value}</div>`;
+            input.value = "";
+            
+            setTimeout(() => {
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                output.innerHTML += `<div style="margin-top:5px;">${randomResponse}</div>`;
+                output.scrollTop = output.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
