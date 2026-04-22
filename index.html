@@ -4,250 +4,433 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hermes Postal Service | Official Logistics Portal</title>
-
     <style>
+        :root {
+            --yellow: #FFC93C;
+            --orange: #FF8C42;
+            --dark: #333333;
+            --light: #ffffff;
+            --border: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #f4f1e8;
-            font-family: 'Courier New', monospace;
             margin: 0;
-            padding: 0;
-            color: #2b2b2b;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f7f7f7;
+            color: var(--dark);
         }
 
-        /* HEADER */
-        .header {
-            background: #d4b46a;
-            border-bottom: 6px solid #8a6d2f;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header img {
-            width: 60px;
-            position: absolute;
-            left: 25px;
-            top: 20px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .subheader {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        .status-badge {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 6px 15px;
-            background: #8a6d2f;
+        /* TOP NAV / HEADER */
+        .top-bar {
+            background: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #fff;
-            font-weight: bold;
-            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* MAIN CONTAINER */
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #ffffff;
-            border: 3px solid #8a6d2f;
-            padding: 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .top-bar span {
+            opacity: 0.9;
+        }
+
+        .header {
+            background: var(--light);
+            border-bottom: 2px solid var(--yellow);
+            padding: 20px 20px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--dark);
+            font-size: 22px;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .header-text .subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .status-pill {
+            margin-left: auto;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--orange);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* MAIN LAYOUT */
+        .main {
+            max-width: 1000px;
+            margin: 25px auto 40px;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 18px 18px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #444;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: #fff7e0;
+            border: 1px solid #ffe3a3;
+            color: #a66a00;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         /* LOGISTICS TABLE */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+            font-size: 13px;
         }
 
-        .logistics-table td {
-            padding: 12px 5px;
-            border-bottom: 1px solid #d4b46a;
+        .logistics-table tr td {
+            padding: 8px 4px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .label {
-            font-weight: bold;
-            width: 180px;
-            color: #8a6d2f;
+        .logistics-label {
+            width: 170px;
+            font-weight: 600;
+            color: #777;
             text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.05em;
         }
 
-        /* DELIVERY RULES SECTION */
-        .rules-section {
-            margin-top: 40px;
-            padding: 20px;
-            background: #f9f5e9;
-            border: 2px dashed #8a6d2f;
+        .logistics-value {
+            color: #333;
         }
 
-        .rules-section h2 {
-            margin-top: 0;
+        /* RULES / INFO SECTIONS */
+        .section-block {
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 20px;
-            color: #8a6d2f;
+            margin-bottom: 6px;
+            color: #444;
         }
 
-        .rules-section ul {
-            margin: 10px 0 20px 20px;
+        .section-subtitle {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 8px;
         }
 
-        /* CHATBOT */
+        .pill-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .pill-list li {
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .pill-label {
+            display: inline-block;
+            font-weight: 600;
+            color: var(--orange);
+        }
+
+        /* CHAT BOX */
         .chat-box {
-            border: 2px solid #8a6d2f;
-            padding: 15px;
-            background: #fffdf7;
-            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .chat-header {
-            font-weight: bold;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #8a6d2f;
-            padding-bottom: 5px;
             font-size: 12px;
-            color: #8a6d2f;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
         }
 
         #chat-output {
-            height: 120px;
-            overflow-y: auto;
+            height: 140px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 8px 10px;
             font-size: 13px;
-            margin-bottom: 10px;
+            overflow-y: auto;
+            background: #fafafa;
         }
 
-        .chat-input-area {
+        .chat-line-user {
+            color: var(--orange);
+            margin-top: 4px;
+        }
+
+        .chat-line-bot {
+            margin-top: 4px;
+        }
+
+        .chat-input-row {
             display: flex;
-            gap: 5px;
+            gap: 6px;
+            margin-top: 4px;
         }
 
-        input {
-            flex-grow: 1;
-            padding: 6px;
-            border: 1px solid #8a6d2f;
-            background: #fff;
+        .chat-input-row input {
+            flex: 1;
+            padding: 7px 9px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 13px;
         }
 
-        button {
-            background: #8a6d2f;
-            color: #fff;
+        .chat-input-row button {
+            padding: 7px 14px;
+            border-radius: 4px;
             border: none;
-            padding: 6px 15px;
+            background: var(--orange);
+            color: #fff;
+            font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
-            font-weight: bold;
+        }
+
+        .chat-input-row button:hover {
+            background: #ff7a24;
         }
 
         /* FOOTER */
         .footer {
-            margin-top: 50px;
+            max-width: 1000px;
+            margin: 0 auto 25px;
+            padding: 10px 15px 0;
             font-size: 11px;
+            color: #777;
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #8a6d2f;
-            opacity: 0.7;
+        }
+
+        .footer span {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 800px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+            .status-pill {
+                display: none;
+            }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Envelope_font_awesome.svg/1024px-Envelope_font_awesome.svg.png">
-        <h1>Hermes Postal Service</h1>
-        <div class="subheader">Official Logistics & Chaotic Dispatch Portal</div>
-        <div class="status-badge">EMBARGO LIFTED</div>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK</span>
+        <span>Support Queue: Estimated Wait Time — 4,000 years</span>
     </div>
 
-    <div class="container">
-
-        <table class="logistics-table">
-            <tr><td class="label">Release Status:</td><td>Scheduled Release</td></tr>
-            <tr><td class="label">Logistics:</td><td>Delivered on time (shockingly)</td></tr>
-            <tr><td class="label">Courier ID:</td><td>H-01 (Hermes)</td></tr>
-            <tr><td class="label">Payload:</td><td>High-Frequency Audio Transcript</td></tr>
-            <tr><td class="label">Condition:</td><td>Traces of Lab Spill (Tissue Particulates)</td></tr>
-        </table>
-
-        <div class="rules-section">
-            <h2>Hermes Delivery Instructions</h2>
-
-            <strong>Delivery Modes:</strong>
-            <ul>
-                <li>Standard Delivery — 1–3 letters, whenever he feels like it</li>
-                <li>Chaos Delivery — 4–7 letters dumped at once</li>
-                <li>Overnight Drunken Delivery — arrives at 3:17 AM</li>
-                <li>“I Wasn’t Here” Delivery — Hermes denies everything</li>
-                <li>“Found These in My Bag” Delivery — spontaneous appearance</li>
-                <li>“Hades Begged Me” Delivery — selective hearing</li>
-                <li>“Testing a New System” Delivery — invented on the spot</li>
-            </ul>
-
-            <strong>Delivery Windows:</strong>
-            <ul>
-                <li>Morning: 5 AM–11 AM (half-awake)</li>
-                <li>Afternoon: 12 PM–5 PM (pretending to work)</li>
-                <li>Night: 6 PM–2 AM (absolutely not working)</li>
-                <li>Forbidden Window: 2 AM–5 AM (delivers the MOST)</li>
-            </ul>
-
-            <strong>Hermes Rules:</strong>
-            <ul>
-                <li>Never timestamps anything</li>
-                <li>Never explains anything</li>
-                <li>Always looks like he was somewhere he shouldn’t be</li>
-                <li>Always has plausible deniability</li>
-                <li>Blames Hades, Persephone, the postal system, and the weather</li>
-            </ul>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo-circle">✉</div>
+        <div class="header-text">
+            <h1>Hermes Postal Service</h1>
+            <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Chaotic Delivery Management</div>
         </div>
+        <div class="status-pill">Embargo Lifted</div>
+    </div>
 
-        <div class="chat-box">
-            <div class="chat-header">H-BOT v1.0 (BETA): SUPPORT CHAT</div>
-            <div id="chat-output">H-BOT: Welcome to the automated support queue. Current wait time: 4,000 years.</div>
+    <!-- MAIN CONTENT -->
+    <div class="main">
 
-            <div class="chat-input-area">
-                <input type="text" id="user-input" placeholder="Type complaint here...">
-                <button onclick="handleChat()">SEND</button>
+        <!-- LEFT COLUMN: LOGISTICS + RULES -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Shipment Overview</div>
+                <div class="card-tag">Logistics Summary</div>
+            </div>
+
+            <table class="logistics-table">
+                <tr>
+                    <td class="logistics-label">Release Status</td>
+                    <td class="logistics-value">Scheduled Release</td>
+                </tr>
+                <tr>
+                    <td class="logistics-label">Logistics</td>
+                    <td class="logistics-value">Delivered on time</td>
+                </tr>
+                <tr>
+                    <td class="logistics-label">Courier ID</td>
+                    <td class="logistics-value">H-01 (Hermes)</td>
+                </tr>
+                <tr>
+                    <td class="logistics-label">Payload</td>
+                    <td class="logistics-value">High-Frequency Audio Transcript</td>
+                </tr>
+                <tr>
+                    <td class="logistics-label">Condition</td>
+                    <td class="logistics-value">Traces of Lab Spill (Tissue Particulates)</td>
+                </tr>
+            </table>
+
+            <!-- HERMES DELIVERY INSTRUCTIONS -->
+            <div class="section-block">
+                <div class="section-title">Hermes Delivery Instructions / Delivery Windows</div>
+                <div class="section-subtitle">(These are meta‑rules, not story content.)</div>
+
+                <div class="section-title" style="margin-top:10px; font-size:13px;">Delivery Modes</div>
+                <ul class="pill-list">
+                    <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, whenever he feels like it</li>
+                    <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped at once</li>
+                    <li><span class="pill-label">Overnight Drunken Delivery:</span> letters delivered at 3:17 AM for no reason</li>
+                    <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes denies delivering anything</li>
+                    <li><span class="pill-label">“I Found These In My Bag” Delivery:</span> letters appear out of nowhere</li>
+                    <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear him</li>
+                    <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new mode on the spot</li>
+                </ul>
+
+                <div class="section-title" style="margin-top:14px; font-size:13px;">Delivery Windows</div>
+                <ul class="pill-list">
+                    <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Hermes is half‑awake)</li>
+                    <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Hermes is pretending to work)</li>
+                    <li><span class="pill-label">Night Window:</span> 6 PM–2 AM (Hermes is absolutely not working but delivers anyway)</li>
+                    <li><span class="pill-label">Forbidden Window:</span> 2 AM–5 AM (Hermes delivers here the MOST)</li>
+                </ul>
+
+                <div class="section-title" style="margin-top:14px; font-size:13px;">Hermes Rules</div>
+                <ul class="pill-list">
+                    <li>Hermes never timestamps anything</li>
+                    <li>Hermes never explains anything</li>
+                    <li>Hermes always looks like he was somewhere he shouldn’t be</li>
+                    <li>Hermes always has plausible deniability</li>
+                    <li>Hermes always blames Hades</li>
+                    <li>Hermes always blames Persephone</li>
+                    <li>Hermes always blames the postal system</li>
+                    <li>Hermes always blames the weather (even in the Underworld)</li>
+                </ul>
             </div>
         </div>
 
-        <div class="footer">
-            To OPT OUT, consult the Fates or reply "GO AWAY".<br>
-            Official Communications of the Underworld Postal Infrastructure.
+        <!-- RIGHT COLUMN: CHAT + META -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Support & Automation</div>
+                <div class="card-tag">H‑BOT v1.0 (BETA)</div>
+            </div>
+
+            <div class="chat-box">
+                <div class="chat-header">Automated Support Queue</div>
+                <div id="chat-output">
+                    <div class="chat-line-bot">
+                        H-BOT: Welcome to the automated support queue. Current wait time: 4,000 years.
+                    </div>
+                    <div class="chat-line-bot">
+                        H-BOT: How can I ignore you today?
+                    </div>
+                </div>
+
+                <div class="chat-input-row">
+                    <input type="text" id="user-input" placeholder="Type complaint here...">
+                    <button onclick="handleChat()">Send</button>
+                </div>
+            </div>
         </div>
 
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <span>To OPT OUT, please consult the Fates or reply "GO AWAY".</span>
+        <span>Official Communications of the Underworld Postal Infrastructure · Hermes always denies responsibility for delays.</span>
     </div>
 
     <script>
         const responses = [
             "H-BOT: Request received. Filing under 'Irrelevant'.",
-            "H-BOT: Consult the Fates. I'm on break.",
+            "H-BOT: I don't get paid enough for this. Consult the Fates.",
             "H-BOT: Error 404: Empathy Not Found.",
-            "H-BOT: The courier is 'activated.' Please stand by.",
-            "H-BOT: Your message has been converted to soul-matter and discarded.",
-            "H-BOT: I'm literally in my pajamas.",
-            "H-BOT: System busy. Hermes spilled something again."
+            "H-BOT: The Sender is currently 'activated.' Please try again when he stops yelling about micropipettes.",
+            "H-BOT: Your message has been converted to soul-matter and flushed.",
+            "H-BOT: I'm literally in my pajamas. Go away.",
+            "H-BOT: System busy. Currently dodging a hazardous lab spill.",
+            "H-BOT: Hermes says this is 'within expected chaos parameters'.",
+            "H-BOT: Please hold while I pretend to route this to a supervisor."
         ];
 
         function handleChat() {
             const input = document.getElementById('user-input');
             const output = document.getElementById('chat-output');
-            if (!input.value.trim()) return;
+            const text = input.value.trim();
+            if (!text) return;
 
-            output.innerHTML += `<div style="color:#8a6d2f; margin-top:5px;">YOU: ${input.value}</div>`;
+            const userLine = document.createElement('div');
+            userLine.className = 'chat-line-user';
+            userLine.textContent = `YOU: ${text}`;
+            output.appendChild(userLine);
             input.value = "";
 
             setTimeout(() => {
                 const r = responses[Math.floor(Math.random() * responses.length)];
-                output.innerHTML += `<div style="margin-top:5px;">${r}</div>`;
+                const botLine = document.createElement('div');
+                botLine.className = 'chat-line-bot';
+                botLine.textContent = r;
+                output.appendChild(botLine);
                 output.scrollTop = output.scrollHeight;
             }, 900);
         }
@@ -255,4 +438,3 @@
 
 </body>
 </html>
-
