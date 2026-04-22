@@ -162,3 +162,97 @@
 
     <div class="header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Envelope_font_awesome.svg/1024px-Envelope_font_awesome.svg.png">
+        <h1>Hermes Postal Service</h1>
+        <div class="subheader">Official Logistics & Chaotic Dispatch Portal</div>
+        <div class="status-badge">EMBARGO LIFTED</div>
+    </div>
+
+    <div class="container">
+
+        <table class="logistics-table">
+            <tr><td class="label">Release Status:</td><td>Scheduled Release</td></tr>
+            <tr><td class="label">Logistics:</td><td>Delivered on time (shockingly)</td></tr>
+            <tr><td class="label">Courier ID:</td><td>H-01 (Hermes)</td></tr>
+            <tr><td class="label">Payload:</td><td>High-Frequency Audio Transcript</td></tr>
+            <tr><td class="label">Condition:</td><td>Traces of Lab Spill (Tissue Particulates)</td></tr>
+        </table>
+
+        <div class="rules-section">
+            <h2>Hermes Delivery Instructions</h2>
+
+            <strong>Delivery Modes:</strong>
+            <ul>
+                <li>Standard Delivery — 1–3 letters, whenever he feels like it</li>
+                <li>Chaos Delivery — 4–7 letters dumped at once</li>
+                <li>Overnight Drunken Delivery — arrives at 3:17 AM</li>
+                <li>“I Wasn’t Here” Delivery — Hermes denies everything</li>
+                <li>“Found These in My Bag” Delivery — spontaneous appearance</li>
+                <li>“Hades Begged Me” Delivery — selective hearing</li>
+                <li>“Testing a New System” Delivery — invented on the spot</li>
+            </ul>
+
+            <strong>Delivery Windows:</strong>
+            <ul>
+                <li>Morning: 5 AM–11 AM (half-awake)</li>
+                <li>Afternoon: 12 PM–5 PM (pretending to work)</li>
+                <li>Night: 6 PM–2 AM (absolutely not working)</li>
+                <li>Forbidden Window: 2 AM–5 AM (delivers the MOST)</li>
+            </ul>
+
+            <strong>Hermes Rules:</strong>
+            <ul>
+                <li>Never timestamps anything</li>
+                <li>Never explains anything</li>
+                <li>Always looks like he was somewhere he shouldn’t be</li>
+                <li>Always has plausible deniability</li>
+                <li>Blames Hades, Persephone, the postal system, and the weather</li>
+            </ul>
+        </div>
+
+        <div class="chat-box">
+            <div class="chat-header">H-BOT v1.0 (BETA): SUPPORT CHAT</div>
+            <div id="chat-output">H-BOT: Welcome to the automated support queue. Current wait time: 4,000 years.</div>
+
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Type complaint here...">
+                <button onclick="handleChat()">SEND</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            To OPT OUT, consult the Fates or reply "GO AWAY".<br>
+            Official Communications of the Underworld Postal Infrastructure.
+        </div>
+
+    </div>
+
+    <script>
+        const responses = [
+            "H-BOT: Request received. Filing under 'Irrelevant'.",
+            "H-BOT: Consult the Fates. I'm on break.",
+            "H-BOT: Error 404: Empathy Not Found.",
+            "H-BOT: The courier is 'activated.' Please stand by.",
+            "H-BOT: Your message has been converted to soul-matter and discarded.",
+            "H-BOT: I'm literally in my pajamas.",
+            "H-BOT: System busy. Hermes spilled something again."
+        ];
+
+        function handleChat() {
+            const input = document.getElementById('user-input');
+            const output = document.getElementById('chat-output');
+            if (!input.value.trim()) return;
+
+            output.innerHTML += `<div style="color:#8a6d2f; margin-top:5px;">YOU: ${input.value}</div>`;
+            input.value = "";
+
+            setTimeout(() => {
+                const r = responses[Math.floor(Math.random() * responses.length)];
+                output.innerHTML += `<div style="margin-top:5px;">${r}</div>`;
+                output.scrollTop = output.scrollHeight;
+            }, 900);
+        }
+    </script>
+
+</body>
+</html>
+
