@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hermes Postal Service | Official Logistics Portal</title>
+
     <style>
         :root {
             --yellow: #FFC93C;
@@ -13,9 +14,7 @@
             --border: #e0e0e0;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -24,21 +23,29 @@
             color: var(--dark);
         }
 
-        /* TOP NAV / HEADER */
+        /* TOP SCROLLING BANNER */
         .top-bar {
             background: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #fff;
             padding: 10px 20px;
             font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
         }
 
         .top-bar span {
-            opacity: 0.9;
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 18s linear infinite;
         }
 
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* HEADER */
         .header {
             background: var(--light);
             border-bottom: 2px solid var(--yellow);
@@ -149,14 +156,10 @@
             letter-spacing: 0.05em;
         }
 
-        .logistics-value {
-            color: #333;
-        }
+        .logistics-value { color: #333; }
 
         /* RULES / INFO SECTIONS */
-        .section-block {
-            margin-top: 10px;
-        }
+        .section-block { margin-top: 10px; }
 
         .section-title {
             font-size: 14px;
@@ -215,14 +218,8 @@
             background: #fafafa;
         }
 
-        .chat-line-user {
-            color: var(--orange);
-            margin-top: 4px;
-        }
-
-        .chat-line-bot {
-            margin-top: 4px;
-        }
+        .chat-line-user { color: var(--orange); margin-top: 4px; }
+        .chat-line-bot { margin-top: 4px; }
 
         .chat-input-row {
             display: flex;
@@ -249,9 +246,7 @@
             cursor: pointer;
         }
 
-        .chat-input-row button:hover {
-            background: #ff7a24;
-        }
+        .chat-input-row button:hover { background: #ff7a24; }
 
         /* FOOTER */
         .footer {
@@ -263,27 +258,20 @@
             text-align: center;
         }
 
-        .footer span {
-            display: block;
-            margin-bottom: 3px;
-        }
-
         @media (max-width: 800px) {
-            .main {
-                grid-template-columns: 1fr;
-            }
-            .status-pill {
-                display: none;
-            }
+            .main { grid-template-columns: 1fr; }
+            .status-pill { display: none; }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- TOP BAR -->
+    <!-- SCROLLING BANNER -->
     <div class="top-bar">
-        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK</span>
-        <span>Support Queue: Estimated Wait Time — 4,000 years</span>
+        <span>
+            HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK · CHAOTIC DELIVERY GUARANTEED · TRACKING NOT AVAILABLE · HERMES IS NOT RESPONSIBLE FOR ANYTHING ·
+        </span>
     </div>
 
     <!-- HEADER -->
@@ -299,7 +287,7 @@
     <!-- MAIN CONTENT -->
     <div class="main">
 
-        <!-- LEFT COLUMN: LOGISTICS + RULES -->
+        <!-- LEFT COLUMN -->
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Shipment Overview</div>
@@ -321,15 +309,15 @@
                 </tr>
                 <tr>
                     <td class="logistics-label">Payload</td>
-                    <td class="logistics-value">High-Frequency Audio Transcript</td>
+                    <td class="logistics-value" id="payload-field">Loading...</td>
                 </tr>
                 <tr>
                     <td class="logistics-label">Condition</td>
-                    <td class="logistics-value">Traces of Lab Spill (Tissue Particulates)</td>
+                    <td class="logistics-value" id="condition-field">Loading...</td>
                 </tr>
             </table>
 
-            <!-- HERMES DELIVERY INSTRUCTIONS -->
+            <!-- RULES -->
             <div class="section-block">
                 <div class="section-title">Hermes Delivery Instructions / Delivery Windows</div>
                 <div class="section-subtitle">(These are meta‑rules, not story content.)</div>
@@ -367,7 +355,7 @@
             </div>
         </div>
 
-        <!-- RIGHT COLUMN: CHAT + META -->
+        <!-- RIGHT COLUMN -->
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Support & Automation</div>
@@ -396,11 +384,43 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <span>To OPT OUT, please consult the Fates or reply "GO AWAY".</span>
-        <span>Official Communications of the Underworld Postal Infrastructure · Hermes always denies responsibility for delays.</span>
+        To OPT OUT, please consult the Fates or reply "GO AWAY".<br>
+        Official Communications of the Underworld Postal Infrastructure · Hermes denies responsibility for delays.
     </div>
 
     <script>
+        /* RANDOM PAYLOAD + CONDITION */
+        const payloadOptions = [
+            "Bulk Dispatch (x4)",
+            "High-Frequency Audio Transcript",
+            "Sealed Correspondence Packet",
+            "Unsorted Divine Mail Bundle",
+            "Cross‑Realm Delivery Envelope",
+            "Priority Scroll (Fragile)",
+            "Unlabeled Parcel (Hermes denies ownership)"
+        ];
+
+        const conditionOptions = [
+            "Traces of Lab Spill (Tissue Particulates)",
+            "Slightly Singed (Hermes flew too close to something)",
+            "Smells Like Ambrosia",
+            "Crushed but Still Legible",
+            "Suspiciously Damp",
+            "Marked 'Do Not Open' (Hermes opened it)",
+            "Perfect Condition (statistically impossible)"
+        ];
+
+        function randomizeFields() {
+            document.getElementById("payload-field").textContent =
+                payloadOptions[Math.floor(Math.random() * payloadOptions.length)];
+
+            document.getElementById("condition-field").textContent =
+                conditionOptions[Math.floor(Math.random() * conditionOptions.length)];
+        }
+
+        window.onload = randomizeFields;
+
+        /* CHATBOT */
         const responses = [
             "H-BOT: Request received. Filing under 'Irrelevant'.",
             "H-BOT: I don't get paid enough for this. Consult the Fates.",
