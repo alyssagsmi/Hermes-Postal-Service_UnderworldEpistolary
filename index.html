@@ -639,7 +639,7 @@
 
   <script>
     // === CONFIG ===
-    const WEB_APP_URL = 'https://example.com/webhook'; // <-- replace with your endpoint
+    const WEB_APP_URL = 'https://example.com/webhook'; // replace with your real endpoint
 
     const payloadOptions = [
       'Bulk',
@@ -719,7 +719,6 @@
       const confirmBtn = document.getElementById('submit-ping-confirm');
       if (confirmBtn) confirmBtn.style.display = 'block';
 
-      // Atmospheric calibration
       const heatLayer = document.getElementById('heat-layer');
       const forecastText = document.getElementById('forecast-text');
       const blockadeText = document.getElementById('blockade-text');
@@ -783,7 +782,7 @@
           body: JSON.stringify({ user: 'Persephone', ping: stagedPingType })
         });
       } catch (e) {
-        // Silent fail; this is a one-bit emotional webhook.
+        // silent fail
       }
 
       const confirmBtn = document.getElementById('submit-ping-confirm');
@@ -800,4 +799,3 @@
   </script>
 </body>
 </html>
-
