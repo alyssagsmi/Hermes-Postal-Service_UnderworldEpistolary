@@ -7,7 +7,7 @@
 
     <style>
         /* STRUCTURAL DATA: ROOT VARIABLES
-           Immutable Design Tokens for Underworld Infrastructure
+           Expanded for Maximum Salience
         */
         :root {
             --yellow: #FFC93C;
@@ -20,9 +20,8 @@
             --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        /* RESET AND BASE STYLES 
-           Expanded for Maximum Structural Density 
-           STRICT IMMUTABILITY: DO NOT CONDENSE
+        /* STRICT IMMUTABILITY: GLOBAL RESET
+           Explicit property declaration to maintain vertical weight.
         */
         * { 
             box-sizing: border-box; 
@@ -48,7 +47,7 @@
             overflow-x: hidden;
         }
 
-        /* TOP SCROLLING BANNER COMPONENT */
+        /* TOP SCROLLING BANNER */
         .top-bar {
             background-image: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #ffffff;
@@ -74,7 +73,7 @@
             display: inline-block;
             padding-left: 100%;
             animation-name: scroll-left;
-            animation-duration: 28s;
+            animation-duration: 30s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
@@ -84,25 +83,25 @@
             to { transform: translateX(-100%); }
         }
 
-        /* HEADER COMPONENT */
+        /* HEADER */
         .header {
             background-color: var(--light);
             border-bottom-width: 5px;
             border-bottom-style: solid;
             border-bottom-color: var(--yellow);
-            padding-top: 35px;
-            padding-bottom: 30px;
-            padding-left: 45px;
-            padding-right: 45px;
+            padding-top: 40px;
+            padding-bottom: 35px;
+            padding-left: 50px;
+            padding-right: 50px;
             display: flex;
             align-items: center;
             gap: 30px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.07);
         }
 
         .logo-circle {
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             border-top-left-radius: 50%;
             border-top-right-radius: 50%;
             border-bottom-left-radius: 50%;
@@ -113,7 +112,7 @@
             justify-content: center;
             font-weight: 900;
             color: var(--dark);
-            font-size: 32px;
+            font-size: 34px;
         }
 
         .header-text h1 {
@@ -121,13 +120,13 @@
             margin-bottom: 0px;
             font-size: 32px;
             font-weight: 800;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.06em;
         }
 
         .header-text .subtitle {
             font-size: 15px;
             color: #666666;
-            margin-top: 5px;
+            margin-top: 6px;
             font-weight: 600;
         }
 
@@ -137,15 +136,15 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 11px;
             font-weight: 900;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 12px;
-            padding-right: 12px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 14px;
+            padding-right: 14px;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
-            margin-left: 25px;
+            margin-left: 30px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: #00ff41;
@@ -158,50 +157,50 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: #00ff41;
-            box-shadow: 0 0 15px rgba(0,255,65,0.3);
+            box-shadow: 0 0 20px rgba(0,255,65,0.3);
         }
 
         .status-pill {
             margin-left: auto;
-            padding-top: 12px;
-            padding-bottom: 12px;
-            padding-left: 24px;
-            padding-right: 24px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 28px;
+            padding-right: 28px;
             border-top-left-radius: 999px;
             border-top-right-radius: 999px;
             border-bottom-left-radius: 999px;
             border-bottom-right-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
         }
 
-        /* MAIN GRID STRUCTURE: STRICT 1fr 1fr */
+        /* MAIN LAYOUT: SYMMETRICAL HALF-AND-HALF GRID */
         .main {
-            max-width: 1600px;
-            margin-top: 50px;
-            margin-bottom: 100px;
+            max-width: 1700px;
+            margin-top: 60px;
+            margin-bottom: 120px;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-left: 60px;
+            padding-right: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 50px;
-            row-gap: 50px;
+            column-gap: 60px;
+            row-gap: 60px;
             align-items: start;
         }
 
         /* CARD COMPONENT */
         .card {
             background-color: var(--light);
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: var(--border);
@@ -214,36 +213,36 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: var(--border);
-            padding-top: 45px;
-            padding-bottom: 45px;
-            padding-left: 45px;
-            padding-right: 45px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-            margin-bottom: 50px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.06);
+            margin-bottom: 60px;
         }
 
         .card-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.15em;
             color: #222222;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom-width: 2px;
             border-bottom-style: solid;
-            border-bottom-color: #f0f0f0;
-            padding-bottom: 18px;
+            border-bottom-color: #f2f2f2;
+            padding-bottom: 20px;
         }
 
         .card-tag {
             font-size: 11px;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            padding-left: 18px;
+            padding-right: 18px;
             border-top-left-radius: 999px;
             border-top-right-radius: 999px;
             border-bottom-left-radius: 999px;
@@ -264,33 +263,33 @@
             border-right-color: #ffe3a3;
             text-transform: uppercase;
             font-weight: 900;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
         }
 
         /* LOGISTICS TABLE COMPONENT */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .logistics-table tr td {
-            padding-top: 18px;
-            padding-bottom: 18px;
-            padding-left: 12px;
-            padding-right: 12px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 14px;
+            padding-right: 14px;
             border-bottom-width: 1px;
             border-bottom-style: solid;
-            border-bottom-color: #f4f4f4;
+            border-bottom-color: #f5f5f5;
         }
 
         .logistics-label {
-            width: 220px;
+            width: 240px;
             font-weight: 800;
-            color: #bbbbbb;
+            color: #bcbcbc;
             text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.15em;
+            font-size: 12px;
+            letter-spacing: 0.18em;
         }
 
         .logistics-value { 
@@ -298,27 +297,27 @@
             font-weight: 700;
         }
 
-        /* LORE SECTIONS (THE INFRASTRUCTURE) */
-        .section-block { margin-top: 50px; }
+        /* LORE INFRASTRUCTURE SECTIONS */
+        .section-block { margin-top: 60px; }
         .section-title { 
-            font-size: 16px; 
+            font-size: 17px; 
             font-weight: 900; 
             text-transform: uppercase; 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
             color: #111111; 
-            letter-spacing: 0.08em;
-            border-left-width: 8px;
+            letter-spacing: 0.1em;
+            border-left-width: 10px;
             border-left-style: solid;
             border-left-color: var(--orange);
-            padding-left: 20px;
+            padding-left: 25px;
         }
         .pill-list { list-style-type: none; padding-left: 0px; margin-top: 0px; }
-        .pill-list li { margin-bottom: 18px; font-size: 14px; line-height: 1.7; color: #444444; }
-        .pill-label { display: inline-block; font-weight: 900; color: var(--orange); margin-right: 18px; }
+        .pill-list li { margin-bottom: 20px; font-size: 15px; line-height: 1.8; color: #444444; }
+        .pill-label { display: inline-block; font-weight: 900; color: var(--orange); margin-right: 20px; text-transform: uppercase; font-size: 13px; letter-spacing: 0.08em; }
 
         /* INTERACTIVE CHAT COMPONENT */
         #chat-output {
-            height: 240px;
+            height: 260px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: #e8e8e8;
@@ -331,139 +330,155 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: #e8e8e8;
-            padding-top: 30px;
-            padding-bottom: 30px;
-            padding-left: 30px;
-            padding-right: 30px;
-            font-size: 14px;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            padding-left: 35px;
+            padding-right: 35px;
+            font-size: 15px;
             overflow-y: auto;
             background-color: #fafafa;
-            margin-bottom: 30px;
-            border-radius: 12px;
+            margin-bottom: 35px;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
+            line-height: 1.8;
         }
 
-        .chat-input-row { display: flex; gap: 18px; }
+        .chat-input-row { display: flex; gap: 20px; }
         .chat-input-row input { 
             flex: 1; 
-            padding-top: 18px; padding-bottom: 18px; padding-left: 24px; padding-right: 24px;
-            border-radius: 12px; border: 1px solid #cccccc; font-size: 15px; 
+            padding-top: 20px; padding-bottom: 20px; padding-left: 28px; padding-right: 28px;
+            border-top-left-radius: 14px; border-top-right-radius: 14px; 
+            border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+            border-width: 1px; border-style: solid; border-color: #cccccc; font-size: 16px; 
         }
         .chat-input-row button { 
-            padding-left: 40px; padding-right: 40px; background-color: var(--orange); 
-            border: none; color: #ffffff; font-weight: 900; border-radius: 12px; cursor: pointer; 
-            text-transform: uppercase; font-size: 13px; transition: 0.25s;
+            padding-left: 45px; padding-right: 45px; background-color: var(--orange); 
+            border: none; color: #ffffff; font-weight: 900; border-radius: 14px; cursor: pointer; 
+            text-transform: uppercase; font-size: 14px; transition: 0.3s;
         }
 
-        /* METADATA PING BUTTONS */
-        .ping-panel { margin-top: 60px; border-top: 2px dashed var(--border); padding-top: 40px; }
-        .ping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* METADATA PING BUTTONS: CONFIRMATION LOGIC */
+        .ping-panel { margin-top: 70px; border-top: 2px dashed var(--border); padding-top: 50px; }
+        .ping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         .ping-btn { 
             background-color: #ffffff; 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 22px; 
-            font-size: 12px; font-weight: 900; cursor: pointer; text-align: left; 
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase; letter-spacing: 0.1em;
+            border-top-width: 1px; border-top-style: solid; border-top-color: var(--border);
+            border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: var(--border);
+            border-left-width: 1px; border-left-style: solid; border-left-color: var(--border);
+            border-right-width: 1px; border-right-style: solid; border-right-color: var(--border);
+            border-top-left-radius: 14px; border-top-right-radius: 14px;
+            border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+            padding: 24px; 
+            font-size: 13px; font-weight: 900; cursor: pointer; text-align: left; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase; letter-spacing: 0.12em;
         }
 
-        /* NEW ADDITIVE: Staging State */
+        /* STAGED BUTTON STATE */
         .ping-btn.metadata-staged {
-            background-color: var(--dark);
+            background-color: #222222;
             border-color: var(--orange);
             color: var(--orange);
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            transform: scale(1.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .ping-btn:hover:not(.metadata-staged) { 
             background-color: #fffaf5; border-color: var(--orange); color: var(--orange);
-            transform: translateY(-4px);
+            transform: translateY(-5px);
         }
 
-        /* CONFIRMATION BUTTON: ACCIDENTAL SEND PREVENTION */
+        /* CONFIRMATION BUTTON */
         #submit-ping-confirm {
             display: none;
-            margin-top: 35px;
+            margin-top: 40px;
             width: 100%;
-            padding: 25px;
+            padding: 30px;
             background-color: #1a1a1a;
             color: #00ff41;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 900;
             text-transform: uppercase;
-            border: 2px solid #00ff41;
-            border-radius: 12px;
+            border: 3px solid #00ff41;
+            border-radius: 14px;
             cursor: pointer;
             text-align: center;
-            letter-spacing: 0.2em;
-            transition: all 0.4s;
-            box-shadow: 0 8px 25px rgba(0,255,101,0.2);
+            letter-spacing: 0.25em;
+            transition: all 0.5s;
+            box-shadow: 0 10px 30px rgba(0,255,101,0.25);
         }
 
         #submit-ping-confirm:hover {
             background-color: #00ff41;
             color: #000000;
-            box-shadow: 0 15px 40px rgba(0,255,101,0.5);
-            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0,255,101,0.6);
+            transform: translateY(-4px);
         }
 
-        /* METEOROLOGICAL TOPOGRAPHIC MAP: Copilot_20260423_121343.jpg BASEMAP */
-        .weather-survey-block { margin-top: 55px; }
+        /* METEOROLOGICAL TOPOGRAPHIC SURVEY: BASEMAP INTEGRATION */
+        .weather-survey-block { margin-top: 65px; }
         .weather-map-visual {
             width: 100%;
-            height: 550px;
+            height: 600px;
             background-color: #000;
             background-image: url('Copilot_20260423_121343.jpg');
             background-size: cover;
             background-position: center;
-            border-radius: 16px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
             position: relative;
             overflow: hidden;
-            border: 4px solid #444;
-            box-shadow: inset 0 0 150px rgba(0,0,0,1), 0 20px 60px rgba(0,0,0,0.5);
+            border: 5px solid #444;
+            box-shadow: inset 0 0 200px rgba(0,0,0,1), 0 30px 80px rgba(0,0,0,0.6);
         }
 
         .map-scan-grid {
             position: absolute;
             width: 100%; height: 100%;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.15) 2px, transparent 2px);
-            background-size: 60px 60px;
-            z-index: 30;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px);
+            background-size: 70px 70px;
+            z-index: 35;
             pointer-events: none;
         }
 
         .isobar-ring {
             position: absolute;
             top: 50%; left: 50%;
-            border: 2px solid var(--iso-color);
+            border-top-width: 3px; border-top-style: solid; border-top-color: var(--iso-color);
+            border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: var(--iso-color);
+            border-left-width: 3px; border-left-style: solid; border-left-color: var(--iso-color);
+            border-right-width: 3px; border-right-style: solid; border-right-color: var(--iso-color);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            animation: pulse-atmospheric 18s infinite ease-in-out;
-            z-index: 20;
+            animation: pulse-atmospheric 20s infinite ease-in-out;
+            z-index: 25;
             pointer-events: none;
         }
 
         @keyframes pulse-atmospheric {
-            0%, 100% { width: 180px; height: 180px; opacity: 0.1; }
-            50% { width: 900px; height: 900px; opacity: 0.9; }
+            0%, 100% { width: 200px; height: 200px; opacity: 0.1; }
+            50% { width: 1000px; height: 1000px; opacity: 0.9; }
         }
 
         .thermal-front-layer {
             position: absolute;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at 45% 55%, rgba(255, 140, 0, 0.3), transparent 70%),
-                        radial-gradient(circle at 75% 35%, rgba(128, 0, 128, 0.3), transparent 70%);
-            filter: blur(120px);
-            z-index: 10;
-            animation: drift-atmospheric 50s infinite alternate linear;
+            background: radial-gradient(circle at 45% 55%, rgba(255, 140, 0, 0.4), transparent 75%),
+                        radial-gradient(circle at 75% 35%, rgba(128, 0, 128, 0.4), transparent 75%);
+            filter: blur(140px);
+            z-index: 15;
+            animation: drift-atmospheric 60s infinite alternate linear;
             pointer-events: none;
-            transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes drift-atmospheric {
-            from { transform: translate(-15%, -15%) scale(1); }
-            to { transform: translate(15%, 15%) scale(1.4); }
+            from { transform: translate(-20%, -20%) scale(1); }
+            to { transform: translate(20%, 20%) scale(1.5); }
         }
 
         /* BLOCKADE BANNER */
@@ -471,22 +486,25 @@
             background-color: #000000;
             color: #ffeb3b;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 900;
-            padding: 25px;
+            padding: 30px;
             overflow-x: hidden;
             white-space: nowrap;
-            margin-top: 50px;
-            border: 1px solid #777;
-            border-radius: 14px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            margin-top: 60px;
+            border-top-width: 2px; border-top-style: solid; border-top-color: #777;
+            border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #777;
+            border-left-width: 2px; border-left-style: solid; border-left-color: #777;
+            border-right-width: 2px; border-right-style: solid; border-right-color: #777;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
             text-transform: uppercase;
         }
 
         .blockade-banner span {
             display: inline-block;
             padding-left: 100%;
-            animation: scroll-blockade 45s linear infinite;
+            animation: scroll-blockade 50s linear infinite;
         }
 
         @keyframes scroll-blockade {
@@ -497,13 +515,13 @@
         /* FOOTER */
         .footer { 
             text-align: center; 
-            padding-top: 130px; padding-bottom: 130px;
-            font-size: 13px; color: #aaaaaa; 
-            letter-spacing: 0.2em; text-transform: uppercase;
-            line-height: 2.5;
+            padding-top: 150px; padding-bottom: 150px;
+            font-size: 14px; color: #aaaaaa; 
+            letter-spacing: 0.25em; text-transform: uppercase;
+            line-height: 2.8;
         }
 
-        @media (max-width: 1300px) {
+        @media (max-width: 1400px) {
             .main { grid-template-columns: 1fr; }
             .status-pill { display: none; }
         }
@@ -513,13 +531,13 @@
 <body>
 
     <div class="top-bar">
-        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING UNAVAILABLE · AUDIT ACTIVE · SYSTEM UNDER REVIEW ·</span>
+        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING UNAVAILABLE · AUDIT ACTIVE · SYSTEM UNDER REVIEW · EMBARGO ACTIVE ·</span>
     </div>
 
     <div class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
-            <h1>Hermes Postal Service <span class="version-badge">V3.37 PERSISTENT</span></h1>
+            <h1>Hermes Postal Service <span class="version-badge">V3.39 PERSISTENT</span></h1>
             <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Atmospheric Calibration</div>
         </div>
         <div class="status-pill">Embargo Active</div>
@@ -530,13 +548,13 @@
         <div class="col-left">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Shipment Overview <span style="font-size:10px; color:#ccc;">MANIFEST: HPS-VOID-SEQUENCE-666</span></div>
+                    <div class="card-title">Shipment Overview <span style="font-size:10px; color:#ccc;">MANIFEST ID: HPS-VOID-SEQUENCE-666</span></div>
                     <div class="card-tag">Official Feed</div>
                 </div>
                 
                 <table class="logistics-table">
                     <tr><td class="logistics-label">Release Status</td><td class="logistics-value">Scheduled Release / Date-Gated Protocol</td></tr>
-                    <tr><td class="logistics-label">Logistics Delta</td><td class="logistics-value">Delivered on time (within 10-year variance)</td></tr>
+                    <tr><td class="logistics-label">Logistics Delta</td><td class="logistics-value">Delivered on time (within 10-year variance window)</td></tr>
                     <tr><td class="logistics-label">Courier ID</td><td class="logistics-value">H-01 (Hermes, Senior Admin)</td></tr>
                     <tr><td class="logistics-label">Payload Type</td><td id="payload-field" class="logistics-value">Initializing sector-specific scan...</td></tr>
                     <tr><td class="logistics-label">Condition Report</td><td id="condition-field" class="logistics-value">Analyzing atmospheric particulate density...</td></tr>
@@ -585,11 +603,11 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">Support & QA Portal</div>
-                    <div class="card-tag">H-BOT V1.3 ACTIVE</div>
+                    <div class="card-tag">H-BOT V1.3.9 ACTIVE</div>
                 </div>
                 
                 <div id="chat-output">
-                    <div style="color:#999; font-style:italic;">[SYSTEM]: Connection stabilized. H-BOT initialized. Connection to Sector 4 Weather Network established. Monitoring atmospheric feedback...</div>
+                    <div style="color:#999; font-style:italic;">[SYSTEM]: Connection established. Calibration of Sector 4 Weather Network established. Monitoring atmospheric feedback...</div>
                 </div>
                 
                 <div class="chat-input-row">
@@ -599,7 +617,7 @@
 
                 <div class="ping-panel">
                     <div class="section-title" style="font-size: 11px;">Metadata Feedback (Direct Courier Channel)</div>
-                    <div style="font-size: 11px; color: #d32f2f; font-weight: 900; margin-bottom: 25px; font-style: italic; text-transform: uppercase;">
+                    <div style="font-size: 11px; color: #d32f2f; font-weight: 900; margin-bottom: 30px; font-style: italic; text-transform: uppercase;">
                         * WARNING: These signals bypass the queue. Hermes sees these directly.
                     </div>
                     
@@ -615,7 +633,7 @@
                     <button id="submit-ping-confirm" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
                 </div>
 
-                <div style="margin-top:60px; font-size:12px; font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.15em;">Underworld Satellite Forecast | Sector 4</div>
+                <div style="margin-top:70px; font-size:13px; font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.2em;">Underworld Satellite Forecast | Sector 4</div>
                 
                 <div class="weather-map-visual">
                     <div class="map-scan-grid"></div>
@@ -623,9 +641,10 @@
                     <div class="isobar-ring" style="animation-delay: 0s;"></div>
                     <div class="isobar-ring" style="animation-delay: 4s;"></div>
                     <div class="isobar-ring" style="animation-delay: 8s;"></div>
+                    <div class="isobar-ring" style="animation-delay: 12s;"></div>
                 </div>
 
-                <div id="forecast-text" style="font-size:16px; font-weight:900; color:#d32f2f; margin-top:30px; text-transform: uppercase; letter-spacing: 0.1em;">
+                <div id="forecast-text" style="font-size:18px; font-weight:900; color:#d32f2f; margin-top:35px; text-transform: uppercase; letter-spacing: 0.12em;">
                     Forecast Status: Atmospheric Saturation Stable.
                 </div>
 
@@ -639,13 +658,13 @@
 
     <div class="footer">
         To OPT OUT, please consult the Fates or reply "GO AWAY".<br>
-        PORTAL V3.37 · Official Communications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H.
+        PORTAL V3.39 · Official Communications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H.
     </div>
 
     <script>
-        /* --- DENSITY PROTOCOL V2.0 ACTIVE --- */
-        
-        // IMMUTABLE WEB APP URL
+        /* IMMUTABLE BACKEND CONFIGURATION
+           Persistence protocol active.
+        */
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec";
 
         const payloadOptions = [
@@ -671,33 +690,33 @@
         const pingImpacts = {
             '🟢 ACKNOWLEDGED': { 
                 forecast: "Conditions Stable. Pressure Normalizing. Hermes is on lunch.", 
-                gradient: "radial-gradient(circle at 30% 40%, rgba(0,255,100,0.4), transparent 70%)", 
+                gradient: "radial-gradient(circle at 30% 40%, rgba(0,255,100,0.45), transparent 75%)", 
                 blockade: "Blockade: Administrative lunch break in progress. Monitoring Sector 4." 
             },
             '⚪ RECEIVED': { 
                 forecast: "Atmospheric pressure normalizing. Zeus is currently napping.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(200,200,200,0.4), transparent 70%)", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(200,200,200,0.45), transparent 75%)", 
                 blockade: "Blockade: Minimal static interference detected. Signal propagation clear." 
             },
             '🔵 QUEUED': { 
                 forecast: "Increasing static. Atmospheric density rising in Sector 4.", 
-                gradient: "radial-gradient(circle at 70% 30%, rgba(0,100,255,0.4), transparent 70%)", 
+                gradient: "radial-gradient(circle at 70% 30%, rgba(0,100,255,0.45), transparent 75%)", 
                 blockade: "Blockade: Cerberus is barking at the router. Connections dropping." 
             },
             '🟣 STILL HERE': { 
                 forecast: "DEEP THERMAL BLOOM. High-salience metadata traffic detected.", 
-                gradient: "radial-gradient(circle at 40% 60%, rgba(128,0,128,0.55), transparent 80%)", 
+                gradient: "radial-gradient(circle at 40% 60%, rgba(128,0,128,0.6), transparent 85%)", 
                 blockade: "Blockade: Metadata saturation reaching 98%. Registry of Souls flagging traffic." 
             },
             '❤️ WELLNESS': { 
                 forecast: "EROS-LEVEL SATURATION PEAKING. Thermal anomaly detected.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,100,0.5), transparent 70%)", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,100,0.55), transparent 75%)", 
                 blockade: "Blockade: Emotional compliance bots are offline. Manual oversight required." 
             },
             '💀 CHAOS': { 
                 forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,0,0.7), transparent 80%)", 
-                blockade: "BLOCKADE: CERBERUS HAS THE ROUTER. REPEAT: CERBERUS HAS THE ROUTER. TOTAL BLACKOUT." 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,0,0.75), transparent 85%)", 
+                blockade: "BLOCKADE: CERBERUS HAS THE ROUTER. REPEAT: CERBERUS HAS THE ROUTER. BLACKOUT." 
             }
         };
 
@@ -749,7 +768,7 @@
             forecast.textContent = `Forecast: ${impact.forecast}`;
             blockade.textContent = impact.blockade;
 
-            output.innerHTML += `<div style="color:#444; margin-top:15px; font-weight:700;"><i>[QA]: Metadata signal '${type}' staged. Awaiting confirmation...</i></div>`;
+            output.innerHTML += `<div style="color:#222; margin-top:15px; font-weight:bold;"><i>[QA]: Signal '${type}' staged. Awaiting confirmation...</i></div>`;
             output.scrollTop = output.scrollHeight;
             submitBtn.style.display = 'block';
         }
@@ -761,14 +780,14 @@
             if (!currentStagedType) return;
 
             const typeToTransmit = currentStagedType;
-            output.innerHTML += `<div style="color:#d32f2f; margin-top:15px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: ${typeToTransmit}...</i></div>`;
+            output.innerHTML += `<div style="color:#d32f2f; margin-top:20px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: ${typeToTransmit}...</i></div>`;
             output.scrollTop = output.scrollHeight;
 
             try {
                 await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ user: 'Persephone', ping: typeToTransmit }) });
-                output.innerHTML += `<div style="color:green; margin-top:8px; font-weight:800;">[SUCCESS]: Signal logged by Senior Admin H. Accidental-Send Prevention System Validated.</div>`;
+                output.innerHTML += `<div style="color:green; margin-top:10px; font-weight:800;">[SUCCESS]: Signal logged by Senior Admin H. Accidental-Send Prevention System Validated.</div>`;
             } catch (err) {
-                output.innerHTML += `<div style="color:red; margin-top:8px; font-weight:800;">[ERROR]: Signal lost in the River Lethe.</div>`;
+                output.innerHTML += `<div style="color:red; margin-top:10px; font-weight:800;">[ERROR]: Signal lost in the River Lethe. Connection severed.</div>`;
             }
             
             output.scrollTop = output.scrollHeight;
@@ -783,13 +802,13 @@
             const output = document.getElementById('chat-output');
             const text = input.value.trim();
             if (!text) return;
-            output.innerHTML += `<div style="color:var(--orange); margin-top:20px; font-weight:900;">YOU: ${text}</div>`;
+            output.innerHTML += `<div style="color:var(--orange); margin-top:25px; font-weight:900;">YOU: ${text}</div>`;
             input.value = "";
             setTimeout(() => {
                 const r = responses[Math.floor(Math.random() * responses.length)];
-                output.innerHTML += `<div style="margin-top:12px; color:#111; font-weight:600;">${r}</div>`;
+                output.innerHTML += `<div style="margin-top:15px; color:#111; font-weight:600;">${r}</div>`;
                 output.scrollTop = output.scrollHeight;
-            }, 950);
+            }, 1000);
         }
     </script>
 </body>
