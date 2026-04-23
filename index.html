@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hermes Postal Service | Master Portal V3.42</title>
+  <title>Hermes Postal Service | Master Portal V3.43</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -142,7 +142,7 @@
     .admin-note-wrapper {
       padding: 20px 70px 0 70px;
       max-width: 1800px;
-      margin: 0 auto;
+      margin: 0 auto 40px auto;
     }
 
     #admin-note {
@@ -194,10 +194,10 @@
     /* Main grid */
     .main {
       max-width: 1800px;
-      margin: 40px auto 140px auto;
+      margin: 0 auto 140px auto;
       padding: 0 70px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.3fr 1fr;
       column-gap: 70px;
       row-gap: 70px;
       align-items: start;
@@ -208,6 +208,13 @@
       display: flex;
       flex-direction: column;
       justify-content: stretch;
+      height: 100%;
+    }
+
+    .col-left .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .card {
@@ -501,6 +508,63 @@
       to   { transform: translate(25%, 25%) scale(1.6); }
     }
 
+    /* Heatmap overlay (subtle, see-through) */
+    .heatmap-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,80,0,0.25), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(255,0,0,0.18), transparent 70%),
+        radial-gradient(circle at 40% 80%, rgba(255,200,0,0.18), transparent 70%);
+      mix-blend-mode: overlay;
+      filter: blur(40px);
+      animation: heatmap-shift 40s ease-in-out infinite alternate;
+      z-index: 25;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    @keyframes heatmap-shift {
+      0%   { transform: translate(-5%, -5%) scale(1); }
+      50%  { transform: translate(5%, 5%) scale(1.2); }
+      100% { transform: translate(-5%, 10%) scale(1.1); }
+    }
+
+    /* Radar-style storm overlay */
+    .radar-storm {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 28;
+      mix-blend-mode: screen;
+      opacity: 0.32;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255,80,0,0.25), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(255,0,0,0.18), transparent 75%),
+        radial-gradient(circle at 50% 80%, rgba(255,200,0,0.15), transparent 80%),
+        conic-gradient(
+          from 0deg,
+          rgba(255,120,0,0.25),
+          rgba(255,0,0,0.15),
+          rgba(255,120,0,0.25)
+        );
+      animation:
+        radar-rotate 22s linear infinite,
+        radar-pulse 9s ease-in-out infinite alternate;
+      filter: blur(35px);
+    }
+
+    @keyframes radar-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes radar-pulse {
+      0%   { opacity: 0.18; transform: scale(1); }
+      50%  { opacity: 0.32; transform: scale(1.08); }
+      100% { opacity: 0.22; transform: scale(1.03); }
+    }
+
     .blockade-banner {
       background-color: #000000;
       color: #ffeb3b;
@@ -587,7 +651,7 @@
   <div class="header">
     <div class="logo-circle">H</div>
     <div class="header-text">
-      <h1>Hermes Postal Service <span class="version-badge">V3.42 PERSISTENT MANDATE</span></h1>
+      <h1>Hermes Postal Service <span class="version-badge">V3.43 PERSISTENT MANDATE</span></h1>
       <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Underworld Atmospheric Calibration Interface</div>
     </div>
     <div id="embargo-pill" class="status-pill">Embargo Active</div>
@@ -721,6 +785,8 @@
       <div class="weather-map-visual">
         <div class="map-scan-grid"></div>
         <div class="thermal-front-layer" id="heat-layer"></div>
+        <div class="heatmap-overlay"></div>
+        <div class="radar-storm"></div>
         <div class="isobar-ring" style="animation-delay:0s;"></div>
         <div class="isobar-ring" style="animation-delay:5s;"></div>
         <div class="isobar-ring" style="animation-delay:10s;"></div>
@@ -733,16 +799,14 @@
   </div>
 
   <div class="footer">
-    HERMES POSTAL SERVICE · MASTER PORTAL V3.42 · PLEASE CONSULT THE FATES OR REPLY "GO AWAY"
+    HERMES POSTAL SERVICE · MASTER PORTAL V3.43 · PLEASE CONSULT THE FATES OR REPLY "GO AWAY"
   </div>
 
   <script>
-    // === CONFIG ===
     const WEB_APP_URL = 'https://example.com/webhook'; // replace with your real endpoint
 
     /* --- LORE INFRASTRUCTURE: DYNAMIC JAVASCRIPT ARRAYS (RANDOMIZED) --- */
 
-    /* PAYLOAD OPTIONS (7 ITEMS) */
     const payloadOptions = [
       "Bulk Correspondence Dispatch (x4 High-Density Packet)",
       "High-Frequency Audio Transcript (Intercepted Metadata)",
@@ -753,7 +817,6 @@
       "Unlabeled Parcel (Hermes denies all administrative ownership)"
     ];
 
-    /* CONDITION OPTIONS (7 ITEMS) */
     const conditionOptions = [
       "Traces of Lab Spill Detected (Tissue Particulates Observed)",
       "Slightly Singed (Hermes flew too close to Helios during transit)",
@@ -764,7 +827,6 @@
       "Perfect Condition (Statistically Impossible Anomaly Detected)"
     ];
 
-    /* H-BOT RESPONSES (9 ITEMS) */
     const hBotResponses = [
       "H-BOT: Request received. Filing under 'Irrelevant' for future disposal rites.",
       "H-BOT: I don't get paid enough for this feedback loop. Consult the Fates.",
@@ -777,7 +839,6 @@
       "H-BOT: Please hold while I pretend to route this to a Senior Supervisor."
     ];
 
-    /* H-BOT INITIAL WELCOME GREETINGS (Randomized on Load) */
     const hBotGreetings = [
       "H-BOT: Welcome. Current feedback wait time: 4,000 years.",
       "H-BOT: Systems stabilized. Calibration of Sector 4 required.",
@@ -787,7 +848,6 @@
       "H-BOT: Senior Admin H is currently 'unavailable'. I am your replacement."
     ];
 
-    /* SYSTEM STATUS PILL (Randomized on Load) */
     const statusPillOptions = [
       "Embargo Active",
       "Embargo Lifted",
@@ -799,7 +859,6 @@
 
     /* --- ADDITIVE LOGIC FOR V3.42: DO NOT PRUNE --- */
 
-    /* 1. DATA ARRAYS: FULL TABLE RANDOMIZATION */
     const releaseStatusOptions = [
       "Scheduled Release / Date-Gated Administrative Protocol",
       "Administrative Hold (Pending Soul-Audit)",
@@ -826,7 +885,6 @@
       "Courier Unit: Unassigned (Administrative Chaos)"
     ];
 
-    /* 2. THE PROPHECY ENGINE ARRAY */
     const prophecies = [
       "The thread is short, yet the ink remains suspiciously wet.",
       "One sandal is lost in the ash, but the message remains audible.",
@@ -835,7 +893,6 @@
       "Administrative delay is merely destiny moving in slow motion."
     ];
 
-    /* 3. REACTIVE PING IMPACTS (INCLUDING EMBARGO STATES) */
     const pingImpacts = {
       '🟢 ACKNOWLEDGED': {
         forecast: "Conditions Stable. Pressure Normalizing.",
@@ -881,7 +938,6 @@
       }
     };
 
-    /* SYSTEM DEFAULTS & GLOBAL LORE */
     const defaultBlockadeText =
       "ADMINISTRATIVE BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local sector 4 router... Administrative rites in progress... Sector 4 under pining embargo... Static interference from the River Styx peaking...";
 
@@ -932,13 +988,12 @@
       const body = document.getElementById('admin-note-body');
       if (!note || !title || !body) return;
 
-      // 30% chance to show on load
       if (Math.random() < 0.3) {
         const ambient = randomFrom(adminAmbientNotes);
         note.style.display = 'block';
         note.classList.remove('critical', 'lifted');
         title.textContent = "✦ Administrative Warning ✦";
-        body.textContent = ambient.replace("✦ ADMINISTRATIVE WARNING ✦", "").trim();
+        body.textContent = ambient.replace(/✦ ADMINISTRATIVE (WARNING|NOTICE|ALERT) ✦/i, "").trim();
       } else {
         note.style.display = 'none';
       }
@@ -974,7 +1029,6 @@
       output.scrollTop = output.scrollHeight;
     }
 
-    /* Updated handleChat with Red Tape logic */
     function handleChat() {
       const input = document.getElementById('user-input');
       const output = document.getElementById('chat-output');
@@ -1037,9 +1091,7 @@
           mode: 'no-cors',
           body: JSON.stringify({ user: 'Persephone', ping: stagedPingType })
         });
-      } catch (e) {
-        // silent fail
-      }
+      } catch (e) {}
 
       const confirmBtn = document.getElementById('submit-ping-confirm');
       if (confirmBtn) confirmBtn.style.display = 'none';
@@ -1049,11 +1101,27 @@
       stagedPingType = null;
     }
 
+    function randomizeStorm() {
+      const storm = document.querySelector('.radar-storm');
+      if (!storm) return;
+
+      const variants = [
+        "opacity:0.25; filter:blur(25px); animation-duration:18s;",
+        "opacity:0.32; filter:blur(40px); animation-duration:26s;",
+        "opacity:0.28; filter:blur(30px); animation-duration:30s;",
+        "opacity:0.22; filter:blur(20px); animation-duration:16s;",
+        "opacity:0.35; filter:blur(35px); animation-duration:22s;"
+      ];
+
+      storm.style.cssText += variants[Math.floor(Math.random() * variants.length)];
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       initShipmentOverview();
       initStatusPill();
       initHBotGreeting();
       initAdminNoteOnLoad();
+      randomizeStorm();
     });
   </script>
 </body>
