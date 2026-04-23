@@ -12,8 +12,9 @@
             --dark: #333333;
             --light: #ffffff;
             --border: #e0e0e0;
-            --map-base: #1a2a2a;
-            --iso-color: rgba(0, 255, 65, 0.2);
+            --map-base: #0a1111;
+            --iso-color: rgba(0, 255, 65, 0.25);
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         * { 
@@ -22,6 +23,10 @@
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
         }
 
         body {
@@ -29,13 +34,14 @@
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, sans-serif;
+            font-family: var(--font-main);
             background-color: #f7f7f7;
             color: var(--dark);
-            line-height: 1.5;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* TOP SCROLLING BANNER */
+        /* --- TOP SCROLLING BANNER COMPONENT --- */
         .top-bar {
             background-image: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #ffffff;
@@ -48,13 +54,17 @@
             overflow-y: hidden;
             white-space: nowrap;
             position: relative;
+            z-index: 100;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgba(0,0,0,0.1);
         }
 
         .top-bar span {
             display: inline-block;
             padding-left: 100%;
             animation-name: scroll-left;
-            animation-duration: 18s;
+            animation-duration: 20s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
@@ -64,124 +74,159 @@
             to { transform: translateX(-100%); }
         }
 
-        /* HEADER */
+        /* --- HEADER COMPONENT --- */
         .header {
             background-color: var(--light);
             border-bottom-width: 2px;
             border-bottom-style: solid;
             border-bottom-color: var(--yellow);
-            padding-top: 20px;
-            padding-bottom: 15px;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-top: 25px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .logo-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
             background-color: var(--yellow);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
             color: var(--dark);
-            font-size: 22px;
+            font-size: 24px;
         }
 
         .header-text h1 {
             margin-top: 0px;
             margin-bottom: 0px;
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .header-text .subtitle {
             font-size: 13px;
-            color: #666666;
-            margin-top: 3px;
+            color: #777777;
+            margin-top: 4px;
+            font-weight: 500;
         }
 
         .status-pill {
             margin-left: auto;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            padding-left: 14px;
-            padding-right: 14px;
-            border-radius: 999px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-top-left-radius: 999px;
+            border-top-right-radius: 999px;
+            border-bottom-left-radius: 999px;
+            border-bottom-right-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* MAIN LAYOUT: HALF-AND-HALF GRID */
+        /* --- MAIN LAYOUT GRID --- */
         .main {
-            max-width: 1200px;
-            margin-top: 25px;
-            margin-bottom: 40px;
+            max-width: 1300px;
+            margin-top: 30px;
+            margin-bottom: 60px;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 25px;
-            row-gap: 25px;
+            column-gap: 30px;
+            row-gap: 30px;
             align-items: start;
         }
 
+        /* --- CARD COMPONENT --- */
         .card {
             background-color: var(--light);
-            border-radius: 8px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: var(--border);
-            padding-top: 18px;
-            padding-bottom: 20px;
-            padding-left: 18px;
-            padding-right: 18px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--border);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--border);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: var(--border);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: var(--border);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 20px;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
         }
 
         .card-title {
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
             color: #444444;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #f0f0f0;
+            padding-bottom: 12px;
         }
 
         .card-tag {
             font-size: 11px;
-            padding-top: 3px;
-            padding-bottom: 3px;
-            padding-left: 8px;
-            padding-right: 8px;
-            border-radius: 999px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-top-left-radius: 999px;
+            border-top-right-radius: 999px;
+            border-bottom-left-radius: 999px;
+            border-bottom-right-radius: 999px;
             background-color: #fff7e0;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #ffe3a3;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #ffe3a3;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #ffe3a3;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #ffe3a3;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #ffe3a3;
             color: #a66a00;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        /* LOGISTICS TABLE */
+        /* --- LOGISTICS TABLE COMPONENT --- */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
@@ -189,304 +234,387 @@
         }
 
         .logistics-table tr td {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 4px;
-            padding-right: 4px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 6px;
+            padding-right: 6px;
             border-bottom-width: 1px;
             border-bottom-style: solid;
-            border-bottom-color: #f0f0f0;
+            border-bottom-color: #f5f5f5;
         }
 
         .logistics-label {
-            width: 170px;
-            font-weight: 600;
-            color: #777777;
+            width: 190px;
+            font-weight: 700;
+            color: #888888;
             text-transform: uppercase;
             font-size: 11px;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
         }
 
         .logistics-value { 
             color: #333333; 
+            font-weight: 500;
         }
 
-        /* PILL LISTS */
+        /* --- LORE SECTIONS (THE INFRASTRUCTURE) --- */
         .section-block { 
-            margin-top: 20px; 
+            margin-top: 35px; 
         }
 
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            color: #444444;
+        .section-title { 
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            color: #444444; 
+            letter-spacing: 0.02em;
+            border-left-width: 4px;
+            border-left-style: solid;
+            border-left-color: var(--orange);
+            padding-left: 10px;
         }
 
-        .section-subtitle {
-            font-size: 12px;
-            color: #777777;
-            margin-bottom: 8px;
-        }
-
-        .pill-list {
-            list-style-type: none;
-            padding-top: 0px;
-            padding-bottom: 0px;
+        .pill-list { 
+            list-style-type: none; 
             padding-left: 0px;
-            padding-right: 0px;
             margin-top: 0px;
             margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
         }
 
-        .pill-list li {
-            margin-bottom: 4px;
-            font-size: 13px;
-        }
-
-        .pill-label {
-            display: inline-block;
-            font-weight: 600;
-            color: var(--orange);
-            margin-right: 5px;
-        }
-
-        /* CHAT BOX */
-        .chat-box {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .chat-header {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
+        .pill-list li { 
+            margin-bottom: 10px; 
+            font-size: 13px; 
+            line-height: 1.5; 
             color: #555555;
+        }
+
+        .pill-label { 
+            display: inline-block; 
+            font-weight: 700; 
+            color: var(--orange); 
+            margin-right: 10px; 
+        }
+
+        /* --- INTERACTIVE CHAT COMPONENT --- */
+        #chat-output {
+            height: 220px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #eeeeee;
             border-bottom-width: 1px;
             border-bottom-style: solid;
             border-bottom-color: #eeeeee;
-            padding-bottom: 4px;
-        }
-
-        #chat-output {
-            height: 160px;
-            border-radius: 6px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #eeeeee;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #eeeeee;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #eeeeee;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
             font-size: 13px;
             overflow-y: auto;
             background-color: #fafafa;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            line-height: 1.5;
         }
 
-        .chat-line-user { color: var(--orange); margin-top: 4px; }
-        .chat-line-bot { margin-top: 4px; }
-
-        .chat-input-row {
-            display: flex;
-            gap: 6px;
-            margin-top: 4px;
+        .chat-input-row { 
+            display: flex; 
+            gap: 12px; 
         }
 
-        .chat-input-row input {
-            flex: 1;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            padding-left: 8px;
-            padding-right: 8px;
-            border-radius: 4px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #dddddd;
-            font-size: 13px;
-        }
-
-        .chat-input-row button {
-            padding-top: 8px;
-            padding-bottom: 8px;
-            padding-left: 16px;
-            padding-right: 16px;
-            border-radius: 4px;
-            border-style: none;
-            background-color: var(--orange);
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        /* PING PANEL */
-        .ping-panel {
-            margin-top: 20px;
-            border-top-width: 1px;
-            border-top-style: dashed;
-            border-top-color: var(--border);
-            padding-top: 15px;
-        }
-
-        .ping-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: #888888;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .ping-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .ping-btn {
-            background-color: #ffffff;
-            border-width: 1px;
-            border-style: solid;
-            border-color: var(--border);
-            border-radius: 4px;
-            padding-top: 12px;
+        .chat-input-row input { 
+            flex: 1; 
+            padding-top: 12px; 
             padding-bottom: 12px;
-            padding-left: 12px;
-            padding-right: 12px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            text-align: left;
-            transition-property: all;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #dddddd; 
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #dddddd; 
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #dddddd; 
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #dddddd; 
+            border-top-left-radius: 6px; 
+            border-top-right-radius: 6px; 
+            border-bottom-left-radius: 6px; 
+            border-bottom-right-radius: 6px; 
+            font-size: 13px; 
+        }
+
+        .chat-input-row button { 
+            padding-top: 10px; 
+            padding-bottom: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            background-color: var(--orange); 
+            border-top-style: none;
+            border-bottom-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            color: #ffffff; 
+            font-weight: 700; 
+            border-top-left-radius: 6px; 
+            border-top-right-radius: 6px; 
+            border-bottom-left-radius: 6px; 
+            border-bottom-right-radius: 6px; 
+            cursor: pointer; 
+            transition-property: background-color;
             transition-duration: 0.2s;
         }
 
-        .ping-btn:hover {
-            border-color: var(--orange);
-            color: var(--orange);
+        .chat-input-row button:hover {
+            background-color: #ff7a24;
         }
 
-        /* METEOROLOGICAL WEATHER MAP */
-        .weather-map {
+        /* --- METADATA PING COMPONENT --- */
+        .ping-panel { 
+            margin-top: 40px; 
+            border-top-width: 1px;
+            border-top-style: dashed;
+            border-top-color: var(--border);
+            padding-top: 25px; 
+        }
+
+        .ping-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+        }
+
+        .ping-btn { 
+            background-color: #ffffff; 
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--border);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--border);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: var(--border);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: var(--border);
+            border-top-left-radius: 6px; 
+            border-top-right-radius: 6px; 
+            border-bottom-left-radius: 6px; 
+            border-bottom-right-radius: 6px; 
+            padding-top: 16px; 
+            padding-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 11px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-align: left; 
+            transition-property: all;
+            transition-duration: 0.2s;
+            transition-timing-function: ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .ping-btn:hover { 
+            background-color: #fffaf5; 
+            border-top-color: var(--orange); 
+            border-bottom-color: var(--orange); 
+            border-left-color: var(--orange); 
+            border-right-color: var(--orange); 
+            color: var(--orange);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        /* --- WEATHER MAP COMPONENT (IMAGE-BASED) --- */
+        .weather-map-card {
+            margin-top: 30px;
+        }
+
+        .weather-map-container {
             width: 100%;
-            height: 320px;
-            background-color: var(--map-base);
-            border-radius: 4px;
+            height: 420px;
+            background-color: #000000;
+            background-image: url('image_094181.jpg');
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
             position: relative;
             overflow-x: hidden;
             overflow-y: hidden;
-            margin-top: 20px;
-            border-width: 2px;
-            border-style: solid;
-            border-color: #333333;
+            border-top-width: 2px;
+            border-top-style: solid;
+            border-top-color: #333333;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: #333333;
+            border-left-width: 2px;
+            border-left-style: solid;
+            border-left-color: #333333;
+            border-right-width: 2px;
+            border-right-style: solid;
+            border-right-color: #333333;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.9);
         }
 
-        .map-grid-points {
+        .weather-grid-lines {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: 2;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1.5px, transparent 1.5px);
+            background-size: 45px 45px;
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .isobar {
+        .isobar-container {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .isobar-ring {
             position: absolute;
             top: 50%;
             left: 50%;
-            border-width: 1px;
-            border-style: solid;
-            border-color: var(--iso-color);
-            border-radius: 50%;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--iso-color);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--iso-color);
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: var(--iso-color);
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: var(--iso-color);
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
             transform: translate(-50%, -50%);
-            animation-name: pulse-ring;
-            animation-duration: 8s;
-            animation-timing-function: linear;
+            animation-name: pulse-pressure;
+            animation-duration: 10s;
+            animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
         }
 
-        @keyframes pulse-ring {
-            0% { width: 0; height: 0; opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { width: 500px; height: 500px; opacity: 0; }
+        @keyframes pulse-pressure {
+            0%, 100% { width: 120px; height: 120px; opacity: 0.1; }
+            50% { width: 500px; height: 500px; opacity: 0.7; }
         }
 
-        .heat-front {
+        .heat-gradient-layer {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.6;
-            transition-property: all;
-            transition-duration: 1.5s;
-            transition-timing-function: ease;
-            animation-name: front-drift;
-            animation-duration: 12s;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 35% 45%, rgba(255, 140, 0, 0.2), transparent 55%),
+                              radial-gradient(circle at 65% 55%, rgba(128, 0, 128, 0.2), transparent 55%);
+            filter: blur(60px);
+            z-index: 6;
+            animation-name: atmospheric-drift;
+            animation-duration: 25s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
             animation-direction: alternate;
-            z-index: 1;
+            pointer-events: none;
+            transition-property: all;
+            transition-duration: 2s;
         }
 
-        @keyframes front-drift {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(10%, 10%); }
+        @keyframes atmospheric-drift {
+            from { transform: translate(-8%, -8%) scale(1); }
+            to { transform: translate(8%, 8%) scale(1.1); }
         }
 
-        /* BLOCKADE BANNER */
+        /* --- BLOCKADE BANNER COMPONENT --- */
         .blockade-banner {
             background-color: #000000;
             color: #ffeb3b;
-            font-family: monospace;
-            font-size: 12px;
-            padding-top: 12px;
-            padding-bottom: 12px;
-            padding-left: 12px;
-            padding-right: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
             overflow-x: hidden;
             white-space: nowrap;
-            margin-top: 15px;
-            border-width: 1px;
-            border-style: solid;
-            border-color: #444444;
-            border-radius: 4px;
+            margin-top: 25px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #444444;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #444444;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #444444;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #444444;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
 
         .blockade-banner span {
             display: inline-block;
             padding-left: 100%;
-            animation-name: scroll-left-slow;
-            animation-duration: 22s;
+            animation-name: scroll-blockade;
+            animation-duration: 28s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
 
-        @keyframes scroll-left-slow {
+        @keyframes scroll-blockade {
             from { transform: translateX(0); }
             to { transform: translateX(-100%); }
         }
 
-        .footer {
-            max-width: 1000px;
-            margin-top: 0px;
-            margin-bottom: 25px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 10px;
-            padding-left: 15px;
-            padding-right: 15px;
-            font-size: 11px;
-            color: #777777;
-            text-align: center;
+        /* --- FOOTER COMPONENT --- */
+        .footer { 
+            text-align: center; 
+            padding-top: 60px; 
+            padding-bottom: 60px;
+            font-size: 11px; 
+            color: #999999; 
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        @media (max-width: 900px) {
-            .main { grid-template-columns: 1fr; }
-            .status-pill { display: none; }
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1100px) {
+            .main { 
+                grid-template-columns: 1fr; 
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .status-pill { 
+                display: none; 
+            }
         }
     </style>
 </head>
@@ -494,33 +622,48 @@
 <body>
 
     <div class="top-bar">
-        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK · CHAOTIC DELIVERY GUARANTEED · TRACKING NOT AVAILABLE · HERMES IS NOT RESPONSIBLE FOR ANYTHING ·</span>
+        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK · CHAOTIC DELIVERY GUARANTEED · TRACKING NOT AVAILABLE · HERMES IS NOT RESPONSIBLE FOR ANYTHING · AUDIT ACTIVE ·</span>
     </div>
 
     <div class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
             <h1>Hermes Postal Service</h1>
-            <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Quality Assurance</div>
+            <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Quality Assurance · Version 3.33</div>
         </div>
         <div class="status-pill">Embargo Active</div>
     </div>
 
     <div class="main">
 
-        <div class="col">
+        <div class="col-left">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Shipment Overview protocol: HPS-VOID</div>
-                    <div class="card-tag">Logistics Summary</div>
+                    <div class="card-title">Shipment Overview <span style="font-size:10px; color:#bbb; font-weight:normal;">REF: HPS-VOID-666</span></div>
+                    <div class="card-tag">Live Logistics Data</div>
                 </div>
-
+                
                 <table class="logistics-table">
-                    <tr><td class="logistics-label">Release Status</td><td class="logistics-value">Scheduled Release / Date-Gated</td></tr>
-                    <tr><td class="logistics-label">Logistics</td><td class="logistics-value">Delivered on time (within 10-year variance)</td></tr>
-                    <tr><td class="logistics-label">Courier ID</td><td class="logistics-value">H-01 (Hermes)</td></tr>
-                    <tr><td class="logistics-label">Payload</td><td id="payload-field" class="logistics-value">Loading...</td></tr>
-                    <tr><td class="logistics-label">Condition</td><td id="condition-field" class="logistics-value">Loading...</td></tr>
+                    <tr>
+                        <td class="logistics-label">Release Status</td>
+                        <td class="logistics-value">Scheduled Release / Date-Gated</td>
+                    </tr>
+                    <tr>
+                        <td class="logistics-label">Logistics Delta</td>
+                        <td class="logistics-value">Delivered on time (within 10-year variance)</td>
+                    </tr>
+                    <tr>
+                        <td class="logistics-label">Courier ID</td>
+                        <td class="logistics-value">H-01 (Hermes, Senior Admin)</td>
+                    </tr>
+                    <tr>
+                        <td class="logistics-label">Payload Type</td>
+                        <td id="payload-field" class="logistics-value">Initializing sequence...</td>
+                    </tr>
+                    <tr>
+                        <td class="logistics-label">Condition Report</td>
+                        <td id="condition-field" class="logistics-value">Scanning particulates...</td>
+                    </tr>
                 </table>
 
                 <div class="section-block">
@@ -534,49 +677,54 @@
                         <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear him</li>
                         <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new mode on the spot</li>
                     </ul>
+                </div>
 
-                    <div class="section-title" style="margin-top:14px;">Delivery Windows</div>
+                <div class="section-block">
+                    <div class="section-title">Delivery Windows</div>
                     <ul class="pill-list">
-                        <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Hermes is half‑awake)</li>
-                        <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Hermes is pretending to work)</li>
+                        <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Hermes is half‑awake and irritable)</li>
+                        <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Hermes is pretending to work at his desk)</li>
                         <li><span class="pill-label">Night Window:</span> 6 PM–2 AM (Hermes is absolutely not working but delivers anyway)</li>
                         <li><span class="pill-label">Forbidden Window:</span> 2 AM–5 AM (Hermes delivers here the MOST)</li>
                     </ul>
+                </div>
 
-                    <div class="section-title" style="margin-top:14px;">Hermes Rules</div>
-                    <ul class="pill-list" style="color:#666666;">
-                        <li>· Hermes never timestamps anything</li>
-                        <li>· Hermes never explains anything</li>
+                <div class="section-block">
+                    <div class="section-title">Hermes Protocols & Rules</div>
+                    <ul class="pill-list" style="color:#666;">
+                        <li>· Hermes never timestamps correspondence or logs</li>
+                        <li>· Hermes never explains administrative delays</li>
                         <li>· Hermes always looks like he was somewhere he shouldn’t be</li>
-                        <li>· Hermes always has plausible deniability</li>
-                        <li>· Hermes always blames Hades</li>
-                        <li>· Hermes always blames Persephone</li>
-                        <li>· Hermes always blames the postal system</li>
-                        <li>· Hermes always blames the weather (even in the Underworld)</li>
+                        <li>· Hermes always maintains 100% plausible deniability</li>
+                        <li>· Hermes always blames Hades for system failures</li>
+                        <li>· Hermes always blames Persephone for data leakage</li>
+                        <li>· Hermes always blames the Underworld postal architecture</li>
+                        <li>· Hermes always blames the weather (even in the Underworld sectors)</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-right">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Support & Quality Assurance H-BOT V1.0</div>
-                    <div class="card-tag">Automated Loop</div>
+                    <div class="card-title">Support & Quality Assurance</div>
+                    <div class="card-tag">H-BOT V1.1 (UNSTABLE)</div>
                 </div>
-
-                <div class="chat-box">
-                    <div id="chat-output">H-BOT: Welcome to the automated feedback loop.</div>
-                    <div class="chat-input-row">
-                        <input type="text" id="user-input" placeholder="Enter complaint metadata...">
-                        <button onclick="handleChat()">Send</button>
-                    </div>
+                
+                <div id="chat-output">
+                    <div style="color:#999; font-style:italic;">[SYSTEM]: Connection established. H-BOT active. Calibration of Underworld atmospheric shielding in progress...</div>
+                </div>
+                
+                <div class="chat-input-row">
+                    <input type="text" id="user-input" placeholder="Enter complaint metadata...">
+                    <button onclick="handleChat()">Send</button>
                 </div>
 
                 <div class="ping-panel">
                     <div class="section-title" style="font-size: 11px;">Metadata Feedback (Direct Courier Channel)</div>
-                    <div style="font-size: 10px; color: #d32f2f; font-weight: bold; margin-bottom: 10px; font-style: italic;">
-                        * Courier Note: These signals bypass the queue. Hermes sees these directly.
+                    <div style="font-size: 10px; color: #d32f2f; font-weight: 800; margin-bottom: 12px; font-style: italic; text-transform: uppercase;">
+                        * WARNING: These signals bypass the queue. Hermes sees these directly.
                     </div>
                     <div class="ping-grid">
                         <button class="ping-btn" onclick="sendPing('🟢 ACKNOWLEDGED')">🟢 ACKNOWLEDGED</button>
@@ -588,21 +736,24 @@
                     </div>
                 </div>
 
-                <div style="margin-top:25px; font-size:11px; font-weight:700; color:#555555; text-transform:uppercase;">Underworld Topographic Satellite Forecast</div>
-                <div class="weather-map">
-                    <div class="map-grid-points"></div>
-                    <div class="heat-front" id="heat-layer"></div>
-                    <div class="isobar" style="animation-delay: 0s;"></div>
-                    <div class="isobar" style="animation-delay: 2s;"></div>
-                    <div class="isobar" style="animation-delay: 4s;"></div>
+                <div style="margin-top:35px; font-size:11px; font-weight:800; color:#555555; text-transform:uppercase; letter-spacing:0.05em;">Underworld Topographic Satellite Forecast | Sector 4</div>
+                <div class="weather-map-container">
+                    <div class="weather-grid-lines"></div>
+                    <div class="heat-gradient-layer" id="heat-layer"></div>
+                    <div class="isobar-container">
+                        <div class="isobar-ring" style="animation-delay: 0s;"></div>
+                        <div class="isobar-ring" style="animation-delay: 2s;"></div>
+                        <div class="isobar-ring" style="animation-delay: 4s;"></div>
+                        <div class="isobar-ring" style="animation-delay: 6s;"></div>
+                    </div>
                 </div>
 
-                <div id="forecast-text" style="font-size:12px; font-weight:700; color:#d32f2f; margin-top:10px;">
-                    Forecast: Atmospheric Pressure Normal.
+                <div id="forecast-text" style="font-size:13px; font-weight:800; color:#d32f2f; margin-top:18px; text-transform: uppercase;">
+                    Forecast Status: Atmospheric Saturation Stable.
                 </div>
 
                 <div class="blockade-banner">
-                    <span id="blockade-text">CURRENT BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the router... Administrative rites in progress...</span>
+                    <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local router... Administrative rites in progress... Sector 4 under pining embargo...</span>
                 </div>
             </div>
         </div>
@@ -610,82 +761,111 @@
     </div>
 
     <div class="footer">
-        OfficialCommunications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H.
+        Official Communications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H. · To OPT OUT, reply "GO AWAY".
     </div>
 
     <script>
-        // STRICT IMMUTABILITY: DO NOT OPTIMIZE OR PRUNE.
+        /* STRICT IMMUTABILITY LOGIC: 
+           High-Density JavaScript Arrays and Object Declarations.
+           Zero-Pruning Protocol V2.0 in Effect.
+        */
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec";
 
         const payloadOptions = [
-            "Bulk Dispatch (x4)",
-            "High-Frequency Audio Transcript",
-            "Sealed Correspondence Packet",
-            "Unsorted Divine Mail Bundle",
-            "Cross‑Realm Delivery Envelope",
-            "Priority Scroll (Fragile)",
-            "Unlabeled Parcel (Hermes denies ownership)"
+            "Bulk Correspondence Dispatch (x4 Packet)",
+            "High-Frequency Audio Transcript (Intercepted)",
+            "Sealed Divine Correspondence Packet (Fragile)",
+            "Unsorted Underworld Mail Bundle (Mixed Sectors)",
+            "Cross‑Realm Delivery Envelope (Non-Standard)",
+            "Priority Administrative Scroll (Urgent)",
+            "Unlabeled Parcel (Hermes denies all ownership)"
         ];
 
         const conditionOptions = [
-            "Traces of Lab Spill (Tissue Particulates)",
-            "Slightly Singed (Hermes flew too close)",
-            "Smells Like Ambrosia",
-            "Crushed but Still Legible",
-            "Suspiciously Damp",
-            "Marked 'Do Not Open' (Hermes opened it)",
-            "Perfect Condition (statistically impossible)"
+            "Traces of Lab Spill (Tissue Particulates Detected)",
+            "Slightly Singed (Hermes flew too close to Helios)",
+            "Smells Strongly of Ambrosia and Static",
+            "Crushed but Textual Data Remains Legible",
+            "Suspiciously Damp (Styx Saturation High)",
+            "Marked 'Do Not Open' (Internal Audit: Hermes opened it)",
+            "Perfect Condition (Statistically Impossible Anomaly)"
         ];
 
         const pingImpacts = {
-            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Hermes is on lunch.", color: "rgba(0,255,100,0.3)", blockade: "Blockade: Administrative lunch break in progress." },
-            '⚪ RECEIVED': { forecast: "Normalizing. Zeus is napping.", color: "rgba(200,200,200,0.3)", blockade: "Blockade: Minimal static interference detected." },
-            '🔵 QUEUED': { forecast: "Increasing static. Density rising.", color: "rgba(0,100,255,0.3)", blockade: "Blockade: Cerberus is barking at the router." },
-            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. Traffic spike.", color: "rgba(128,0,128,0.5)", blockade: "Blockade: Metadata saturation reaching 98%." },
-            '❤️ WELLNESS': { forecast: "EROS-LEVEL SATURATION PEAKING.", color: "rgba(255,0,100,0.4)", blockade: "Blockade: Emotional compliance bots are offline." },
-            '💀 CHAOS': { forecast: "POSEIDON-LEVEL HURRICANE ACTIVE.", color: "rgba(255,0,0,0.6)", blockade: "BLOCKADE: CERBERUS HAS THE ROUTER." }
+            '🟢 ACKNOWLEDGED': { 
+                forecast: "Conditions Stable. Pressure Normalizing. Hermes is on lunch.", 
+                gradient: "radial-gradient(circle at 30% 40%, rgba(0,255,100,0.25), transparent 60%)", 
+                blockade: "Blockade: Administrative lunch break in progress. Monitoring Sector 4." 
+            },
+            '⚪ RECEIVED': { 
+                forecast: "Atmospheric pressure normalizing. Zeus is currently napping.", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(200,200,200,0.25), transparent 60%)", 
+                blockade: "Blockade: Minimal static interference detected. Signal propagation clear." 
+            },
+            '🔵 QUEUED': { 
+                forecast: "Increasing static. Atmospheric density rising in Sector 4.", 
+                gradient: "radial-gradient(circle at 70% 30%, rgba(0,100,255,0.25), transparent 60%)", 
+                blockade: "Blockade: Cerberus is barking at the router. Connections dropping." 
+            },
+            '🟣 STILL HERE': { 
+                forecast: "DEEP THERMAL BLOOM. High-salience metadata traffic detected.", 
+                gradient: "radial-gradient(circle at 40% 60%, rgba(128,0,128,0.4), transparent 70%)", 
+                blockade: "Blockade: Metadata saturation reaching 98%. Registry of Souls flagging traffic." 
+            },
+            '❤️ WELLNESS': { 
+                forecast: "EROS-LEVEL SATURATION PEAKING. Thermal anomaly detected.", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,100,0.35), transparent 60%)", 
+                blockade: "Blockade: Emotional compliance bots are offline. Manual oversight required." 
+            },
+            '💀 CHAOS': { 
+                forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,0,0.55), transparent 70%)", 
+                blockade: "BLOCKADE: CERBERUS HAS THE ROUTER. REPEAT: CERBERUS HAS THE ROUTER. BLACKOUT." 
+            }
         };
 
         const responses = [
-            "H-BOT: Request received. Filing under 'Irrelevant'.",
-            "H-BOT: I don't get paid enough for this. Consult the Fates.",
-            "H-BOT: Error 404: Empathy Not Found.",
-            "H-BOT: The Sender is currently 'activated.' Please try again when he stops yelling about micropipettes.",
-            "H-BOT: Your message has been converted to soul-matter and flushed.",
-            "H-BOT: I'm literally in my pajamas. Go away.",
-            "H-BOT: System busy. Currently dodging a hazardous lab spill.",
-            "H-BOT: Hermes says this is 'within expected chaos parameters'.",
-            "H-BOT: Please hold while I pretend to route this to a supervisor."
+            "H-BOT: Request received. Filing under 'Irrelevant' for future disposal.",
+            "H-BOT: I don't get paid enough for this feedback. Consult the Fates.",
+            "H-BOT: Error 404: Empathy Not Found in this administrative sector.",
+            "H-BOT: The Sender is currently 'activated.' Please wait for his yelling to stop.",
+            "H-BOT: Your message has been converted to raw soul-matter and flushed.",
+            "H-BOT: I'm literally in my pajamas right now. Please go away.",
+            "H-BOT: System busy. Currently dodging a hazardous lab spill in Sector 9.",
+            "H-BOT: Hermes says this interaction is 'within expected chaos parameters'.",
+            "H-BOT: Please hold while I pretend to route this to a Senior Supervisor."
         ];
 
         window.onload = function() {
-            document.getElementById("payload-field").textContent = payloadOptions[Math.floor(Math.random() * payloadOptions.length)];
-            document.getElementById("condition-field").textContent = conditionOptions[Math.floor(Math.random() * conditionOptions.length)];
+            document.getElementById("payload-field").textContent = 
+                payloadOptions[Math.floor(Math.random() * payloadOptions.length)];
+            document.getElementById("condition-field").textContent = 
+                conditionOptions[Math.floor(Math.random() * conditionOptions.length)];
         }
 
         async function sendPing(type) {
             const output = document.getElementById('chat-output');
-            const map = document.getElementById('heat-layer');
+            const heat = document.getElementById('heat-layer');
             const forecast = document.getElementById('forecast-text');
             const blockade = document.getElementById('blockade-text');
             
             const impact = pingImpacts[type];
-            map.style.background = impact.color;
+            heat.style.background = impact.gradient;
             forecast.textContent = `Forecast: ${impact.forecast}`;
             blockade.textContent = impact.blockade;
 
-            output.innerHTML += `<div>[SYSTEM]: Sending ${type}...</div>`;
+            output.innerHTML += `<div style="color:#d32f2f; margin-top:8px; font-weight:bold; letter-spacing:0.02em;"><i>[SYSTEM]: Transmitting Metadata Signal: ${type}...</i></div>`;
             output.scrollTop = output.scrollHeight;
 
             try {
-                await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify({ user: 'Persephone', ping: type })
+                await fetch(WEB_APP_URL, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    body: JSON.stringify({ user: 'Persephone', ping: type }) 
                 });
-                output.innerHTML += `<div>[SUCCESS]: Signal logged by Senior Admin H.</div>`;
+                output.innerHTML += `<div style="color:green; margin-top:4px; font-weight:500;">[SUCCESS]: Signal logged by Senior Admin H. Channel calibrated.</div>`;
             } catch (err) {
-                output.innerHTML += `<div>[ERROR]: Signal lost in the Styx.</div>`;
+                output.innerHTML += `<div style="color:red; margin-top:4px; font-weight:500;">[ERROR]: Signal lost in the River Lethe. Attempting re-sync...</div>`;
             }
             output.scrollTop = output.scrollHeight;
         }
@@ -694,13 +874,16 @@
             const input = document.getElementById('user-input');
             const output = document.getElementById('chat-output');
             if (!input.value.trim()) return;
-            output.innerHTML += `<div style="color:var(--orange); margin-top:5px;">YOU: ${input.value}</div>`;
+            
+            output.innerHTML += `<div style="color:var(--orange); margin-top:12px; font-weight:800;">YOU: ${input.value}</div>`;
+            const text = input.value;
             input.value = "";
+            
             setTimeout(() => {
                 const r = responses[Math.floor(Math.random() * responses.length)];
-                output.innerHTML += `<div>${r}</div>`;
+                output.innerHTML += `<div style="margin-top:6px; color:#444;">${r}</div>`;
                 output.scrollTop = output.scrollHeight;
-            }, 700);
+            }, 850);
         }
     </script>
 </body>
