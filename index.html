@@ -2,22 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hermes Postal Service | Master Portal V3.43</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    :root {
-      --yellow: #FFC93C;
-      --orange: #FF8C42;
-      --dark: #333333;
-      --light: #ffffff;
-      --border: #e0e0e0;
-      --map-base: #0a0a0a;
-      --iso-c<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Hermes Postal Service | Master Portal V3.44</title>
+  <title>Hermes Postal Service | Master Portal V3.45</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -153,11 +138,13 @@
       50% { transform: scale(1.06); }
     }
 
-    /* Administrator warning plaque (top, not in ticker) */
+    /* Administrator warning plaque (centered, larger text) */
     .admin-note-wrapper {
       padding: 20px 70px 0 70px;
       max-width: 1800px;
       margin: 0 auto 40px auto;
+      display: flex;
+      justify-content: center;
     }
 
     #admin-note {
@@ -172,6 +159,9 @@
       box-shadow: 0 18px 45px rgba(0,0,0,0.7);
       position: relative;
       overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
     }
 
     #admin-note::before {
@@ -183,11 +173,11 @@
     }
 
     #admin-note-title {
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       font-weight: 900;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: #ffeb3b;
     }
 
@@ -227,7 +217,7 @@
       background-color: var(--light);
       border-radius: 20px;
       border: 1px solid var(--border);
-      padding: 60px;
+      padding: 50px;
       box-shadow: 0 15px 60px rgba(0,0,0,0.07);
       display: flex;
       flex-direction: column;
@@ -235,7 +225,7 @@
     }
 
     .card-header {
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .card-title {
@@ -289,14 +279,14 @@
 
     /* Lore sections */
     .section-block {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .section-title {
       font-size: 18px;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       color: #000000;
       letter-spacing: 0.12em;
       border-left: 12px solid var(--orange);
@@ -308,7 +298,7 @@
     }
 
     .pill-list li {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       font-size: 16px;
       line-height: 1.9;
       color: #444444;
@@ -480,12 +470,19 @@
       color: #222222;
     }
 
+    .weather-map-visual-wrapper {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+    }
+
     .weather-map-visual {
       width: 100%;
-      height: 420px;
+      max-width: 640px; /* visually narrower so it doesn’t dominate */
+      aspect-ratio: 16 / 9;
       background-color: var(--map-base);
       background-image: url('underworld_weather_map_1.png');
-      background-size: contain;   /* zoomed out to show more map */
+      background-size: contain;   /* show full map */
       background-repeat: no-repeat;
       background-position: center;
       border-radius: 22px;
@@ -493,7 +490,6 @@
       overflow: hidden;
       border: 4px solid #333333;
       box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7);
-      margin-top: 22px;
     }
 
     .map-scan-grid {
@@ -513,13 +509,13 @@
       width: 100%;
       height: 100%;
       background-image:
-        radial-gradient(circle at 45% 55%, rgba(255,140,0,0.45), transparent 80%),
-        radial-gradient(circle at 75% 35%, rgba(128,0,128,0.45), transparent 80%);
-      filter: blur(80px);
+        radial-gradient(circle at 45% 55%, rgba(255,140,0,0.55), transparent 80%),
+        radial-gradient(circle at 75% 35%, rgba(128,0,128,0.55), transparent 80%);
+      filter: blur(60px);
       z-index: 10;
       animation: front-drift-atmospheric 60s linear infinite alternate;
       pointer-events: none;
-      opacity: 0.7;
+      opacity: 0.8;
       mix-blend-mode: screen;
     }
 
@@ -532,15 +528,15 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 30%, rgba(255,80,0,0.45), transparent 70%),
-        radial-gradient(circle at 70% 60%, rgba(255,0,0,0.35), transparent 70%),
-        radial-gradient(circle at 40% 80%, rgba(255,200,0,0.35), transparent 70%);
+        radial-gradient(circle at 20% 30%, rgba(255,80,0,0.6), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(255,0,0,0.5), transparent 70%),
+        radial-gradient(circle at 40% 80%, rgba(255,200,0,0.5), transparent 70%);
       mix-blend-mode: overlay;
-      filter: blur(30px);
+      filter: blur(24px);
       animation: heatmap-shift 32s ease-in-out infinite alternate;
       z-index: 15;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.75;
     }
 
     @keyframes heatmap-shift {
@@ -555,15 +551,15 @@
       pointer-events: none;
       z-index: 18;
       mix-blend-mode: screen;
-      opacity: 0.55;
+      opacity: 0.75;
       background:
-        radial-gradient(circle at 30% 40%, rgba(0,255,0,0.55), transparent 70%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,0,0.45), transparent 75%),
-        radial-gradient(circle at 50% 80%, rgba(255,0,0,0.35), transparent 80%);
+        radial-gradient(circle at 30% 40%, rgba(0,255,0,0.7), transparent 70%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,0,0.6), transparent 75%),
+        radial-gradient(circle at 50% 80%, rgba(255,0,0,0.55), transparent 80%);
       animation:
         radar-rotate 26s linear infinite,
         radar-pulse 10s ease-in-out infinite alternate;
-      filter: blur(18px);
+      filter: blur(14px);
     }
 
     @keyframes radar-rotate {
@@ -572,9 +568,9 @@
     }
 
     @keyframes radar-pulse {
-      0%   { opacity: 0.35; transform: scale(1); }
-      50%  { opacity: 0.6;  transform: scale(1.08); }
-      100% { opacity: 0.4;  transform: scale(1.02); }
+      0%   { opacity: 0.45; transform: scale(1); }
+      50%  { opacity: 0.9;  transform: scale(1.08); }
+      100% { opacity: 0.6;  transform: scale(1.02); }
     }
 
     .isobar-ring {
@@ -669,7 +665,7 @@
   <div class="header">
     <div class="logo-circle">H</div>
     <div class="header-text">
-      <h1>Hermes Postal Service <span class="version-badge">V3.44 PERSISTENT MANDATE</span></h1>
+      <h1>Hermes Postal Service <span class="version-badge">V3.45 PERSISTENT MANDATE</span></h1>
       <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Underworld Atmospheric Calibration Interface</div>
     </div>
     <div id="embargo-pill" class="status-pill">Embargo Active</div>
@@ -756,7 +752,7 @@
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: SUPPORT PORTAL + MAP (single card for equal height) -->
+    <!-- RIGHT COLUMN: SUPPORT PORTAL + MAP -->
     <div class="col-right">
       <div class="card">
         <div class="card-header">
@@ -799,13 +795,15 @@
         <div class="weather-map-title">Underworld Topographic Satellite Forecast | Sector 4</div>
         <div id="forecast-text">Forecast: Stable infernal conditions.</div>
 
-        <div class="weather-map-visual">
-          <div class="thermal-front-layer" id="heat-layer"></div>
-          <div class="heatmap-overlay"></div>
-          <div class="radar-storm"></div>
-          <div class="map-scan-grid"></div>
-          <div class="isobar-ring" style="animation-delay:0s;"></div>
-          <div class="isobar-ring" style="animation-delay:6s;"></div>
+        <div class="weather-map-visual-wrapper">
+          <div class="weather-map-visual">
+            <div class="thermal-front-layer" id="heat-layer"></div>
+            <div class="heatmap-overlay"></div>
+            <div class="radar-storm"></div>
+            <div class="map-scan-grid"></div>
+            <div class="isobar-ring" style="animation-delay:0s;"></div>
+            <div class="isobar-ring" style="animation-delay:6s;"></div>
+          </div>
         </div>
 
         <div class="blockade-banner">
@@ -816,9 +814,9 @@
   </div>
 
   <div class="footer">
-    <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.44</div>
-    <div class="footer-line-mono">Build: HPS-UNDERWORLD-SECTOR4 · Commit: #V3.44-THERMAL-FORECAST</div>
-    <div>Stack: Static HTML · CSS Grid · Vanilla JS · No SLA · Chaos-First Architecture</div>
+    <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.45</div>
+    <div class="footer-line-mono">Build: HPS-UNDERWORLD-SECTOR4 · Commit: #V3.45-DOPPLER-OVERLAY</div>
+    <div>Stack: Static HTML · CSS Grid · Vanilla JS · No SLA · Chaos-First Architecture · Doppler Overlay Enabled</div>
     <div>To opt out of Underworld Logistics, please consult the Fates or reply "GO AWAY".</div>
   </div>
 
@@ -1126,9 +1124,9 @@
       if (!storm) return;
 
       const variants = [
-        "opacity:0.45; filter:blur(16px); animation-duration:22s;",
-        "opacity:0.6; filter:blur(20px); animation-duration:28s;",
-        "opacity:0.5; filter:blur(18px); animation-duration:24s;"
+        "opacity:0.7; filter:blur(14px); animation-duration:22s;",
+        "opacity:0.85; filter:blur(16px); animation-duration:28s;",
+        "opacity:0.75; filter:blur(14px); animation-duration:24s;"
       ];
 
       storm.style.cssText += variants[Math.floor(Math.random() * variants.length)];
