@@ -6,17 +6,22 @@
     <title>Hermes Postal Service | Official Logistics Portal</title>
 
     <style>
+        /* STRUCTURAL DATA: ROOT VARIABLES
+           Immutable Design Tokens 
+        */
         :root {
             --yellow: #FFC93C;
             --orange: #FF8C42;
             --dark: #333333;
             --light: #ffffff;
             --border: #e0e0e0;
-            --map-base: #0a1111;
-            --iso-color: rgba(0, 255, 65, 0.25);
-            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --map-base: #0a0a0a;
+            --iso-color: rgba(0, 255, 65, 0.35);
         }
 
+        /* RESET AND BASE STYLES 
+           Expanded for Maximum Structural Density
+        */
         * { 
             box-sizing: border-box; 
             margin-top: 0px;
@@ -34,37 +39,38 @@
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            font-family: var(--font-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f7f7f7;
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* --- TOP SCROLLING BANNER COMPONENT --- */
+        /* TOP SCROLLING BANNER */
         .top-bar {
             background-image: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #ffffff;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 12px;
+            padding-bottom: 12px;
             padding-left: 20px;
             padding-right: 20px;
             font-size: 13px;
+            font-weight: 700;
             overflow-x: hidden;
             overflow-y: hidden;
             white-space: nowrap;
             position: relative;
-            z-index: 100;
             border-bottom-width: 1px;
             border-bottom-style: solid;
             border-bottom-color: rgba(0,0,0,0.1);
+            letter-spacing: 0.05em;
         }
 
         .top-bar span {
             display: inline-block;
             padding-left: 100%;
             animation-name: scroll-left;
-            animation-duration: 20s;
+            animation-duration: 25s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
@@ -74,25 +80,25 @@
             to { transform: translateX(-100%); }
         }
 
-        /* --- HEADER COMPONENT --- */
+        /* HEADER */
         .header {
             background-color: var(--light);
-            border-bottom-width: 2px;
+            border-bottom-width: 4px;
             border-bottom-style: solid;
             border-bottom-color: var(--yellow);
-            padding-top: 25px;
-            padding-bottom: 20px;
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-top: 30px;
+            padding-bottom: 25px;
+            padding-left: 40px;
+            padding-right: 40px;
             display: flex;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            gap: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
         }
 
         .logo-circle {
-            width: 52px;
-            height: 52px;
+            width: 60px;
+            height: 60px;
             border-top-left-radius: 50%;
             border-top-right-radius: 50%;
             border-bottom-left-radius: 50%;
@@ -103,65 +109,82 @@
             justify-content: center;
             font-weight: 900;
             color: var(--dark);
-            font-size: 24px;
+            font-size: 28px;
         }
 
         .header-text h1 {
             margin-top: 0px;
             margin-bottom: 0px;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.04em;
         }
 
         .header-text .subtitle {
-            font-size: 13px;
-            color: #777777;
+            font-size: 14px;
+            color: #666666;
             margin-top: 4px;
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        .version-badge {
+            background-color: #000000;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10px;
+            font-weight: 900;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 4px;
+            margin-left: 20px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #00ff41;
+            box-shadow: 0 0 10px rgba(0,255,65,0.2);
         }
 
         .status-pill {
             margin-left: auto;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            padding-left: 16px;
-            padding-right: 16px;
-            border-top-left-radius: 999px;
-            border-top-right-radius: 999px;
-            border-bottom-left-radius: 999px;
-            border-bottom-right-radius: 999px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
 
-        /* --- MAIN LAYOUT GRID --- */
+        /* MAIN GRID STRUCTURE 
+           Symmetrical 1fr 1fr Half-and-Half Layout
+        */
         .main {
-            max-width: 1300px;
-            margin-top: 30px;
-            margin-bottom: 60px;
+            max-width: 1500px;
+            margin-top: 40px;
+            margin-bottom: 80px;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 25px;
-            padding-right: 25px;
+            padding-left: 40px;
+            padding-right: 40px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 30px;
-            row-gap: 30px;
+            column-gap: 40px;
+            row-gap: 40px;
             align-items: start;
         }
 
-        /* --- CARD COMPONENT --- */
+        /* CARD COMPONENT */
         .card {
             background-color: var(--light);
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 14px;
+            border-bottom-right-radius: 14px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: var(--border);
@@ -174,105 +197,94 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: var(--border);
-            padding-top: 25px;
-            padding-bottom: 25px;
-            padding-left: 25px;
-            padding-right: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            padding-top: 35px;
+            padding-bottom: 35px;
+            padding-left: 35px;
+            padding-right: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
         }
 
         .card-title {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #444444;
-            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            color: #333333;
+            margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom-width: 1px;
             border-bottom-style: solid;
             border-bottom-color: #f0f0f0;
-            padding-bottom: 12px;
+            padding-bottom: 15px;
         }
 
         .card-tag {
-            font-size: 11px;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-top-left-radius: 999px;
-            border-top-right-radius: 999px;
-            border-bottom-left-radius: 999px;
-            border-bottom-right-radius: 999px;
+            font-size: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 14px;
+            padding-right: 14px;
+            border-radius: 999px;
             background-color: #fff7e0;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #ffe3a3;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #ffe3a3;
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #ffe3a3;
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #ffe3a3;
             color: #a66a00;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #ffe3a3;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 900;
+            letter-spacing: 0.05em;
         }
 
-        /* --- LOGISTICS TABLE COMPONENT --- */
+        /* LOGISTICS TABLE */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .logistics-table tr td {
-            padding-top: 14px;
-            padding-bottom: 14px;
-            padding-left: 6px;
-            padding-right: 6px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            padding-left: 10px;
+            padding-right: 10px;
             border-bottom-width: 1px;
             border-bottom-style: solid;
-            border-bottom-color: #f5f5f5;
+            border-bottom-color: #f2f2f2;
         }
 
         .logistics-label {
-            width: 190px;
-            font-weight: 700;
-            color: #888888;
+            width: 210px;
+            font-weight: 800;
+            color: #aaaaaa;
             text-transform: uppercase;
             font-size: 11px;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
         }
 
         .logistics-value { 
-            color: #333333; 
-            font-weight: 500;
+            color: #222222; 
+            font-weight: 700;
         }
 
-        /* --- LORE SECTIONS (THE INFRASTRUCTURE) --- */
+        /* LORE INFRASTRUCTURE SECTIONS */
         .section-block { 
-            margin-top: 35px; 
+            margin-top: 45px; 
         }
 
         .section-title { 
-            font-size: 14px; 
-            font-weight: 800; 
+            font-size: 15px; 
+            font-weight: 900; 
             text-transform: uppercase; 
-            margin-bottom: 15px; 
-            color: #444444; 
-            letter-spacing: 0.02em;
-            border-left-width: 4px;
+            margin-bottom: 20px; 
+            color: #222222; 
+            letter-spacing: 0.06em;
+            border-left-width: 6px;
             border-left-style: solid;
             border-left-color: var(--orange);
-            padding-left: 10px;
+            padding-left: 15px;
         }
 
         .pill-list { 
@@ -283,213 +295,170 @@
         }
 
         .pill-list li { 
-            margin-bottom: 10px; 
+            margin-bottom: 15px; 
             font-size: 13px; 
-            line-height: 1.5; 
-            color: #555555;
+            line-height: 1.6; 
+            color: #444444;
         }
 
         .pill-label { 
             display: inline-block; 
-            font-weight: 700; 
+            font-weight: 800; 
             color: var(--orange); 
-            margin-right: 10px; 
+            margin-right: 15px; 
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.02em;
         }
 
-        /* --- INTERACTIVE CHAT COMPONENT --- */
+        /* CHAT AND BOT COMPONENTS */
         #chat-output {
             height: 220px;
             border-top-width: 1px;
             border-top-style: solid;
-            border-top-color: #eeeeee;
+            border-top-color: #e5e5e5;
             border-bottom-width: 1px;
             border-bottom-style: solid;
-            border-bottom-color: #eeeeee;
+            border-bottom-color: #e5e5e5;
             border-left-width: 1px;
             border-left-style: solid;
-            border-left-color: #eeeeee;
+            border-left-color: #e5e5e5;
             border-right-width: 1px;
             border-right-style: solid;
-            border-right-color: #eeeeee;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 15px;
-            padding-right: 15px;
+            border-right-color: #e5e5e5;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
             font-size: 13px;
             overflow-y: auto;
             background-color: #fafafa;
-            margin-bottom: 15px;
-            border-top-left-radius: 6px;
-            border-top-right-radius: 6px;
-            border-bottom-left-radius: 6px;
-            border-bottom-right-radius: 6px;
-            line-height: 1.5;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            line-height: 1.7;
         }
 
         .chat-input-row { 
             display: flex; 
-            gap: 12px; 
+            gap: 15px; 
         }
 
         .chat-input-row input { 
             flex: 1; 
-            padding-top: 12px; 
-            padding-bottom: 12px;
-            padding-left: 15px;
-            padding-right: 15px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #dddddd; 
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #dddddd; 
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #dddddd; 
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #dddddd; 
-            border-top-left-radius: 6px; 
-            border-top-right-radius: 6px; 
-            border-bottom-left-radius: 6px; 
-            border-bottom-right-radius: 6px; 
-            font-size: 13px; 
+            padding-top: 15px; 
+            padding-bottom: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #cccccc; 
+            border-radius: 10px; 
+            font-size: 14px; 
+            background-color: #ffffff;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .chat-input-row button { 
-            padding-top: 10px; 
-            padding-bottom: 10px;
-            padding-left: 25px;
-            padding-right: 25px;
+            padding-left: 35px;
+            padding-right: 35px;
             background-color: var(--orange); 
-            border-top-style: none;
-            border-bottom-style: none;
-            border-left-style: none;
-            border-right-style: none;
+            border-style: none;
             color: #ffffff; 
-            font-weight: 700; 
-            border-top-left-radius: 6px; 
-            border-top-right-radius: 6px; 
-            border-bottom-left-radius: 6px; 
-            border-bottom-right-radius: 6px; 
+            font-weight: 900; 
+            border-radius: 10px; 
             cursor: pointer; 
-            transition-property: background-color;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            transition-property: all;
             transition-duration: 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 140, 66, 0.2);
         }
 
         .chat-input-row button:hover {
             background-color: #ff7a24;
+            transform: translateY(-1px);
         }
 
-        /* --- METADATA PING COMPONENT --- */
+        /* METADATA PING BUTTONS */
         .ping-panel { 
-            margin-top: 40px; 
+            margin-top: 50px; 
             border-top-width: 1px;
             border-top-style: dashed;
             border-top-color: var(--border);
-            padding-top: 25px; 
+            padding-top: 35px; 
         }
 
         .ping-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
+            gap: 18px; 
         }
 
         .ping-btn { 
             background-color: #ffffff; 
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: var(--border);
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--border);
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: var(--border);
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: var(--border);
-            border-top-left-radius: 6px; 
-            border-top-right-radius: 6px; 
-            border-bottom-left-radius: 6px; 
-            border-bottom-right-radius: 6px; 
-            padding-top: 16px; 
-            padding-bottom: 16px;
-            padding-left: 16px;
-            padding-right: 16px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--border);
+            border-radius: 10px; 
+            padding-top: 20px; 
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
             font-size: 11px; 
-            font-weight: 800; 
+            font-weight: 900; 
             cursor: pointer; 
             text-align: left; 
             transition-property: all;
-            transition-duration: 0.2s;
-            transition-timing-function: ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition-duration: 0.3s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .ping-btn:hover { 
             background-color: #fffaf5; 
-            border-top-color: var(--orange); 
-            border-bottom-color: var(--orange); 
-            border-left-color: var(--orange); 
-            border-right-color: var(--orange); 
+            border-color: var(--orange); 
             color: var(--orange);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 140, 66, 0.15);
         }
 
-        /* --- WEATHER MAP COMPONENT (IMAGE-BASED) --- */
-        .weather-map-card {
-            margin-top: 30px;
+        /* METEOROLOGICAL TOPOGRAPHIC SURVEY 
+           Integrated image_094181.jpg as dynamic background
+        */
+        .weather-survey-block {
+            margin-top: 45px;
         }
 
-        .weather-map-container {
+        .weather-map-visual {
             width: 100%;
-            height: 420px;
+            height: 480px;
             background-color: #000000;
             background-image: url('image_094181.jpg');
             background-size: cover;
             background-position: center;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
             position: relative;
             overflow-x: hidden;
             overflow-y: hidden;
-            border-top-width: 2px;
-            border-top-style: solid;
-            border-top-color: #333333;
-            border-bottom-width: 2px;
-            border-bottom-style: solid;
-            border-bottom-color: #333333;
-            border-left-width: 2px;
-            border-left-style: solid;
-            border-left-color: #333333;
-            border-right-width: 2px;
-            border-right-style: solid;
-            border-right-color: #333333;
-            box-shadow: inset 0 0 60px rgba(0,0,0,0.9);
+            border-width: 2px;
+            border-style: solid;
+            border-color: #444444;
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.95), 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        .weather-grid-lines {
+        .map-scan-grid {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1.5px, transparent 1.5px);
-            background-size: 45px 45px;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .isobar-container {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 8;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
+            background-size: 55px 55px;
+            z-index: 20;
             pointer-events: none;
         }
 
@@ -497,120 +466,99 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: var(--iso-color);
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--iso-color);
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: var(--iso-color);
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: var(--iso-color);
-            border-top-left-radius: 50%;
-            border-top-right-radius: 50%;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
+            border-width: 2px;
+            border-style: solid;
+            border-color: var(--iso-color);
+            border-radius: 50%;
             transform: translate(-50%, -50%);
-            animation-name: pulse-pressure;
-            animation-duration: 10s;
+            animation-name: pulse-atmospheric;
+            animation-duration: 15s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
+            z-index: 15;
+            pointer-events: none;
         }
 
-        @keyframes pulse-pressure {
-            0%, 100% { width: 120px; height: 120px; opacity: 0.1; }
-            50% { width: 500px; height: 500px; opacity: 0.7; }
+        @keyframes pulse-atmospheric {
+            0%, 100% { width: 150px; height: 150px; opacity: 0.1; }
+            50% { width: 700px; height: 700px; opacity: 0.8; }
         }
 
-        .heat-gradient-layer {
+        .thermal-front-layer {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at 35% 45%, rgba(255, 140, 0, 0.2), transparent 55%),
-                              radial-gradient(circle at 65% 55%, rgba(128, 0, 128, 0.2), transparent 55%);
-            filter: blur(60px);
-            z-index: 6;
-            animation-name: atmospheric-drift;
-            animation-duration: 25s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
+            background-image: radial-gradient(circle at 40% 50%, rgba(255, 140, 0, 0.25), transparent 65%),
+                              radial-gradient(circle at 70% 40%, rgba(128, 0, 128, 0.25), transparent 65%);
+            filter: blur(80px);
+            z-index: 10;
+            animation: drift-atmospheric 40s infinite alternate linear;
             pointer-events: none;
             transition-property: all;
-            transition-duration: 2s;
+            transition-duration: 3s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes atmospheric-drift {
-            from { transform: translate(-8%, -8%) scale(1); }
-            to { transform: translate(8%, 8%) scale(1.1); }
+        @keyframes drift-atmospheric {
+            from { transform: translate(-12%, -12%) scale(1); }
+            to { transform: translate(12%, 12%) scale(1.3); }
         }
 
-        /* --- BLOCKADE BANNER COMPONENT --- */
+        /* ADMINISTRATIVE BLOCKADE BANNER */
         .blockade-banner {
             background-color: #000000;
             color: #ffeb3b;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 13px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 20px;
-            padding-right: 20px;
+            font-size: 15px;
+            font-weight: 900;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            padding-right: 30px;
             overflow-x: hidden;
             white-space: nowrap;
-            margin-top: 25px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #444444;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #444444;
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #444444;
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #444444;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            margin-top: 35px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #666666;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .blockade-banner span {
             display: inline-block;
             padding-left: 100%;
-            animation-name: scroll-blockade;
-            animation-duration: 28s;
+            animation-name: scroll-blockade-data;
+            animation-duration: 35s;
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
 
-        @keyframes scroll-blockade {
+        @keyframes scroll-blockade-data {
             from { transform: translateX(0); }
             to { transform: translateX(-100%); }
         }
 
-        /* --- FOOTER COMPONENT --- */
+        /* FOOTER */
         .footer { 
             text-align: center; 
-            padding-top: 60px; 
-            padding-bottom: 60px;
-            font-size: 11px; 
+            padding-top: 100px; 
+            padding-bottom: 100px;
+            font-size: 12px; 
             color: #999999; 
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            line-height: 2.0;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 1100px) {
+        /* RESPONSIVE LOGIC */
+        @media (max-width: 1200px) {
             .main { 
                 grid-template-columns: 1fr; 
-                padding-left: 15px;
-                padding-right: 15px;
+                padding-left: 25px;
+                padding-right: 25px;
             }
             .status-pill { 
                 display: none; 
@@ -622,14 +570,14 @@
 <body>
 
     <div class="top-bar">
-        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS NETWORK · CHAOTIC DELIVERY GUARANTEED · TRACKING NOT AVAILABLE · HERMES IS NOT RESPONSIBLE FOR ANYTHING · AUDIT ACTIVE ·</span>
+        <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING UNAVAILABLE · AUDIT ACTIVE ·</span>
     </div>
 
     <div class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
-            <h1>Hermes Postal Service</h1>
-            <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Quality Assurance · Version 3.33</div>
+            <h1>Hermes Postal Service <span class="version-badge">V3.35 SECURE</span></h1>
+            <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Atmospheric Calibration</div>
         </div>
         <div class="status-pill">Embargo Active</div>
     </div>
@@ -639,8 +587,8 @@
         <div class="col-left">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Shipment Overview <span style="font-size:10px; color:#bbb; font-weight:normal;">REF: HPS-VOID-666</span></div>
-                    <div class="card-tag">Live Logistics Data</div>
+                    <div class="card-title">Shipment Overview <span style="font-size:10px; color:#ccc; font-weight:normal;">MANIFEST: HPS-VOID-SEQUENCE</span></div>
+                    <div class="card-tag">Live Interface</div>
                 </div>
                 
                 <table class="logistics-table">
@@ -658,16 +606,16 @@
                     </tr>
                     <tr>
                         <td class="logistics-label">Payload Type</td>
-                        <td id="payload-field" class="logistics-value">Initializing sequence...</td>
+                        <td id="payload-field" class="logistics-value">Initializing sector scan...</td>
                     </tr>
                     <tr>
                         <td class="logistics-label">Condition Report</td>
-                        <td id="condition-field" class="logistics-value">Scanning particulates...</td>
+                        <td id="condition-field" class="logistics-value">Analyzing particulate density...</td>
                     </tr>
                 </table>
 
                 <div class="section-block">
-                    <div class="section-title">Delivery Modes</div>
+                    <div class="section-title">Standard Delivery Modes</div>
                     <ul class="pill-list">
                         <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, whenever he feels like it</li>
                         <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped at once</li>
@@ -680,9 +628,9 @@
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">Delivery Windows</div>
+                    <div class="section-title">Temporal Delivery Windows</div>
                     <ul class="pill-list">
-                        <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Hermes is half‑awake and irritable)</li>
+                        <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Hermes is half‑awake and highly irritable)</li>
                         <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Hermes is pretending to work at his desk)</li>
                         <li><span class="pill-label">Night Window:</span> 6 PM–2 AM (Hermes is absolutely not working but delivers anyway)</li>
                         <li><span class="pill-label">Forbidden Window:</span> 2 AM–5 AM (Hermes delivers here the MOST)</li>
@@ -690,16 +638,16 @@
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">Hermes Protocols & Rules</div>
+                    <div class="section-title">Administrative Protocols</div>
                     <ul class="pill-list" style="color:#666;">
-                        <li>· Hermes never timestamps correspondence or logs</li>
-                        <li>· Hermes never explains administrative delays</li>
+                        <li>· Hermes never timestamps correspondence or system logs</li>
+                        <li>· Hermes never explains administrative delays or reroutes</li>
                         <li>· Hermes always looks like he was somewhere he shouldn’t be</li>
                         <li>· Hermes always maintains 100% plausible deniability</li>
-                        <li>· Hermes always blames Hades for system failures</li>
-                        <li>· Hermes always blames Persephone for data leakage</li>
+                        <li>· Hermes always blames Hades for internal system failures</li>
+                        <li>· Hermes always blames Persephone for data leakage anomalies</li>
                         <li>· Hermes always blames the Underworld postal architecture</li>
-                        <li>· Hermes always blames the weather (even in the Underworld sectors)</li>
+                        <li>· Hermes always blames the weather (even in the dark sectors)</li>
                     </ul>
                 </div>
             </div>
@@ -708,12 +656,12 @@
         <div class="col-right">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Support & Quality Assurance</div>
-                    <div class="card-tag">H-BOT V1.1 (UNSTABLE)</div>
+                    <div class="card-title">Support & QA Portal</div>
+                    <div class="card-tag">H-BOT V1.2.1 ACTIVE</div>
                 </div>
                 
                 <div id="chat-output">
-                    <div style="color:#999; font-style:italic;">[SYSTEM]: Connection established. H-BOT active. Calibration of Underworld atmospheric shielding in progress...</div>
+                    <div style="color:#999; font-style:italic;">[SYSTEM]: Connection stabilized. H-BOT initialized. Connection to Sector 4 Weather Network established. Calibration in progress...</div>
                 </div>
                 
                 <div class="chat-input-row">
@@ -723,7 +671,7 @@
 
                 <div class="ping-panel">
                     <div class="section-title" style="font-size: 11px;">Metadata Feedback (Direct Courier Channel)</div>
-                    <div style="font-size: 10px; color: #d32f2f; font-weight: 800; margin-bottom: 12px; font-style: italic; text-transform: uppercase;">
+                    <div style="font-size: 10px; color: #d32f2f; font-weight: 900; margin-bottom: 20px; font-style: italic; text-transform: uppercase;">
                         * WARNING: These signals bypass the queue. Hermes sees these directly.
                     </div>
                     <div class="ping-grid">
@@ -736,24 +684,21 @@
                     </div>
                 </div>
 
-                <div style="margin-top:35px; font-size:11px; font-weight:800; color:#555555; text-transform:uppercase; letter-spacing:0.05em;">Underworld Topographic Satellite Forecast | Sector 4</div>
-                <div class="weather-map-container">
-                    <div class="weather-grid-lines"></div>
-                    <div class="heat-gradient-layer" id="heat-layer"></div>
-                    <div class="isobar-container">
-                        <div class="isobar-ring" style="animation-delay: 0s;"></div>
-                        <div class="isobar-ring" style="animation-delay: 2s;"></div>
-                        <div class="isobar-ring" style="animation-delay: 4s;"></div>
-                        <div class="isobar-ring" style="animation-delay: 6s;"></div>
-                    </div>
+                <div style="margin-top:45px; font-size:11px; font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.12em;">Underworld Topographic Satellite Forecast | Sector 4 Pattern</div>
+                <div class="weather-map-visual">
+                    <div class="map-scan-grid"></div>
+                    <div class="thermal-front-layer" id="heat-layer"></div>
+                    <div class="isobar-ring" style="animation-delay: 0s;"></div>
+                    <div class="isobar-ring" style="animation-delay: 4s;"></div>
+                    <div class="isobar-ring" style="animation-delay: 8s;"></div>
                 </div>
 
-                <div id="forecast-text" style="font-size:13px; font-weight:800; color:#d32f2f; margin-top:18px; text-transform: uppercase;">
+                <div id="forecast-text" style="font-size:14px; font-weight:900; color:#d32f2f; margin-top:25px; text-transform: uppercase; letter-spacing: 0.05em;">
                     Forecast Status: Atmospheric Saturation Stable.
                 </div>
 
                 <div class="blockade-banner">
-                    <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local router... Administrative rites in progress... Sector 4 under pining embargo...</span>
+                    <span id="blockade-text">ADMINISTRATIVE BLOCKADE: System functioning... Hermes is searching for his left sandal... Cerberus ate the local router... Administrative rites in progress... Sector 4 under pining embargo... Static interference from the Styx peaking...</span>
                 </div>
             </div>
         </div>
@@ -761,13 +706,13 @@
     </div>
 
     <div class="footer">
-        Official Communications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H. · To OPT OUT, reply "GO AWAY".
+        To OPT OUT, please consult the Fates or reply "GO AWAY".<br>
+        PORTAL V3.35 · Official Communications of the Underworld Postal Infrastructure · Metadata audited by Senior Admin H.
     </div>
 
     <script>
         /* STRICT IMMUTABILITY LOGIC: 
-           High-Density JavaScript Arrays and Object Declarations.
-           Zero-Pruning Protocol V2.0 in Effect.
+           WEB_APP_URL IS PERSISTENT. DO NOT REMOVE.
         */
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec";
 
@@ -794,32 +739,32 @@
         const pingImpacts = {
             '🟢 ACKNOWLEDGED': { 
                 forecast: "Conditions Stable. Pressure Normalizing. Hermes is on lunch.", 
-                gradient: "radial-gradient(circle at 30% 40%, rgba(0,255,100,0.25), transparent 60%)", 
+                gradient: "radial-gradient(circle at 30% 40%, rgba(0,255,100,0.35), transparent 65%)", 
                 blockade: "Blockade: Administrative lunch break in progress. Monitoring Sector 4." 
             },
             '⚪ RECEIVED': { 
                 forecast: "Atmospheric pressure normalizing. Zeus is currently napping.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(200,200,200,0.25), transparent 60%)", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(200,200,200,0.35), transparent 65%)", 
                 blockade: "Blockade: Minimal static interference detected. Signal propagation clear." 
             },
             '🔵 QUEUED': { 
                 forecast: "Increasing static. Atmospheric density rising in Sector 4.", 
-                gradient: "radial-gradient(circle at 70% 30%, rgba(0,100,255,0.25), transparent 60%)", 
+                gradient: "radial-gradient(circle at 70% 30%, rgba(0,100,255,0.35), transparent 65%)", 
                 blockade: "Blockade: Cerberus is barking at the router. Connections dropping." 
             },
             '🟣 STILL HERE': { 
                 forecast: "DEEP THERMAL BLOOM. High-salience metadata traffic detected.", 
-                gradient: "radial-gradient(circle at 40% 60%, rgba(128,0,128,0.4), transparent 70%)", 
+                gradient: "radial-gradient(circle at 40% 60%, rgba(128,0,128,0.5), transparent 75%)", 
                 blockade: "Blockade: Metadata saturation reaching 98%. Registry of Souls flagging traffic." 
             },
             '❤️ WELLNESS': { 
                 forecast: "EROS-LEVEL SATURATION PEAKING. Thermal anomaly detected.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,100,0.35), transparent 60%)", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,100,0.45), transparent 65%)", 
                 blockade: "Blockade: Emotional compliance bots are offline. Manual oversight required." 
             },
             '💀 CHAOS': { 
                 forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.", 
-                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,0,0.55), transparent 70%)", 
+                gradient: "radial-gradient(circle at 50% 50%, rgba(255,0,0,0.65), transparent 75%)", 
                 blockade: "BLOCKADE: CERBERUS HAS THE ROUTER. REPEAT: CERBERUS HAS THE ROUTER. BLACKOUT." 
             }
         };
@@ -854,7 +799,7 @@
             forecast.textContent = `Forecast: ${impact.forecast}`;
             blockade.textContent = impact.blockade;
 
-            output.innerHTML += `<div style="color:#d32f2f; margin-top:8px; font-weight:bold; letter-spacing:0.02em;"><i>[SYSTEM]: Transmitting Metadata Signal: ${type}...</i></div>`;
+            output.innerHTML += `<div style="color:#d32f2f; margin-top:12px; font-weight:900; letter-spacing:0.02em;"><i>[SYSTEM]: Transmitting Metadata Signal: ${type}...</i></div>`;
             output.scrollTop = output.scrollHeight;
 
             try {
@@ -863,9 +808,9 @@
                     mode: 'no-cors', 
                     body: JSON.stringify({ user: 'Persephone', ping: type }) 
                 });
-                output.innerHTML += `<div style="color:green; margin-top:4px; font-weight:500;">[SUCCESS]: Signal logged by Senior Admin H. Channel calibrated.</div>`;
+                output.innerHTML += `<div style="color:green; margin-top:5px; font-weight:800;">[SUCCESS]: Signal logged by Senior Admin H. Channel calibrated.</div>`;
             } catch (err) {
-                output.innerHTML += `<div style="color:red; margin-top:4px; font-weight:500;">[ERROR]: Signal lost in the River Lethe. Attempting re-sync...</div>`;
+                output.innerHTML += `<div style="color:red; margin-top:5px; font-weight:800;">[ERROR]: Signal lost in the River Lethe. Attempting re-sync...</div>`;
             }
             output.scrollTop = output.scrollHeight;
         }
@@ -873,17 +818,17 @@
         function handleChat() {
             const input = document.getElementById('user-input');
             const output = document.getElementById('chat-output');
-            if (!input.value.trim()) return;
+            const text = input.value.trim();
+            if (!text) return;
             
-            output.innerHTML += `<div style="color:var(--orange); margin-top:12px; font-weight:800;">YOU: ${input.value}</div>`;
-            const text = input.value;
+            output.innerHTML += `<div style="color:var(--orange); margin-top:18px; font-weight:900;">YOU: ${text}</div>`;
             input.value = "";
             
             setTimeout(() => {
                 const r = responses[Math.floor(Math.random() * responses.length)];
-                output.innerHTML += `<div style="margin-top:6px; color:#444;">${r}</div>`;
+                output.innerHTML += `<div style="margin-top:10px; color:#333; font-weight:600;">${r}</div>`;
                 output.scrollTop = output.scrollHeight;
-            }, 850);
+            }, 900);
         }
     </script>
 </body>
