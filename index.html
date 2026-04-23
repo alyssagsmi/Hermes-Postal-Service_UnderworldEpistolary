@@ -94,7 +94,7 @@
 
         /* MAIN LAYOUT */
         .main {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 25px auto 40px;
             padding: 0 15px;
             display: grid;
@@ -291,7 +291,7 @@
             color: var(--orange);
         }
 
-        /* DOPPLER RADAR */
+        /* WEATHER HEAT MAP (UNDERWORLD DOPPLER) */
         .radar-container {
             width: 100%;
             height: 180px;
@@ -300,7 +300,7 @@
             border-radius: 4px;
             position: relative;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-top: 15px;
         }
 
         .radar-grid {
@@ -328,22 +328,31 @@
             to { transform: rotate(360deg) translate(-50%, -50%); }
         }
 
-        .radar-blip {
+        .heat-blob {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--radar-green);
             border-radius: 50%;
-            filter: blur(1px);
-            box-shadow: 0 0 10px var(--radar-green);
-            opacity: 0;
-            animation: blip 4s infinite;
+            filter: blur(25px);
+            opacity: 0.5;
+            transition: all 1s ease;
         }
 
-        @keyframes blip {
-            0%, 50% { opacity: 0; }
-            55% { opacity: 1; }
-            100% { opacity: 0; }
+        /* BLOCKADE SCROLLING BANNER */
+        .blockade-banner {
+            background: #000;
+            color: #ffeb3b;
+            font-family: monospace;
+            font-size: 11px;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 15px;
+            border: 1px solid #333;
+        }
+
+        .blockade-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroll-left 15s linear infinite;
         }
 
         /* FOOTER */
@@ -437,61 +446,32 @@
 
                     <div class="section-title" style="margin-top:14px; font-size:13px;">Hermes Rules</div>
                     <ul class="pill-list">
-                        <li>Hermes never timestamps anything</li>
-                        <li>Hermes never explains anything</li>
-                        <li>Hermes always looks like he was somewhere he shouldn’t be</li>
-                        <li>Hermes always has plausible deniability</li>
-                        <li>Hermes always blames Hades</li>
-                        <li>Hermes always blames Persephone</li>
-                        <li>Hermes always blames the postal system</li>
-                        <li>Hermes always blames the weather (even in the Underworld)</li>
+                        <li>· Hermes never timestamps anything</li>
+                        <li>· Hermes never explains anything</li>
+                        <li>· Hermes always looks like he was somewhere he shouldn’t be</li>
+                        <li>· Hermes always has plausible deniability</li>
+                        <li>· Hermes always blames Hades</li>
+                        <li>· Hermes always blames Persephone</li>
+                        <li>· Hermes always blames the postal system</li>
+                        <li>· Hermes always blames the weather (even in the Underworld)</li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Registry of Souls | Atmospheric & Administrative Blockade</div>
-                    <div class="card-tag">Live Sensor Scan</div>
-                </div>
-                
-                <div class="radar-container">
-                    <div class="radar-grid"></div>
-                    <div class="radar-sweep"></div>
-                    <div class="radar-blip" style="top: 20%; left: 30%; animation-delay: 0.5s;"></div>
-                    <div class="radar-blip" style="top: 60%; left: 70%; animation-delay: 2s;"></div>
-                    <div class="radar-blip" style="top: 40%; left: 50%; animation-delay: 1s; background: #FF8C42;"></div>
-                </div>
-
-                <table class="logistics-table">
-                    <tr>
-                        <td class="logistics-label">Forecast</td>
-                        <td class="logistics-value" id="forecast-field">Scanning...</td>
-                    </tr>
-                    <tr>
-                        <td class="logistics-label">Admin Blockade</td>
-                        <td class="logistics-value" id="blockade-field">Loading system logs...</td>
-                    </tr>
-                    <tr>
-                        <td class="logistics-label">Throughput</td>
-                        <td class="logistics-value" id="throughput-field">0% (Throttled)</td>
-                    </tr>
-                </table>
             </div>
         </div>
 
         <div class="column-right">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Support & Automation</div>
+                    <div class="card-title">Support & Quality Assurance</div>
                     <div class="card-tag">H‑BOT v1.0 (BETA)</div>
                 </div>
 
                 <div class="chat-box">
                     <div class="chat-header">Automated Support Queue</div>
                     <div id="chat-output">
-                        <div class="chat-line-bot">H-BOT: Welcome. Current wait time: 4,000 years.</div>
-                        <div class="chat-line-bot">H-BOT: How can I ignore you today?</div>
+                        <div class="chat-line-bot">
+                            H-BOT: Welcome. Current wait time: 4,000 years.
+                        </div>
                     </div>
 
                     <div class="chat-input-row">
@@ -501,18 +481,33 @@
                 </div>
 
                 <div class="ping-panel">
-                    <div class="ping-title">Non-Verbal Metadata Pings (Optional)</div>
+                    <div class="ping-title">Metadata Feedback (Atmospheric Calibration)</div>
+                    <div style="font-size: 10px; color: #d32f2f; font-weight: bold; margin-bottom: 8px;">
+                        * Courier Note: These signals bypass the queue. Hermes sees these directly.
+                    </div>
                     <div class="ping-grid">
                         <button class="ping-btn" onclick="sendPing('🟢 ACKNOWLEDGED')"><span>🟢</span> ACKNOWLEDGED</button>
                         <button class="ping-btn" onclick="sendPing('⚪ RECEIVED')"><span>⚪</span> RECEIVED</button>
                         <button class="ping-btn" onclick="sendPing('🔵 QUEUED')"><span>🔵</span> QUEUED</button>
                         <button class="ping-btn" onclick="sendPing('🟣 STILL HERE')"><span>🟣</span> STILL HERE</button>
-                        <button class="ping-btn" onclick="sendPing('❤️ WELLNESS POSITIVE')"><span>❤️</span> WELLNESS</button>
-                        <button class="ping-btn" onclick="sendPing('💀 CHAOS SIGNAL')"><span>💀</span> CHAOS</button>
+                        <button class="ping-btn" onclick="sendPing('❤️ WELLNESS')"><span>❤️</span> WELLNESS</button>
+                        <button class="ping-btn" onclick="sendPing('💀 CHAOS')"><span>💀</span> CHAOS</button>
                     </div>
-                    <p style="font-size: 10px; color: #999; margin-top: 10px;">
-                        *Pings assist with packet-tracking and reduce unnecessary retries. Contains no message content.
-                    </p>
+                </div>
+
+                <div style="margin-top:25px; font-size:11px; font-weight:700; color:#555; text-transform:uppercase;">Underworld Atmospheric Monitor</div>
+                <div class="radar-container" id="weather-box">
+                    <div class="radar-grid"></div>
+                    <div class="radar-sweep"></div>
+                    <div id="heat-blob-1" class="heat-blob" style="width:100px; height:100px; background:rgba(0,255,65,0.3); top:20%; left:20%;"></div>
+                </div>
+
+                <div style="font-size:12px; font-weight:700; color:#d32f2f; margin-top:10px;" id="forecast-text">
+                    Forecast: Atmospheric Pressure Normal.
+                </div>
+
+                <div class="blockade-banner">
+                    <span id="blockade-text">CURRENT BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Administrative rites in progress... Cerberus ate the router...</span>
                 </div>
             </div>
         </div>
@@ -520,10 +515,14 @@
     </div>
 
     <div class="footer">
-        Official Underworld Postal Infrastructure · Reply "GO AWAY" to opt out.
+        To OPT OUT, please consult the Fates or reply "GO AWAY".<br>
+        Official Communications of the Underworld Postal Infrastructure · Hermes denies responsibility for delays.
     </div>
 
     <script>
+        // PASTE YOUR DEPLOYED WEB APP URL HERE:
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec";
+
         /* RANDOM PAYLOAD + CONDITION LOGIC */
         const payloadOptions = [
             "Bulk Dispatch (x4)",
@@ -544,39 +543,27 @@
             "Marked 'Do Not Open' (Hermes opened it)",
             "Perfect Condition (statistically impossible)"
         ];
-        
-        const forecasts = [
-            "Hurricanes incited by Poseidon (Sector 4 - Diverting)",
-            "Static interference from Zeus (Sector 1 - Output Gated)",
-            "Ash cloud from Hephaestus's forge (Sector 9 - Zero Visibility)",
-            "Styx flooding due to Charon's strike (Sector 2 - Delayed)",
-            "Eros-level pining detected (Atmospheric Saturation - 98%)"
-        ];
 
-        const blockades = [
-            "Hermes lost the key to the Nectar Cellar.",
-            "Zeus is asking about 'Corn Sweat' again.",
-            "Cerberus ate the local area router.",
-            "Compliance Audit: Too many non-compliant metaphors.",
-            "Administrative rites in progress (Nectar recovery period)."
-        ];
+        const pingImpacts = {
+            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Hermes is on lunch.", color: "rgba(0,255,65,0.4)", blockade: "Blockade: Administrative lunch break in progress. Sector 4 clear." },
+            '⚪ RECEIVED': { forecast: "Atmospheric pressure normalizing. Zeus is napping.", color: "rgba(255,255,255,0.4)", blockade: "Blockade: Minimal static interference detected. Static clearing." },
+            '🔵 QUEUED': { forecast: "Increasing static. Atmospheric density rising.", color: "rgba(0,100,255,0.4)", blockade: "Blockade: Cerberus is barking at the router. Connections dropping." },
+            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. System overheating due to high-salience traffic.", color: "rgba(128,0,128,0.5)", blockade: "Blockade: Metadata saturation reaching 98%. Registry of Souls flagging traffic." },
+            '❤️ WELLNESS': { forecast: "EROS-LEVEL SATURATION PEAKING. Ambrosia spill in Sector 4.", color: "rgba(255,0,100,0.5)", blockade: "Blockade: Emotional compliance bots are crying. Manual oversight required." },
+            '💀 CHAOS': { forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.", color: "rgba(255,0,0,0.6)", blockade: "BLOCKADE: CERBERUS HAS THE ROUTER. REPEAT: CERBERUS HAS THE ROUTER. TOTAL BLACKOUT." }
+        };
 
         function randomizeFields() {
-            document.getElementById("payload-field").textContent = 
+            document.getElementById("payload-field").textContent =
                 payloadOptions[Math.floor(Math.random() * payloadOptions.length)];
-            document.getElementById("condition-field").textContent = 
+
+            document.getElementById("condition-field").textContent =
                 conditionOptions[Math.floor(Math.random() * conditionOptions.length)];
-            document.getElementById("forecast-field").textContent = 
-                forecasts[Math.floor(Math.random() * forecasts.length)];
-            document.getElementById("blockade-field").textContent = 
-                blockades[Math.floor(Math.random() * blockades.length)];
-            document.getElementById("throughput-field").textContent = 
-                Math.floor(Math.random() * 5) + "% (Audit Active)";
         }
 
         window.onload = randomizeFields;
 
-        /* CHATBOT LOGIC */
+        /* CHATBOT */
         const responses = [
             "H-BOT: Request received. Filing under 'Irrelevant'.",
             "H-BOT: I don't get paid enough for this. Consult the Fates.",
@@ -611,16 +598,40 @@
             }, 900);
         }
 
-        /* PING SYSTEM */
-        function sendPing(type) {
+        /* STATUS PING HANDLER */
+        async function sendPing(type) {
             const output = document.getElementById('chat-output');
+            const blob = document.getElementById('heat-blob-1');
+            const forecast = document.getElementById('forecast-text');
+            const blockade = document.getElementById('blockade-text');
+            
+            // 1. UPDATE UI IN REAL-TIME
+            const impact = pingImpacts[type];
+            blob.style.background = impact.color;
+            blob.style.transform = "scale(1.5)";
+            forecast.textContent = `Forecast: ${impact.forecast}`;
+            blockade.textContent = impact.blockade;
+
             const botLine = document.createElement('div');
             botLine.className = 'chat-line-bot';
-            botLine.innerHTML = `<i>[SYSTEM]: Metadata Ping Sent: <b>${type}</b>. Packet tracking adjusted.</i>`;
+            botLine.innerHTML = `<i>[SYSTEM]: Metadata Ping Sent: <b>${type}</b>. Calibrating atmosphere...</i>`;
             output.appendChild(botLine);
             output.scrollTop = output.scrollHeight;
-            console.log("POST /ping { user: 'Persephone', ping: '" + type + "' }");
+            
+            // 2. SEND THE EMAIL WEBHOOK
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user: 'Persephone', ping: type })
+                });
+                output.innerHTML += `<div class='chat-line-bot'>[SUCCESS]: Signal logged by Senior Admin H.</div>`;
+            } catch (err) {
+                output.innerHTML += `<div class='chat-line-bot'>[ERROR]: Transmission failed. Signal lost in the Styx.</div>`;
+            }
         }
     </script>
+
 </body>
 </html>
