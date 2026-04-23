@@ -119,12 +119,82 @@
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.2em;
+      transition: all 0.3s;
+    }
+
+    .status-pill.lifted {
+      background-color: #2e7d32;
+      box-shadow: 0 0 25px rgba(46,125,50,0.7);
+    }
+
+    .status-pill.critical {
+      background-color: #b71c1c;
+      box-shadow: 0 0 30px rgba(183,28,28,0.9);
+      animation: embargo-pulse 1.4s infinite;
+    }
+
+    @keyframes embargo-pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    /* Administrator warning plaque */
+    .admin-note-wrapper {
+      padding: 20px 70px 0 70px;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    #admin-note {
+      display: none;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      background: #111111;
+      color: #f5f5f5;
+      border-radius: 18px;
+      padding: 22px 28px;
+      border: 2px solid #ffca28;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #admin-note::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.12), transparent 55%);
+      pointer-events: none;
+    }
+
+    #admin-note-title {
+      font-size: 14px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 6px;
+      color: #ffeb3b;
+    }
+
+    #admin-note-body {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    #admin-note.critical {
+      border-color: #ff5252;
+      box-shadow: 0 22px 60px rgba(244,67,54,0.8);
+    }
+
+    #admin-note.lifted {
+      border-color: #66bb6a;
+      box-shadow: 0 22px 60px rgba(102,187,106,0.8);
     }
 
     /* Main grid */
     .main {
       max-width: 1800px;
-      margin: 70px auto 140px auto;
+      margin: 40px auto 140px auto;
       padding: 0 70px;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -187,7 +257,7 @@
 
     .logistics-table tr td {
       padding: 18px 15px;
-      border-bottom: 1px solid #f8f8f8;
+      border-bottom: 1px solid #eeeeee;
     }
 
     .logistics-label {
@@ -477,6 +547,23 @@
       line-height: 3;
     }
 
+    .fates-button {
+      margin-top: 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 800;
+      color: #7b1fa2;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+
+    .fates-button:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 1200px) {
       .main {
         grid-template-columns: 1fr;
@@ -484,6 +571,9 @@
       }
       .status-pill {
         display: none;
+      }
+      .admin-note-wrapper {
+        padding: 20px 40px 0 40px;
       }
     }
   </style>
@@ -500,7 +590,14 @@
       <h1>Hermes Postal Service <span class="version-badge">V3.42 PERSISTENT MANDATE</span></h1>
       <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Underworld Atmospheric Calibration Interface</div>
     </div>
-    <div class="status-pill">System Embargo Active</div>
+    <div id="embargo-pill" class="status-pill">Embargo Active</div>
+  </div>
+
+  <div class="admin-note-wrapper">
+    <div id="admin-note">
+      <div id="admin-note-title">✦ Administrative Warning ✦</div>
+      <div id="admin-note-body">Sector 4 static interference detected. Hermes denies involvement.</div>
+    </div>
   </div>
 
   <div class="main">
@@ -518,23 +615,23 @@
         <table class="logistics-table">
           <tr>
             <td class="logistics-label">Release Status</td>
-            <td class="logistics-value">Scheduled Release / Date-Gated Administrative Protocol</td>
+            <td id="release-status-field" class="logistics-value">Scheduled Release / Date-Gated Administrative Protocol</td>
           </tr>
           <tr>
             <td class="logistics-label">Logistics Delta</td>
-            <td class="logistics-value">Delivered on time (within expected 10-year variance window)</td>
+            <td id="logistics-delta-field" class="logistics-value">Delivered on time (within expected 10-year variance)</td>
           </tr>
           <tr>
             <td class="logistics-label">Courier ID</td>
-            <td class="logistics-value">H-01 (Hermes, Senior Administrative Dispatcher)</td>
+            <td id="courier-id-field" class="logistics-value">H-01 (Hermes, Senior Admin)</td>
           </tr>
           <tr>
             <td class="logistics-label">Payload Type</td>
-            <td id="payload-field" class="logistics-value">Initializing high-salience sector-specific scan...</td>
+            <td id="payload-field" class="logistics-value">Bulk Correspondence Dispatch (x4 High-Density Packet)</td>
           </tr>
           <tr>
             <td class="logistics-label">Condition Report</td>
-            <td id="condition-field" class="logistics-value">Analyzing atmospheric particulate density in Sector 4...</td>
+            <td id="condition-field" class="logistics-value">Traces of Lab Spill Detected (Tissue Particulates Observed)</td>
           </tr>
         </table>
 
@@ -544,17 +641,17 @@
             <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, delivered whenever Hermes feels like putting on sandals.</li>
             <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped simultaneously in a localized spatial rift.</li>
             <li><span class="pill-label">Overnight Drunken Delivery:</span> Randomized letters delivered at 3:17 AM for no logical reason.</li>
-            <li><span class="pill-label">"I Wasn't Here" Delivery:</span> Hermes physically denies delivering anything despite textual proof.</li>
-            <li><span class="pill-label">"I Found These" Delivery:</span> Ancient letters appear out of nowhere in current sectors.</li>
-            <li><span class="pill-label">"Hades Begged Me" Delivery:</span> Hermes pretends he didn't hear the direct order for rerouting.</li>
-            <li><span class="pill-label">"I'm Testing a New System" Delivery:</span> Hermes invents a new chaotic mode on the spot.</li>
+            <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything despite textual proof.</li>
+            <li><span class="pill-label">“I Found These In My Bag” Delivery:</span> Ancient letters appear out of nowhere in current sectors.</li>
+            <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the direct order for rerouting.</li>
+            <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new chaotic mode on the spot.</li>
           </ul>
         </div>
 
         <div class="section-block">
           <div class="section-title">Temporal Delivery Windows</div>
           <ul class="pill-list">
-            <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Courier is half-awake, irritable, and prone to misrouting).</li>
+            <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Courier is half‑awake, irritable, and prone to misrouting).</li>
             <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Courier is pretending to work while napping at his desk).</li>
             <li><span class="pill-label">Night Window:</span> 6 PM–2 AM (Courier is absolutely not working but delivers letters anyway).</li>
             <li><span class="pill-label">Forbidden Window:</span> 2 AM–5 AM (Hermes performs his most high-frequency deliveries here).</li>
@@ -566,10 +663,10 @@
           <ul class="pill-list" style="color:#666666;">
             <li>· Hermes never timestamps administrative correspondence or system logs.</li>
             <li>· Hermes never provides explanations for localized administrative delays.</li>
-            <li>· Hermes always looks like he was somewhere he shouldn't have been.</li>
+            <li>· Hermes always looks like he was somewhere he shouldn’t have been.</li>
             <li>· Hermes always maintains 100% plausible deniability regarding sector static.</li>
-            <li>· Hermes always blames Hades for internal architectural system failures.</li>
-            <li>· Hermes always blames Persephone for metadata leakage anomalies.</li>
+            <li>· Hermes always blames Hades for internal system failures.</li>
+            <li>· Hermes always blames Persephone for data leakage anomalies.</li>
             <li>· Hermes always blames the Underworld postal infrastructure architecture.</li>
             <li>· Hermes always blames the weather (even in sectors where weather is impossible).</li>
           </ul>
@@ -589,10 +686,12 @@
         </div>
 
         <div id="chat-output">
-          <div style="color:#999999;font-style:italic;">[SYSTEM]: Symmetrical connection established. Calibration of Sector 4 Weather Network confirmed. Monitoring atmospheric metadata feedback loop...</div>
+          <div id="hbot-greeting" style="color:#999999;font-style:italic;">[SYSTEM]: Symmetrical connection established. Calibration of Sector 4 Weather Network confirmed. Monitoring atmospheric metadata feedback loop...</div>
         </div>
 
-        <div class="chat-input-row">
+        <button class="fates-button" type="button" onclick="consultFates()">Consult the Fates</button>
+
+        <div class="chat-input-row" style="margin-top:18px;">
           <input type="text" id="user-input" placeholder="Enter complaint metadata description...">
           <button type="button" onclick="handleChat()">Send</button>
         </div>
@@ -604,12 +703,12 @@
           </div>
 
           <div class="ping-grid">
-            <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
-            <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('RECEIVED', this)">⚪ RECEIVED</button>
-            <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('QUEUED', this)">🔵 QUEUED</button>
-            <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('STILL HERE', this)">🟣 STILL HERE</button>
-            <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('WELLNESS POSITIVE', this)">❤️ WELLNESS POSITIVE</button>
-            <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('CHAOS SIGNAL', this)">💀 CHAOS SIGNAL</button>
+            <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
+            <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
+            <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('🔵 QUEUED', this)">🔵 QUEUED</button>
+            <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🟣 STILL HERE', this)">🟣 STILL HERE</button>
+            <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS POSITIVE</button>
+            <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS SIGNAL</button>
           </div>
 
           <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
@@ -628,49 +727,170 @@
       </div>
 
       <div class="blockade-banner">
-        <span id="blockade-text">ADMINISTRATIVE BLOCKADE ACTIVE · SECTOR 4 ROUTING UNDER REVIEW · PLEASE CONSULT THE FATES BEFORE RESUBMITTING METADATA ·</span>
+        <span id="blockade-text">ADMINISTRATIVE BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local Sector 4 router... Administrative rites in progress... Sector 4 under pining embargo... Static interference from the River Styx peaking...</span>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    HERMES POSTAL SERVICE · MASTER PORTAL V3.42 · PLEASE CONSULT THE FATES
+    HERMES POSTAL SERVICE · MASTER PORTAL V3.42 · PLEASE CONSULT THE FATES OR REPLY "GO AWAY"
   </div>
 
   <script>
     // === CONFIG ===
     const WEB_APP_URL = 'https://example.com/webhook'; // replace with your real endpoint
 
+    /* --- LORE INFRASTRUCTURE: DYNAMIC JAVASCRIPT ARRAYS (RANDOMIZED) --- */
+
+    /* PAYLOAD OPTIONS (7 ITEMS) */
     const payloadOptions = [
-      'Bulk',
-      'Audio Transcript',
-      'Sealed',
-      'Unsorted',
-      'Cross-Realm',
-      'Priority Scroll',
-      'Unlabeled'
+      "Bulk Correspondence Dispatch (x4 High-Density Packet)",
+      "High-Frequency Audio Transcript (Intercepted Metadata)",
+      "Sealed Divine Correspondence Packet (Fragile Integrity)",
+      "Unsorted Underworld Mail Bundle (Mixed Sectors)",
+      "Cross‑Realm Delivery Envelope (Non-Standard Protocol)",
+      "Priority Administrative Scroll (Urgent Authorization)",
+      "Unlabeled Parcel (Hermes denies all administrative ownership)"
     ];
 
+    /* CONDITION OPTIONS (7 ITEMS) */
     const conditionOptions = [
-      'Lab Spill',
-      'Singed',
-      'Smells of Ambrosia',
-      'Crushed',
-      'Suspiciously Damp',
-      "Marked 'Do Not Open'",
-      'Perfect'
+      "Traces of Lab Spill Detected (Tissue Particulates Observed)",
+      "Slightly Singed (Hermes flew too close to Helios during transit)",
+      "Smells Strongly of Ambrosia and localized static",
+      "Crushed but Textual Data Remains 98% Legible",
+      "Suspiciously Damp (Styx Saturation High in this sector)",
+      "Marked 'Do Not Open' (Internal Audit: Hermes opened it)",
+      "Perfect Condition (Statistically Impossible Anomaly Detected)"
     ];
 
+    /* H-BOT RESPONSES (9 ITEMS) */
     const hBotResponses = [
-      '[H-BOT]: Filing under Irrelevant.',
-      '[H-BOT]: Logged as low-priority atmospheric noise.',
-      '[H-BOT]: This appears to be a you problem.',
-      '[H-BOT]: Marked as “Handled” for reporting purposes.',
-      '[H-BOT]: System acknowledges your distress. No action will be taken.',
-      '[H-BOT]: Reclassifying complaint as background radiation.',
-      '[H-BOT]: Your metadata has been forwarded to a void queue.',
-      '[H-BOT]: Advisory: Hermes is ignoring this on purpose.',
-      '[H-BOT]: Ticket closed. Reason: Existential.'
+      "H-BOT: Request received. Filing under 'Irrelevant' for future disposal rites.",
+      "H-BOT: I don't get paid enough for this feedback loop. Consult the Fates.",
+      "H-BOT: Error 404: Empathy Not Found in this administrative sector.",
+      "H-BOT: The Sender is currently 'activated.' Please wait for his yelling to stop.",
+      "H-BOT: Your message has been converted to raw soul-matter and flushed.",
+      "H-BOT: I am literally in my pajamas right now. Please go away.",
+      "H-BOT: System busy. Currently dodging a hazardous lab spill in Sector 9.",
+      "H-BOT: Hermes says this interaction is 'within expected chaos parameters'.",
+      "H-BOT: Please hold while I pretend to route this to a Senior Supervisor."
+    ];
+
+    /* H-BOT INITIAL WELCOME GREETINGS (Randomized on Load) */
+    const hBotGreetings = [
+      "H-BOT: Welcome. Current feedback wait time: 4,000 years.",
+      "H-BOT: Systems stabilized. Calibration of Sector 4 required.",
+      "H-BOT: Connection established. How can I ignore your feedback today?",
+      "H-BOT: Warning: Metadata saturation peaking. Protocol HPS-VOID active.",
+      "H-BOT: Welcome to the automated feedback loop. Please don't scream.",
+      "H-BOT: Senior Admin H is currently 'unavailable'. I am your replacement."
+    ];
+
+    /* SYSTEM STATUS PILL (Randomized on Load) */
+    const statusPillOptions = [
+      "Embargo Active",
+      "Embargo Lifted",
+      "System Unstable",
+      "Audit in Progress",
+      "Chaos Imminent",
+      "Static High"
+    ];
+
+    /* --- ADDITIVE LOGIC FOR V3.42: DO NOT PRUNE --- */
+
+    /* 1. DATA ARRAYS: FULL TABLE RANDOMIZATION */
+    const releaseStatusOptions = [
+      "Scheduled Release / Date-Gated Administrative Protocol",
+      "Administrative Hold (Pending Soul-Audit)",
+      "Embargoed by Order of Hades (Sector 4)",
+      "Released for Delivery (Under Protest)",
+      "Gated: Awaiting Persephone’s Authorization",
+      "Indefinite Delay: Courier lost sandals"
+    ];
+
+    const logisticsDeltaOptions = [
+      "Delivered on time (within expected 10-year variance)",
+      "Critical Delay: Cerberus chewed the transit bag",
+      "Minimal Latency (Only 3 human lifetimes)",
+      "Stuck in River Styx Traffic (Gridlock)",
+      "Logistics Failure: Packet phased into the Mortal Realm",
+      "Temporal Anomaly: Letter arrived before it was written"
+    ];
+
+    const courierOptions = [
+      "H-01 (Hermes, Senior Admin)",
+      "H-01 (Hermes, Status: Drunk/Active)",
+      "H-01 (Hermes, Status: Napping)",
+      "H-01 (Hermes, Status: Dodging Hades)",
+      "Courier Unit: Unassigned (Administrative Chaos)"
+    ];
+
+    /* 2. THE PROPHECY ENGINE ARRAY */
+    const prophecies = [
+      "The thread is short, yet the ink remains suspiciously wet.",
+      "One sandal is lost in the ash, but the message remains audible.",
+      "Static rises where the river flows backward. Do not look back.",
+      "She hears the echo before the shout; the letter is already read.",
+      "Administrative delay is merely destiny moving in slow motion."
+    ];
+
+    /* 3. REACTIVE PING IMPACTS (INCLUDING EMBARGO STATES) */
+    const pingImpacts = {
+      '🟢 ACKNOWLEDGED': {
+        forecast: "Conditions Stable. Pressure Normalizing.",
+        gradient: "rgba(0,255,100,0.5)",
+        pill: "Embargo Partial",
+        pillClass: "lifted",
+        adminNote: "Sector 4 static is present but manageable. Hermes claims this is 'fine'."
+      },
+      '⚪ RECEIVED': {
+        forecast: "Atmospheric pressure normalizing. Zeus is currently napping.",
+        gradient: "rgba(200,200,200,0.5)",
+        pill: "Embargo Lifted",
+        pillClass: "lifted",
+        adminNote: "No active routing embargo. All complaints are being 'heard' and ignored."
+      },
+      '🔵 QUEUED': {
+        forecast: "Increasing static. Atmospheric density rising in Sector 4.",
+        gradient: "rgba(0,100,255,0.5)",
+        pill: "Embargo Active",
+        pillClass: "",
+        adminNote: "Administrative backlog detected. Expect indefinite delays and vague apologies."
+      },
+      '🟣 STILL HERE': {
+        forecast: "DEEP THERMAL BLOOM. High-salience metadata traffic detected.",
+        gradient: "rgba(128,0,128,0.7)",
+        pill: "Embargo Critical",
+        pillClass: "critical",
+        adminNote: "Persistent signal detected. The Fates are now taking notes."
+      },
+      '❤️ WELLNESS': {
+        forecast: "EROS-LEVEL SATURATION PEAKING. Thermal anomaly detected.",
+        gradient: "rgba(255,0,100,0.6)",
+        pill: "Embargo Lifted",
+        pillClass: "lifted",
+        adminNote: "Wellness positive. Administrative hostility temporarily reduced."
+      },
+      '💀 CHAOS': {
+        forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.",
+        gradient: "rgba(255,0,0,0.85)",
+        pill: "TOTAL LOCKDOWN",
+        pillClass: "critical",
+        adminNote: "TOTAL LOCKDOWN: CERBERUS HAS THE ROUTER. DO NOT ATTEMPT DELIVERY."
+      }
+    };
+
+    /* SYSTEM DEFAULTS & GLOBAL LORE */
+    const defaultBlockadeText =
+      "ADMINISTRATIVE BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local sector 4 router... Administrative rites in progress... Sector 4 under pining embargo... Static interference from the River Styx peaking...";
+
+    const adminAmbientNotes = [
+      "✦ ADMINISTRATIVE WARNING ✦ Sector 4 static interference detected. Hermes denies involvement.",
+      "✦ ADMINISTRATIVE NOTICE ✦ No active warnings. This is suspicious.",
+      "✦ ADMINISTRATIVE WARNING ✦ Routing instability detected. Please do not panic in the Underworld.",
+      "✦ ADMINISTRATIVE ALERT ✦ Hermes has misplaced at least one sandal and three letters.",
+      "✦ ADMINISTRATIVE NOTICE ✦ Audit in progress. All complaints may be used against you in ritual."
     ];
 
     let stagedPingType = null;
@@ -680,33 +900,100 @@
     }
 
     function initShipmentOverview() {
+      const releaseField = document.getElementById('release-status-field');
+      const deltaField = document.getElementById('logistics-delta-field');
+      const courierField = document.getElementById('courier-id-field');
       const payloadField = document.getElementById('payload-field');
       const conditionField = document.getElementById('condition-field');
+
+      if (releaseField) releaseField.textContent = randomFrom(releaseStatusOptions);
+      if (deltaField) deltaField.textContent = randomFrom(logisticsDeltaOptions);
+      if (courierField) courierField.textContent = randomFrom(courierOptions);
       if (payloadField) payloadField.textContent = randomFrom(payloadOptions);
       if (conditionField) conditionField.textContent = randomFrom(conditionOptions);
     }
 
+    function initStatusPill() {
+      const pill = document.getElementById('embargo-pill');
+      if (!pill) return;
+      const text = randomFrom(statusPillOptions);
+      pill.textContent = text;
+    }
+
+    function initHBotGreeting() {
+      const greetingEl = document.getElementById('hbot-greeting');
+      if (!greetingEl) return;
+      greetingEl.textContent = randomFrom(hBotGreetings);
+    }
+
+    function initAdminNoteOnLoad() {
+      const note = document.getElementById('admin-note');
+      const title = document.getElementById('admin-note-title');
+      const body = document.getElementById('admin-note-body');
+      if (!note || !title || !body) return;
+
+      // 30% chance to show on load
+      if (Math.random() < 0.3) {
+        const ambient = randomFrom(adminAmbientNotes);
+        note.style.display = 'block';
+        note.classList.remove('critical', 'lifted');
+        title.textContent = "✦ Administrative Warning ✦";
+        body.textContent = ambient.replace("✦ ADMINISTRATIVE WARNING ✦", "").trim();
+      } else {
+        note.style.display = 'none';
+      }
+    }
+
+    function updateAdminNoteFromPing(impact) {
+      const note = document.getElementById('admin-note');
+      const title = document.getElementById('admin-note-title');
+      const body = document.getElementById('admin-note-body');
+      if (!note || !title || !body) return;
+
+      note.style.display = 'block';
+      note.classList.remove('critical', 'lifted');
+
+      if (impact.pillClass === 'critical') {
+        note.classList.add('critical');
+      } else if (impact.pillClass === 'lifted') {
+        note.classList.add('lifted');
+      }
+
+      title.textContent = "✦ Administrative Warning ✦";
+      body.textContent = impact.adminNote || "Sector 4 static interference detected. Hermes denies involvement.";
+    }
+
+    function consultFates() {
+      const output = document.getElementById('chat-output');
+      const prophecy = randomFrom(prophecies);
+      output.innerHTML += `
+        <div style="color:#7b1fa2; margin-top:20px; font-weight:900; border-left: 3px solid #7b1fa2; padding-left:10px;">
+          [THE FATES]: ${prophecy}
+        </div>
+      `;
+      output.scrollTop = output.scrollHeight;
+    }
+
+    /* Updated handleChat with Red Tape logic */
     function handleChat() {
       const input = document.getElementById('user-input');
       const output = document.getElementById('chat-output');
-      const text = (input.value || '').trim();
+      const text = (input.value || "").trim();
+
       if (!text) return;
 
-      const youLine = document.createElement('div');
-      youLine.style.color = '#FF8C42';
-      youLine.style.fontWeight = '700';
-      youLine.textContent = 'YOU: ' + text;
-      output.appendChild(youLine);
-      output.scrollTop = output.scrollHeight;
-      input.value = '';
+      output.innerHTML += `<div style="color:var(--orange); margin-top:30px; font-weight:900;">YOU: ${text}</div>`;
+      input.value = "";
 
       setTimeout(() => {
-        const botLine = document.createElement('div');
-        botLine.style.marginTop = '8px';
-        botLine.textContent = randomFrom(hBotResponses);
-        output.appendChild(botLine);
+        const isBlocked = Math.random() < 0.2;
+        const responseText = isBlocked
+          ? "H-BOT: Error 12-B. Administrative Red Tape detected. Please submit Form 12-B (Triple-Signed) before further complaints."
+          : randomFrom(hBotResponses);
+
+        output.innerHTML += `<div style="margin-top:18px; color:#000; font-weight:700;">${responseText}</div>`;
         output.scrollTop = output.scrollHeight;
-      }, 900 + Math.random() * 200);
+      }, 1000);
     }
 
     function stagePing(type, el) {
@@ -722,55 +1009,24 @@
       const heatLayer = document.getElementById('heat-layer');
       const forecastText = document.getElementById('forecast-text');
       const blockadeText = document.getElementById('blockade-text');
+      const embargoPill = document.getElementById('embargo-pill');
 
-      if (!heatLayer) return;
+      const impact = pingImpacts[type];
+      if (!impact || !heatLayer) return;
 
-      switch (type) {
-        case 'ACKNOWLEDGED':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 45% 55%, rgba(255,140,0,0.45), transparent 80%),' +
-            'radial-gradient(circle at 75% 35%, rgba(128,0,128,0.45), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Stable infernal conditions.';
-          if (blockadeText) blockadeText.textContent = 'ROUTING NORMAL · MINIMAL STATIC · FATES OBSERVING QUIETLY ·';
-          break;
-        case 'RECEIVED':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 40% 60%, rgba(255,215,0,0.5), transparent 80%),' +
-            'radial-gradient(circle at 70% 30%, rgba(255,69,0,0.4), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Light administrative turbulence.';
-          if (blockadeText) blockadeText.textContent = 'PACKETS CONFIRMED · NO ESCALATION REQUIRED · HERMES PROBABLY SAW IT ·';
-          break;
-        case 'QUEUED':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 30% 70%, rgba(135,206,250,0.5), transparent 80%),' +
-            'radial-gradient(circle at 80% 20%, rgba(72,61,139,0.5), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Backlog fronts forming in Sector 4.';
-          if (blockadeText) blockadeText.textContent = 'QUEUE LENGTHENING · DELIVERY “SOON” · TEMPORAL VARIANCE ACCEPTED ·';
-          break;
-        case 'STILL HERE':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 50% 50%, rgba(0,255,127,0.5), transparent 80%),' +
-            'radial-gradient(circle at 75% 25%, rgba(0,191,255,0.4), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Persistent presence detected in all quadrants.';
-          if (blockadeText) blockadeText.textContent = 'SIGNAL PERSISTENT · CONNECTION STABLE · UNDERWORLD LINK MAINTAINED ·';
-          break;
-        case 'WELLNESS POSITIVE':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 45% 55%, rgba(255,105,180,0.6), transparent 80%),' +
-            'radial-gradient(circle at 70% 30%, rgba(255,255,0,0.5), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Localized wellness front detected.';
-          if (blockadeText) blockadeText.textContent = 'HEARTBEAT CONFIRMED · WELLNESS POSITIVE · NO INTERVENTION REQUIRED ·';
-          break;
-        case 'CHAOS SIGNAL':
-          heatLayer.style.backgroundImage =
-            'radial-gradient(circle at 40% 60%, rgba(255,0,0,0.6), transparent 80%),' +
-            'radial-gradient(circle at 70% 30%, rgba(0,0,0,0.7), transparent 80%)';
-          if (forecastText) forecastText.textContent = 'Forecast: Chaotic fronts colliding. Expect unpredictable outcomes.';
-          if (blockadeText) blockadeText.textContent = 'CHAOS INDEX SPIKING · HERMES PRETENDS THIS IS FINE · FATES TAKING NOTES ·';
-          break;
-        default:
-          break;
+      heatLayer.style.backgroundImage =
+        `radial-gradient(circle at 45% 55%, ${impact.gradient}, transparent 80%),` +
+        `radial-gradient(circle at 75% 35%, rgba(0,0,0,0.6), transparent 80%)`;
+
+      if (forecastText) forecastText.textContent = impact.forecast;
+      if (blockadeText) blockadeText.textContent = defaultBlockadeText;
+      if (embargoPill) {
+        embargoPill.textContent = impact.pill;
+        embargoPill.classList.remove('lifted', 'critical');
+        if (impact.pillClass) embargoPill.classList.add(impact.pillClass);
       }
+
+      updateAdminNoteFromPing(impact);
     }
 
     async function transmitStagedPing() {
@@ -795,6 +1051,9 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       initShipmentOverview();
+      initStatusPill();
+      initHBotGreeting();
+      initAdminNoteOnLoad();
     });
   </script>
 </body>
