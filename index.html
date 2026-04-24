@@ -328,8 +328,10 @@
         .faq-item.active .faq-answer { max-height: 400px; padding: 10px 25px 25px; opacity: 1; }
 
         #popup-overlay { display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); z-index: 9999; backdrop-filter: blur(10px); align-items: center; justify-content: center; }
-        #popup-content { background-color: #111111; border: 4px solid var(--yellow); border-radius: 20px; padding: 50px; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 0 100px rgba(255,201,60,0.4); animation: popup-entrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
+        #popup-content { background-color: #111111; border: 4px solid var(--yellow); border-radius: 0px; padding: 50px; max-width: 600px; width: 90%; text-align: center; box-shadow: 10px 10px 0px rgba(0,0,0,0.5), 0 0 50px rgba(255,201,60,0.2); font-family: var(--font-main); }
+        #popup-title { color: var(--yellow); font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 15px; font-size: 24px; }
+        #popup-message { color: #ffffff; font-size: 18px; font-weight: 700; margin-bottom: 30px; line-height: 1.6; }
+       
         @keyframes popup-entrance { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .popup-close-btn { background-color: var(--yellow); color: #000000; border: none; padding: 15px 35px; font-weight: 900; text-transform: uppercase; border-radius: 10px; cursor: pointer; margin-top: 20px; }
@@ -338,8 +340,10 @@
         .blockade-banner span { display: inline-block; padding-left: 100%; animation: scroll-blockade 55s linear infinite; }
         @keyframes scroll-blockade { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 
-        .wholesome-popup { display: none; position: fixed; background: #111; border: 2px solid var(--yellow); padding: 15px 25px; z-index: 9999; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.8); max-width: 280px; text-align: center; }
-        .wholesome-popup button { margin-top: 10px; padding: 5px 15px; background: var(--yellow); border: none; font-weight: 900; cursor: pointer; border-radius: 4px; font-size: 10px; text-transform: uppercase; }
+        .wholesome-popup { display: none; position: fixed; background: #f1f1f1; border: 2px solid #000; padding: 0; z-index: 10001; box-shadow: 5px 5px 0px #333; max-width: 300px; text-align: left; }
+        .wholesome-popup::before { content: "SYSTEM ALERT"; display: block; background: linear-gradient(90deg, #000080, #1084d0); color: white; padding: 4px 10px; font-size: 10px; font-weight: 900; }
+        .wholesome-popup #alert-text { color: #000; padding: 15px; font-weight: 700; font-size: 13px; }
+        .wholesome-popup button { margin: 0 15px 15px 15px; padding: 5px 20px; background: #d4d0c8; border-top: 2px solid #fff; border-left: 2px solid #fff; border-bottom: 2px solid #444; border-right: 2px solid #444; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; }
         
         .heart-popup { width: 150px; height: 150px; background: var(--dyad-pink); clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'); transform: scale(0); display: none; position: fixed; z-index: 10000; align-items: center; justify-content: center; color: #fff; font-weight: 900; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
@@ -354,21 +358,9 @@
 </head>
 <body>
 
-    <div id="popup-overlay">
-        <div id="popup-content">
-            <div id="popup-title">✦ System Alert ✦</div>
-            <div id="popup-message">Initializing Chandler Protocol...</div>
-            <button class="popup-close-btn" onclick="closePopup()">Acknowledge</button>
-        </div>
-    </div>
-
-    <div id="wholesome-alert" class="wholesome-popup">
-        <div style="color:var(--yellow); font-weight:900; margin-bottom:5px;">✦ SUPPORT ALERT ✦</div>
-        <div id="alert-text" style="color:#fff; font-size:14px;"></div>
-        <button onclick="this.parentElement.style.display='none'">DISMISS</button>
-    </div>
-
-    <div id="heart-alert" class="heart-popup">hey bestie:)</div>
+    <div id="popup-overlay" style="display: none;"><div id="popup-content"><div id="popup-title">✦ System Alert ✦</div><div id="popup-message">Initializing Chandler Protocol...</div><button class="popup-close-btn" onclick="closePopup()">Acknowledge</button></div></div>
+    <div id="wholesome-alert" class="wholesome-popup" style="display: none;"><div style="color:var(--yellow); font-weight:900; margin-bottom:5px;">◆ SUPPORT ALERT ◆</div><div id="alert-text" style="color:#fff; font-size:14px;"></div><button onclick="this.parentElement.style.display='none'">DISMISS</button></div>
+    <div id="heart-alert" class="heart-popup" style="display: none;">hey bestie:)</div>
 
     <div class="top-bar">
         <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING PERMANENTLY UNAVAILABLE · SYSTEM UNDER REVIEW BY THE FATES · EMBARGO ACTIVE · SECTOR 4 RESTRICTED ·</span>
@@ -478,14 +470,14 @@
                     <div class="section-title">Support FAQ</div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
                         <div class="faq-question">Did Alyssa really do all of this just for me? <span>▼</span></div>
-                        <div class="faq-answer">Verified System Audit: For real. 100%. I spent the last week essentially becoming an "Underworld architect"...just to find a way to say 'hewwo(🥺)' that wasn't a boring text or a trauma dump lol. Not that I don't spill immediately to anyone who asks:) But yes. I did it for the hell of it, for the fun of it, and because you're worth the technical effort! :D</div>
+                        <div class="faq-answer">A: For real. 100%. I spent the last week essentially becoming an "Underworld architect"...just to find a way to say 'hewwo(🥺)' that wasn't a boring text or a trauma dump lol. Not that I don't spill immediately to anyone who asks:) But yes. I did it for the hell of it, for the fun of it, and because you're worth the technical effort! :D</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
                         <div class="faq-question">Is this cyber-bullying? <span>▼</span></div>
-                        <div class="faq-answer">Answer: omg I really hope I'm not being too much I just thought it would be cool:[ I WANT US TO BE CLOSE FRIENDS AGAIN!!</div>
+                        <div class="faq-answer">A: omg I really hope I'm not being too muc!!!! I just have the ability to do stupid stuff like this and thought it would be cool:[ I WANT US TO BE CLOSE FRIENDS AGAIN!!</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
-                        <div class="faq-question">Why is this system so complex (1500+ lines)? <span>▼</span></div>
+                        <div class="faq-question">Why not just be normal? <span>▼</span></div>
                         <div class="faq-answer">Architect's Note: Standard interfaces fail under pressure. This portal was built with high-density integrity to ensure your environment remains stable. Reliability is my priority.</div>
                     </div>
                 </div>
