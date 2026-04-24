@@ -1141,13 +1141,10 @@
                     <div class="ping-grid">
                         <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
                         <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
-                        <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('QUEUED', this)">🔵 QUEUED</button>
                         <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('🔵 QUEUED', this)">🔵 QUEUED</button>
                         <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🟣 STILL HERE', this)">🟣 STILL HERE</button>
                         <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS POSITIVE</button>
                         <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS SIGNAL</button>
-                        <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS</button>
-                        <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS</button>
                     </div>
 
                     <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
@@ -1348,15 +1345,15 @@
                 document.getElementById('admin-note').style.display = 'block';
             }
         } // Added the missing closing brace here
-
+        
         function handleChat() {
             const input = document.getElementById('user-input');
             const output = document.getElementById('chat-output');
             const text = (input.value || "").trim();
-            const text = input.value.trim();
             if (!text) return;
-            output.innerHTML += `<div style="color:var(--orange); margin-top:20px; font-weight:800;">YOU: \${text}</div>`;
+            output.innerHTML += `<div style="color:var(--orange); margin-top:20px; font-weight:800;">YOU: ${text}</div>`;
             input.value = "";
+            output.scrollTop = output.scrollHeight;
         }
         function consultFates() {
             const output = document.getElementById('chat-output');
