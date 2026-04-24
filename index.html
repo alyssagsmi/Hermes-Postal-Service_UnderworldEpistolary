@@ -298,7 +298,18 @@
 
         #forecast-dashboard { margin-bottom: 25px; padding: 25px; border-radius: 18px; background: #1a1a1a; border: 4px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
         #forecast-text { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; margin: 0 0 15px 0; display: block; position: relative; z-index: 10; }
-        .weather-map-visual { width: 100%; aspect-ratio: auto; min-height: 250px; background-color: var(--map-base); background-size: contain; background-repeat: no-repeat; background-position: center; border-radius: 8px; position: relative; overflow: hidden; border: 2px solid #444; margin: 15px auto; display: block; }
+        /* --- HIGH-DENSITY FRAME MANDATE --- */
+        .weather-map-visual {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* Forces image to stretch to frame edges */
+            border-radius: 8px; /* Classic, rounded interface corners */
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            transition: opacity 0.5s;
+        }
+       
         #satellite-info-panel { text-align: left; padding: 20px 0; border-top: 1px dashed #444; width: 100%; font-size: 13px; line-height: 1.6; }
        
         .map-scan-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 2px); background-size: 70px 70px; z-index: 20; opacity: 0.35; mix-blend-mode: soft-light; }
@@ -428,19 +439,6 @@
         </div>
 
          <div class="col-right">
-               <div id="forecast-dashboard" class="widget-dashboard">
-                   <div style="font-size: 11px; color: var(--orange); font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 5px;">Olympus-09 Topographic Satellite | Sector 4</div>
-                   <div id="forecast-text" style="color: #ff3d00; font-size: 16px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Forecast Status: Atmospheric Saturation Stable.</div>
-                   
-                   <div class="weather-map-visual" id="map-visual">
-                       <div class="map-scan-grid"></div>
-                   </div>
-               
-                   <div id="satellite-info-panel" style="text-align: left; padding-top: 15px; border-top: 1px dashed #444; margin-top: 10px;">
-                       <div style="color: var(--yellow); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; font-size: 11px;">Satellite Feed Log</div>
-                       <div style="color: #fafafa; font-size: 13px; line-height: 1.4;">HPS satellite feed 'Chaos-1' initialized. All systems normal. Plausible deniability active. Sector 4 is clear.</div>
-                   </div>
-               </div>
              <div class="card" style="padding-top: 30px;">
                  <div class="card-header">
                      <div class="card-title">Support Portal <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1</span></div>
@@ -482,7 +480,7 @@
                     <div class="section-title">Support FAQ</div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
                         <div class="faq-question">Did Alyssa really do all of this just for me? <span>▼</span></div>
-                        <div class="faq-answer">A: For real. 100%. I spent the last week essentially becoming an "Underworld architect"...just to find a way to say 'hewwo(🥺)' that wasn't a boring text or a trauma dump lol. Not that I don't spill immediately to anyone who asks:) But yes. I did it for the hell of it, for the fun of it, and because you're worth the technical effort! :D</div>
+                        <div class="faq-answer">A: For real. 100%. I spent the last week essentially becoming an "Underworld architect"...just to find a way to say 'hewwo🥺' that wasn't a boring text or a trauma dump lol. Not that I don't spill immediately to anyone who asks:) But yes. I did it for the hell of it, for the fun of it, and because you're worth the technical effort! :D</div>
                     </div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
                         <div class="faq-question">Is this cyber-bullying? <span>▼</span></div>
@@ -494,12 +492,18 @@
                     </div>
                 </div>
 
-                <div id="forecast-container">
-                   <div style="font-size: 11px; color: var(--orange); font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;">Olympus-09 Topographic Satellite | Sector 4 - Underworld</div>
-                   <div id="forecast-text">Forecast Status: Atmospheric Saturation Stable.</div>
+               <div id="forecast-dashboard" class="widget-dashboard">
+                   <div style="font-size: 11px; color: var(--orange); font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 5px;">Olympus-09 Topographic Satellite | Sector 4</div>
+                   <div id="forecast-text" style="color: #ff3d00; font-size: 16px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Forecast Status: Atmospheric Saturation Stable.</div>
+                   
                    <div class="weather-map-visual" id="map-visual">
                        <div class="map-scan-grid"></div>
-                       </div>
+                   </div>
+               
+                   <div id="satellite-info-panel" style="text-align: left; padding-top: 15px; border-top: 1px dashed #444; margin-top: 10px;">
+                       <div style="color: var(--yellow); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; font-size: 11px;">Satellite Feed Log</div>
+                       <div style="color: #fafafa; font-size: 13px; line-height: 1.4;">HPS satellite feed 'Chaos-1' initialized. All systems normal. Plausible deniability active. Sector 4 is clear.</div>
+                   </div>
                </div>
 
                 <div class="blockade-banner">
