@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,9 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* --- [003: TOP SCROLLING ADMINISTRATIVE BANNER] ---
-        */
-        /* --- TOP SCROLLING ADMINISTRATIVE BANNER --- */
         .top-bar {
             background-image: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #ffffff;
@@ -102,23 +99,11 @@
         }
         
         .status-pill {
-            margin-top: 0px;
-            margin-bottom: 0px;
             margin-left: auto;
-            margin-right: 0px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 30px;
-            padding-right: 30px;
-            border-top-left-radius: 999px;
-            border-top-right-radius: 999px;
-            border-bottom-left-radius: 999px;
-            border-bottom-right-radius: 999px;
             padding: 15px 30px;
             border-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
-            font-size: clamp(10px, 0.3vw + 8px, 14px);
             font-size: calc(11px + 0.15vw);
             font-weight: 900;
             text-transform: uppercase;
@@ -127,8 +112,6 @@
             transition: all 0.3s;
         }
 
-        /* --- [005: ADMINISTRATIVE WARNING PLAQUE] ---
-        */
         .status-pill.lifted { background-color: #2e7d32; box-shadow: 0 0 25px rgba(46,125,50,0.7); }
         .status-pill.critical { background-color: #b71c1c; box-shadow: 0 0 30px rgba(183,28,28,0.9); animation: embargo-pulse 1.4s infinite; }
 
@@ -137,41 +120,34 @@
             50% { transform: scale(1.06); }
         }
 
-        /* --- ADMINISTRATIVE WARNING PLAQUE --- */
         .admin-note-wrapper {
-          padding: 20px 70px 0 70px;
-          max-width: 1800px;
-          margin: 0 auto 40px auto;
-          display: flex;
-          justify-content: center;
+            padding: 20px 70px 0 70px;
+            max-width: 1800px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            justify-content: center;
         }
-
 
         #admin-note {
-          display: none;
-          margin-top: 25px;
-          margin-bottom: 10px;
-          background: #111111;
-          color: #f5f5f5;
-          border-radius: 18px;
-          padding: 22px 28px;
-          border: 2px solid #ffca28;
-          box-shadow: 0 18px 45px rgba(0,0,0,0.7);
-          position: relative;
-          overflow: hidden;
-          max-width: 900px;
-          width: 100%;
-          text-align: center;
+            display: none;
+            margin-top: 25px;
+            background: #111111;
+            color: #f5f5f5;
+            border-radius: 18px;
+            padding: 22px 28px;
+            border: 2px solid #ffca28;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.7);
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
         }
-
 
         #admin-note::before {
             content: "";
             position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
+            inset: 0;
             background-image: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.12), transparent 55%);
             pointer-events: none;
         }
@@ -181,40 +157,23 @@
             letter-spacing: 0.25em;
             text-transform: uppercase;
             font-weight: 900;
-            margin-top: 0px;
-            margin-bottom: 8px;
-            margin-left: 0px;
-            margin-right: 0px;
             color: #ffeb3b;
+            margin-bottom: 8px;
         }
 
         #admin-note-body {
             font-size: calc(13px + 0.15vw);
             line-height: 1.8;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
         }
 
-
-        /* --- MAIN GRID STRUCTURE: RESTORING 1:1 SYMMETRY --- */
         .main {
             width: 100%;
-            margin-top: 0px;
             margin-bottom: 120px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-left: 70px;
-            padding-right: 70px;
+            padding: 0 70px;
             display: grid;
-            /* STRICT 1:1 MATHEMATICAL HALVES */
-            grid-template-columns: 1fr 1fr; 
+            grid-template-columns: 1fr 1fr;
             column-gap: 70px;
-            row-gap: 0px;
-            align-items: stretch; 
+            align-items: stretch;
         }
 
         .col-left, .col-right {
@@ -225,49 +184,20 @@
             position: relative;
         }
 
-        /* --- [007: COMPONENT CARD ARCHITECTURE] ---
-        */
-        /* --- CARD ARCHITECTURE --- */
-        /* --- CARD ARCHITECTURE: VERTICAL WEIGHT MANDATE --- */
         .card {
             background-color: var(--light);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: var(--border);
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--border);
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: var(--border);
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: var(--border);
-            /* EXPLICIT PADDING DENSITY */
-            padding-top: 50px;
-            padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 50px;
             box-shadow: 0 15px 60px rgba(0,0,0,0.07);
             display: flex;
             flex-direction: column;
-            /* HEIGHT SYNCHRONIZATION */
-            height: 100%; 
+            height: 100%;
             width: 100%;
             position: relative;
         }
 
-        .card-header {
-            margin-top: 0px;
-            margin-bottom: 30px;
-            margin-left: 0px;
-            margin-right: 0px;
-            display: block;
-        }
+        .card-header { margin-bottom: 30px; }
 
         .card-title {
             font-size: calc(18px + 0.3vw);
@@ -275,61 +205,36 @@
             text-transform: uppercase;
             letter-spacing: 0.18em;
             color: #111111;
-            margin-top: 0px;
-            margin-bottom: 10px;
-            margin-left: 0px;
-            margin-right: 0px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom-width: 3px;
-            border-bottom-style: solid;
-            border-bottom-color: #f5f5f5;
-            padding-top: 0px;
+            border-bottom: 3px solid #f5f5f5;
             padding-bottom: 20px;
-            padding-left: 0px;
-            padding-right: 0px;
+            margin-bottom: 10px;
         }
 
         .card-tag {
-            font-size: clamp(9px, 0.2vw + 7px, 12px);
             font-size: calc(9px + 0.1vw);
             color: #999999;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             font-weight: 700;
             background-color: #f0f0f0;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-top-left-radius: 999px;
-            border-top-right-radius: 999px;
-            border-bottom-left-radius: 999px;
-            border-bottom-right-radius: 999px;
+            padding: 4px 10px;
+            border-radius: 999px;
             display: inline-block;
         }
 
-        /* --- LOGISTICS & LORE: VERTICAL RHYTHM ALIGNMENT --- */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
             font-size: calc(14px + 0.2vw);
             margin-top: 20px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            table-layout: auto;
         }
 
         .logistics-table tr td {
-            padding-top: 18px;
-            padding-bottom: 18px;
-            padding-left: 15px;
-            padding-right: 15px;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #eeeeee;
+            padding: 18px 15px;
+            border-bottom: 1px solid #eeeeee;
         }
 
         .logistics-label {
@@ -341,643 +246,109 @@
             letter-spacing: 0.2em;
         }
 
-        .logistics-value {
-            color: #000000;
-            font-weight: 700;
-        }
+        .logistics-value { color: #000000; font-weight: 700; }
 
-        .section-block {
-            margin-top: 30px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-        }
+        .section-block { margin-top: 30px; }
 
         .section-title {
             font-size: calc(14px + 0.25vw);
             font-weight: 900;
             text-transform: uppercase;
-            margin-top: 0px;
             margin-bottom: 20px;
-            margin-left: 0px;
-            margin-right: 0px;
             color: #000000;
             letter-spacing: 0.12em;
-            border-left-width: 12px;
-            border-left-style: solid;
-            border-left-color: var(--orange);
-            padding-top: 0px;
-            padding-bottom: 0px;
+            border-left: 12px solid var(--orange);
             padding-left: 30px;
-            padding-right: 0px;
         }
 
-        .pill-list {
-            list-style-type: none;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-        }
         .pill-list { list-style-type: none; }
         .pill-list li { margin-bottom: 16px; font-size: calc(13px + 0.2vw); line-height: 1.9; color: #444444; }
         .pill-label { display: inline-block; font-weight: 900; color: var(--orange); margin-right: 15px; text-transform: uppercase; font-size: calc(11px + 0.15vw); letter-spacing: 0.1em; }
 
-        .pill-list li {
-            margin-top: 0px;
-            margin-bottom: 20px;
-            margin-left: 0px;
-            margin-right: 0px;
-            font-size: clamp(13px, 0.4vw + 10px, 18px);
-            line-height: 1.9;
-            color: #444444;
-        }
-
-        .pill-label {
-            display: inline-block;
-            font-weight: 900;
-            color: var(--orange);
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 15px;
-            text-transform: uppercase;
-            font-size: clamp(11px, 0.3vw + 8px, 14px);
-            letter-spacing: 0.1em;
-        }
-
-        /* --- [010: INTERACTIVE CHAT MODULE] ---
-        */
-        /* --- INTERACTIVE CHAT --- */
         #chat-output {
-            height: 300px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #f0f0f0;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #f0f0f0;
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #f0f0f0;
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #f0f0f0;
-            padding-top: 24px;
-            padding-bottom: 24px;
-            padding-left: 24px;
-            padding-right: 24px;
-            font-size: clamp(13px, 0.4vw + 10px, 18px);
             height: 220px;
             border: 1px solid #f0f0f0;
             padding: 24px;
             font-size: calc(13px + 0.2vw);
             overflow-y: auto;
             background-color: var(--h-bot-bg);
-            margin-top: 0px;
-            margin-bottom: 25px;
-            margin-left: 0px;
-            margin-right: 0px;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-            background-color: #fafafa;
-            margin-bottom: 20px;
             border-radius: 16px;
             line-height: 1.9;
-            width: 100%;
+            margin-bottom: 20px;
         }
 
-        .chat-input-row {
-            display: flex;
-            flex-direction: row;
-            gap: 16px;
-            margin-top: 10px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            width: 100%;
-        }
-
-        .chat-input-row input {
-            flex-grow: 1;
-            padding-top: 16px;
-            padding-bottom: 16px;
-            padding-left: 20px;
-            padding-right: 20px;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #dddddd;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #dddddd;
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #dddddd;
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #dddddd;
-            font-size: clamp(13px, 0.4vw + 10px, 18px);
-            background-color: #ffffff;
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.03);
-            font-family: inherit;
-        }
-
-        .chat-input-row button {
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-left: 40px;
-            padding-right: 40px;
-            background-color: var(--orange);
-            border-top-style: none;
-            border-bottom-style: none;
-            border-left-style: none;
-            border-right-style: none;
-            color: #ffffff;
-            font-weight: 900;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: clamp(11px, 0.3vw + 8px, 15px);
-            transition-property: background-color;
-            transition-duration: 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 140, 66, 0.3);
-            flex-shrink: 0;
-        }
-
-        .fates-button {
-            margin-top: 6px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            font-size: clamp(9px, 0.2vw + 8px, 12px);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            font-weight: 800;
-            color: #7b1fa2;
-            cursor: pointer;
-            border-top-style: none;
-            border-bottom-style: none;
-            border-left-style: none;
-            border-right-style: none;
-            background-color: transparent;
-            padding-top: 0px;
-            padding-bottom: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-            text-align: left;
-        }
-
-        /* --- [011: METADATA PING SYSTEM] ---
-        */
-        .ping-panel {
-            margin-top: 50px;
-            border-top-width: 2px;
-            border-top-style: dashed;
-            border-top-color: var(--border);
-            padding-top: 40px;
-            width: 100%;
-            display: block;
-        }
-
-        .ping-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 100%;
-        }
-
-        .ping-btn {
-            background-color: #ffffff;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: var(--border);
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--border);
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: var(--border);
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: var(--border);
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            font-size: clamp(11px, 0.3vw + 8px, 14px);
-            font-weight: 900;
-            cursor: pointer;
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-            transition-property: all;
-            transition-duration: 0.3s;
-            position: relative;
-        }
-
-        .ping-btn.metadata-staged {
-            background-color: #1a1a1a;
-            border-top-color: var(--orange);
-            border-bottom-color: var(--orange);
-            border-left-color: var(--orange);
-            border-right-color: var(--orange);
-            color: var(--orange);
-            transform: scale(1.04);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-        }
-
-        #submit-ping-confirm {
-            display: none;
-            margin-top: 30px;
-            width: 100%;
-            padding-top: 25px;
-            padding-bottom: 25px;
-            padding-left: 25px;
-            padding-right: 25px;
-            background-color: #1a1a1a;
-            color: #00ff41;
-            font-family: var(--font-main);
-            font-size: clamp(14px, 0.5vw + 10px, 18px);
-            font-weight: 900;
-            text-transform: uppercase;
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
-            border-top-width: 3px;
-            border-top-style: solid;
-            border-top-color: #00ff41;
-            border-bottom-width: 3px;
-            border-bottom-style: solid;
-            border-bottom-color: #00ff41;
-            border-left-width: 3px;
-            border-left-style: solid;
-            border-left-color: #00ff41;
-            border-right-width: 3px;
-            border-right-style: solid;
-            border-right-color: #00ff41;
-            cursor: pointer;
-            text-align: center;
-            letter-spacing: 0.3em;
-            box-shadow: 0 12px 40px rgba(0,255,101,0.3);
-            transition-property: all;
-            transition-duration: 0.4s;
-        }
-
-        /* --- WEATHER MAP: RATIO & BORDER MANDATE --- */
-        .weather-map-visual {
-            width: 100%;
-            /* MATHEMATICAL IMAGE RATIO MANDATE */
-            aspect-ratio: 16 / 9; 
-            background-color: var(--map-base);
-            /* PHOTO FIT MANDATE: BORDERS VISIBLE */
-            background-size: cover; 
-            background-repeat: no-repeat;
-            background-position: center;
-            border-top-left-radius: 22px;
-            border-top-right-radius: 22px;
-            border-bottom-left-radius: 22px;
-            border-bottom-right-radius: 22px;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            border-top-width: 4px;
-            border-top-style: solid;
-            border-top-color: #333333;
-            border-bottom-width: 4px;
-            border-bottom-style: solid;
-            border-bottom-color: #333333;
-            border-left-width: 4px;
-            border-left-style: solid;
-            border-left-color: #333333;
-            border-right-width: 4px;
-            border-right-style: solid;
-            border-right-color: #333333;
-            box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7);
-            margin-top: 22px;
-        }
         .chat-input-row { display: flex; gap: 16px; margin-top: 10px; }
         .chat-input-row input { flex: 1; padding: 16px 20px; border-radius: 16px; border: 1px solid #dddddd; font-size: calc(13px + 0.2vw); background-color: #ffffff; }
         .chat-input-row button { padding: 0 32px; background-color: var(--orange); border: none; color: #ffffff; font-weight: 900; border-radius: 16px; cursor: pointer; text-transform: uppercase; font-size: calc(12px + 0.1vw); transition: all 0.3s; box-shadow: 0 8px 20px rgba(255,140,66,0.3); }
 
-        .map-scan-grid {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 2px);
-            background-size: 70px 70px;
-            z-index: 20;
-            pointer-events: none;
-            opacity: 0.35;
-            mix-blend-mode: soft-light;
-        }
         .fates-button { margin-top: 6px; font-size: calc(10px + 0.1vw); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; color: #7b1fa2; cursor: pointer; border: none; background: transparent; }
 
-        .isobar-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            border-top-width: 3px;
-            border-top-style: solid;
-            border-top-color: var(--iso-color);
-            border-bottom-width: 3px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--iso-color);
-            border-left-width: 3px;
-            border-left-style: solid;
-            border-left-color: var(--iso-color);
-            border-right-width: 3px;
-            border-right-style: solid;
-            border-right-color: var(--iso-color);
-            border-top-left-radius: 50%;
-            border-top-right-radius: 50%;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
-            transform: translate(-50%,-50%);
-            animation: pulse-pressure 20s ease-in-out infinite;
-            z-index: 12;
-            pointer-events: none;
-            opacity: 0.4;
-        }
-        
-        /* --- METADATA PING PANEL --- */
         .ping-panel { margin-top: 30px; border-top: 2px dashed var(--border); padding-top: 30px; }
         .ping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .ping-btn { background-color: #ffffff; border-radius: 16px; border: 1px solid var(--border); padding: 16px; font-size: calc(11px + 0.1vw); font-weight: 900; cursor: pointer; text-align: left; text-transform: uppercase; letter-spacing: 0.15em; box-shadow: 0 6px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
         .ping-btn:hover { background-color: #fffaf5; border-color: var(--orange); color: var(--orange); transform: translateY(-3px); }
         .ping-btn.metadata-staged { background-color: #1a1a1a; border-color: var(--orange); color: var(--orange); transform: scale(1.04); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 
-        @keyframes pulse-pressure {
-            0% { width: 160px; height: 160px; opacity: 0.15; }
-            50% { width: 700px; height: 700px; opacity: 0.7; }
-            100% { width: 160px; height: 160px; opacity: 0.15; }
-        }
         #submit-ping-confirm { display: none; margin-top: 24px; width: 100%; padding: 20px; background-color: #1a1a1a; color: #00ff41; font-family: var(--font-main); font-size: calc(13px + 0.15vw); font-weight: 900; text-transform: uppercase; border-radius: 18px; cursor: pointer; text-align: center; border: 3px solid #00ff41; box-shadow: 0 12px 40px rgba(0,255,101,0.3); transition: all 0.4s; }
 
-        /* --- [013: ADMINISTRATIVE POP-UP PROTOCOL] ---
-        */
-        #popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            background-color: rgba(0,0,0,0.85);
-            z-index: 9999;
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-        }
-        /* --- FAQ MODULE: MASTER PORTAL INTEGRATION --- */
-        .faq-block { 
-            margin-top: 45px; 
-            border-top-width: 2px;
-            border-top-style: dashed;
-            border-top-color: var(--border);
-            padding-top: 30px;
+        .weather-map-visual {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--map-base);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 22px;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid #333333;
+            box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7);
+            margin-top: 22px;
         }
 
-        .faq-item { 
-            margin-bottom: 15px; 
-            background: #f9f9f9; 
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #eeeeee;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #eeeeee;
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: #eeeeee;
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-right-color: #eeeeee;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            overflow: hidden; 
-            transition: all 0.3s; 
-        }
-
-        .faq-question { 
-            padding-top: 18px;
-            padding-bottom: 18px;
-            padding-left: 25px;
-            padding-right: 25px;
-            font-weight: 900; 
-            cursor: pointer; 
-            font-size: 13px; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em;
-            display: flex; 
-            justify-content: space-between; 
-            color: var(--dark);
-        }
-
-        .faq-answer { 
-            max-height: 0; 
-            padding-left: 25px;
-            padding-right: 25px;
-            color: #666; 
-            font-size: 14px; 
-            transition: all 0.4s ease; 
-            opacity: 0; 
-            line-height: 1.8;
-        }
-
-        .faq-item.active .faq-answer { 
-            max-height: 400px; 
-            padding-top: 10px;
-            padding-bottom: 25px; 
-            opacity: 1; 
-        }
-
-        /* --- POP-UP PROTOCOL: DENSITY CALIBRATION --- */
-        #popup-content {
-            background-color: #111111;
-            border-top-width: 4px;
-            border-top-style: solid;
-            border-top-color: var(--yellow);
-            border-bottom-width: 4px;
-            border-bottom-style: solid;
-            border-bottom-color: var(--yellow);
-            border-left-width: 4px;
-            border-left-style: solid;
-            border-left-color: var(--yellow);
-            border-right-width: 4px;
-            border-right-style: solid;
-            border-right-color: var(--yellow);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            padding: 50px;
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 0 100px rgba(255,201,60,0.4);
-        }
-
-        @keyframes popup-entrance {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        /* --- WEATHER MAP: RATIO & BORDER MANDATE --- */
-        .weather-map-title { margin-top: 32px; font-size: calc(11px + 0.1vw); font-weight: 900; color: #444444; text-transform: uppercase; letter-spacing: 0.2em; }
-        .weather-map-visual { width: 100%; aspect-ratio: 16 / 9; background-color: var(--map-base); background-size: cover; background-repeat: no-repeat; background-position: center; border-radius: 22px; position: relative; overflow: hidden; border: 4px solid #333333; box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7); margin-top: 20px; }
-
-        #popup-title {
-            color: var(--yellow);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
         .map-scan-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 2px); background-size: 70px 70px; z-index: 20; opacity: 0.35; mix-blend-mode: soft-light; }
         .thermal-front-layer { position: absolute; inset: 0; filter: blur(60px); z-index: 10; animation: front-drift-atmospheric 60s linear infinite alternate; opacity: 0.8; mix-blend-mode: screen; }
-        @keyframes front-drift-atmospheric { from { transform: translate(-15%, -10%) scale(1); } to { transform: translate(15%, 10%) scale(1.4); } }
+        
+        @keyframes front-drift-atmospheric { 
+            from { transform: translate(-15%, -10%) scale(1); } 
+            to { transform: translate(15%, 10%) scale(1.4); } 
+        }
+
         .isobar-ring { position: absolute; top: 50%; left: 50%; border: 3px solid var(--iso-color); border-radius: 50%; transform: translate(-50%,-50%); animation: pulse-pressure 20s ease-in-out infinite; z-index: 12; opacity: 0.4; }
-        @keyframes pulse-pressure { 0%, 100% { width: 160px; height: 160px; opacity: 0.15; } 50% { width: 700px; height: 700px; opacity: 0.7; } }
-
-        #popup-message {
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            line-height: 1.5;
+        
+        @keyframes pulse-pressure { 
+            0%, 100% { width: 160px; height: 160px; opacity: 0.15; } 
+            50% { width: 700px; height: 700px; opacity: 0.7; } 
         }
 
-        .popup-close-btn {
-            background-color: var(--yellow);
-            color: #000000;
-            border-top-style: none;
-            border-bottom-style: none;
-            border-left-style: none;
-            border-right-style: none;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 35px;
-            padding-right: 35px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+        .faq-block { margin-top: 45px; border-top: 2px dashed var(--border); padding-top: 30px; }
+        .faq-item { margin-bottom: 15px; background: #f9f9f9; border: 1px solid #eeeeee; border-radius: 12px; overflow: hidden; transition: all 0.3s; }
+        .faq-question { padding: 18px 25px; font-weight: 900; cursor: pointer; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; color: var(--dark); }
+        .faq-answer { max-height: 0; padding: 0 25px; color: #666; font-size: 14px; transition: all 0.4s ease; opacity: 0; line-height: 1.8; }
+        .faq-item.active .faq-answer { max-height: 400px; padding: 10px 25px 25px; opacity: 1; }
 
-        /* --- [014: GLOBAL FOOTER COMPONENT] ---
-        */
-        .footer {
-            text-align: center;
-            padding-top: 80px;
-            padding-bottom: 100px;
-            padding-left: 40px;
-            padding-right: 40px;
-            font-size: clamp(10px, 0.2vw + 8px, 14px);
-            color: #9e9e9e;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            line-height: 2.5;
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: #e0e0e0;
-            background-color: #fafafa;
-        }
+        #popup-overlay { display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); z-index: 9999; backdrop-filter: blur(10px); align-items: center; justify-content: center; }
+        #popup-content { background-color: #111111; border: 4px solid var(--yellow); border-radius: 20px; padding: 50px; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 0 100px rgba(255,201,60,0.4); animation: popup-entrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-        .footer-line-strong {
-            font-weight: 900;
-            color: #616161;
-        }
+        @keyframes popup-entrance { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* --- [015: MOBILE UNDERWORLD ADAPTATION] ---
-        */
-        @media (max-width: 768px) {
-            .main {
-                grid-template-columns: 1fr;
-                padding-left: 15px;
-                padding-right: 15px;
-                row-gap: 40px;
-            }
+        .popup-close-btn { background-color: var(--yellow); color: #000000; border: none; padding: 15px 35px; font-weight: 900; text-transform: uppercase; border-radius: 10px; cursor: pointer; margin-top: 20px; }
 
-            .card {
-                padding-top: 25px;
-                padding-bottom: 25px;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
+        .blockade-banner { background: #000; color: #ffeb3b; font-family: "Courier New", monospace; font-size: calc(12px + 0.1vw); font-weight: 900; padding: 18px 22px; white-space: nowrap; margin-top: 22px; border-radius: 18px; border: 2px solid #888; box-shadow: 0 24px 70px rgba(0,0,0,0.8); overflow: hidden; width: 100%; }
+        .blockade-banner span { display: inline-block; padding-left: 100%; animation: scroll-blockade 55s linear infinite; }
+        @keyframes scroll-blockade { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 
-            .logistics-label {
-                width: 120px;
-                font-size: 10px;
-            }
-        }
-        /* --- OLD-TIMEY POP-UPS --- */
         .wholesome-popup { display: none; position: fixed; background: #111; border: 2px solid var(--yellow); padding: 15px 25px; z-index: 9999; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.8); max-width: 280px; text-align: center; }
         .wholesome-popup button { margin-top: 10px; padding: 5px 15px; background: var(--yellow); border: none; font-weight: 900; cursor: pointer; border-radius: 4px; font-size: 10px; text-transform: uppercase; }
         
         .heart-popup { width: 150px; height: 150px; background: var(--dyad-pink); clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'); transform: scale(0); display: none; position: fixed; z-index: 10000; align-items: center; justify-content: center; color: #fff; font-weight: 900; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-            .header {
-                padding-top: 25px;
-                padding-bottom: 25px;
-                padding-left: 15px;
-                padding-right: 15px;
-                gap: 15px;
-            }
-        /* --- BLOCKADE BANNER --- */
-        .blockade-banner { background: #000; color: #ffeb3b; font-family: "Courier New", monospace; font-size: calc(12px + 0.1vw); font-weight: 900; padding: 18px 22px; white-space: nowrap; margin-top: 22px; border-radius: 18px; border: 2px solid #888; box-shadow: 0 24px 70px rgba(0,0,0,0.8); overflow: hidden; width: 100%; }
-        .blockade-banner span { display: inline-block; padding-left: 100%; animation: scroll-blockade 55s linear infinite; }
-        @keyframes scroll-blockade { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+        .footer { text-align: center; padding: 80px 40px 100px; color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.5; border-top: 1px solid #e0e0e0; background-color: #fafafa; }
+        .footer-line-strong { font-weight: 900; color: #616161; }
 
-            .logo-circle {
-                width: 50px;
-                height: 50px;
-            }
-
-            .status-pill {
-                display: none;
-            }
-        .footer { text-align: center; padding: 60px 20px 80px; font-size: calc(10px + 0.1vw); color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.2; border-top: 1px solid #e0e0e0; background: #fafafa; }
-        
         @media (max-width: 1200px) {
-          .main {
-            grid-template-columns: 1fr;
-            padding: 0 40px;
-            row-gap: 40px;
-          }
-          .status-pill {
-            display: none;
-          }
-          .admin-note-wrapper {
-            padding: 20px 40px 0 40px;
-          }
+            .main { grid-template-columns: 1fr; padding: 0 40px; }
+            .status-pill { display: none; }
         }
     </style>
 </head>
@@ -989,6 +360,8 @@
             <div id="popup-message">Initializing Chandler Protocol...</div>
             <button class="popup-close-btn" onclick="closePopup()">Acknowledge</button>
         </div>
+    </div>
+
     <div id="wholesome-alert" class="wholesome-popup">
         <div style="color:var(--yellow); font-weight:900; margin-bottom:5px;">✦ SUPPORT ALERT ✦</div>
         <div id="alert-text" style="color:#fff; font-size:14px;"></div>
@@ -1004,7 +377,7 @@
     <header class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
-            <h1>Hermes Postal Service <span class="version-badge">V3.75 HIGH-PRIORITY</span></h1>
+            <h1>Hermes Postal Service <span class="version-badge">V3.75 HIGH-PRIORITY CLIENT OVERHAUL</span></h1>
             <div class="subtitle">Official Logistics Portal · High-Priority Support & Underworld Calibration Interface</div>
         </div>
         <div id="embargo-pill" class="status-pill">Embargo Active</div>
@@ -1018,16 +391,10 @@
     </div>
 
     <main class="main">
-
         <div class="col-left">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">
-                        Shipment Overview
-                        <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666</span>
-                    </div>
-                    <div class="card-tag">Official Persistence Feed</div>
-                    <div class="card-title">Shipment Overview <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666</span></div>
+                    <div class="card-title">Shipment Overview <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666-MANDATE</span></div>
                     <div class="card-tag">Verified Aisle-One Transit</div>
                 </div>
 
@@ -1041,7 +408,6 @@
                 </table>
 
                 <div class="section-block">
-                    <div class="section-title">Standard Delivery Modes</div>
                     <div class="section-title">Delivery Modes</div>
                     <ul class="pill-list">
                         <li><span class="pill-label">Standard Delivery:</span> 1-3 letters, delivered whenever Hermes feels like putting on sandals.</li>
@@ -1049,31 +415,18 @@
                         <li><span class="pill-label">Aisle-One Delivery:</span> High-priority transit, personally handled by Hermes.</li>
                         <li><span class="pill-label">Discreet Handle:</span> Letters flagged by Eros for special administrative care.</li>
                         <li><span class="pill-label">Zeus-Delay:</span> Weather advisories caused by high-voltage throat clearing.</li>
-                        <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, delivered whenever Hermes feels like putting on sandals.</li>
-                        <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped simultaneously in a localized spatial rift.</li>
                         <li><span class="pill-label">Overnight Drunken Delivery:</span> Randomized letters delivered at 3:17 AM.</li>
-                        <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything.</li>
-                        <li><span class="pill-label">“I Found These In My Bag” Delivery:</span> Ancient letters appear out of nowhere.</li>
-                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the direct order.</li>
-                        <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new mode on the spot.</li>
-                        <li><span class="pill-label">“Bag Found” Delivery:</span> Ancient bestie-grade letters appear out of nowhere.</li>
-                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the order.</li>
-                        <li><span class="pill-label">“Testing System” Delivery:</span> Hermes invents a new mode on the spot.</li>
+                        <li><span class="pill-label">"I Wasn't Here" Delivery:</span> Hermes physically denies delivering anything.</li>
+                        <li><span class="pill-label">"I Found These In My Bag" Delivery:</span> Ancient letters appear out of nowhere.</li>
+                        <li><span class="pill-label">"Hades Begged Me" Delivery:</span> Hermes pretends he didn't hear the direct order.</li>
+                        <li><span class="pill-label">"I'm Testing a New System" Delivery:</span> Hermes invents a new mode on the spot.</li>
+                        <li><span class="pill-label">"Bag Found" Delivery:</span> Ancient bestie-grade letters appear out of nowhere.</li>
                     </ul>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">Administrative Protocols & Rules</div>
                     <div class="section-title">Administrative Protocols</div>
                     <ul class="pill-list" style="color:#666666;">
-                        <li>· Hermes never timestamps administrative correspondence or system logs.</li>
-                        <li>· Hermes never provides explanations for localized administrative delays.</li>
-                        <li>· Hermes always looks like he was somewhere he shouldn’t have been.</li>
-                        <li>· Hermes always maintains 100% plausible deniability regarding sector static.</li>
-                        <li>· Hermes always blames Hades for internal architectural system failures.</li>
-                        <li>· Hermes always blames Persephone for data leakage anomalies.</li>
-                        <li>· Hermes always blames the Underworld postal infrastructure architecture architecture.</li>
-                        <li>· Hermes always blames the weather (even in sectors where weather is impossible).</li>
                         <li>· Hermes never timestamps administrative logs for High-Priority Contacts.</li>
                         <li>· Hermes never explains why your perimeter is so heavily guarded.</li>
                         <li>· High-Priority recipients are classified as Core Foundation Components.</li>
@@ -1086,17 +439,10 @@
                 </div>
             </div>
         </div>
-        </section>
 
         <div class="col-right">
-        <section class="col-right">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">
-                        Support & Quality Assurance Portal
-                        <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1 INTERFACE</span>
-                    </div>
-                    <div class="card-tag">Direct Administrative Channel</div>
                     <div class="card-title">Support Portal <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1</span></div>
                     <div class="card-tag">Direct Support Channel</div>
                 </div>
@@ -1113,27 +459,21 @@
                 </div>
 
                 <div class="ping-panel">
-                    <div class="section-title" style="font-size: 13px;">Metadata Feedback (Direct Senior Admin Pager)</div>
+                    <div class="section-title" style="font-size: 13px;">Metadata Feedback (Senior Admin Pager)</div>
                     <div style="font-size: 10px; color: #d32f2f; font-weight: 900; margin-bottom: 20px; font-style: italic; text-transform: uppercase;">
                         * WARNING: These signals bypass the support queue. Hermes monitors these directly.
                     </div>
-                    
-                    <div class="section-title" style="font-size: 13px;">Metadata Feedback (Senior Admin Pager)</div>
                     <div class="ping-grid">
                         <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
                         <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
                         <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('🔵 QUEUED', this)">🔵 QUEUED</button>
                         <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🟣 STILL HERE', this)">🟣 STILL HERE</button>
-                        <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS POSITIVE</button>
-                        <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS SIGNAL</button>
+                        <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS</button>
+                        <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS</button>
                     </div>
-
                     <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
                 </div>
 
-                <div style="margin-top:45px; font-size:clamp(11px, 0.3vw + 8px, 14px); font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.2em;">Underworld Topographic Satellite Forecast | Sector 4</div>
-                
-                <div class="weather-map-visual">
                 <div class="faq-block">
                     <div class="section-title">Support FAQ</div>
                     <div class="faq-item" onclick="this.classList.toggle('active')">
@@ -1150,6 +490,8 @@
                     </div>
                 </div>
 
+                <div style="margin-top:45px; font-size:13px; font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.2em;">Underworld Topographic Satellite Forecast | Sector 4</div>
+                
                 <div class="weather-map-visual" id="map-visual">
                     <div class="map-scan-grid"></div>
                     <div class="thermal-front-layer" id="heat-layer"></div>
@@ -1158,18 +500,14 @@
                     <div class="isobar-ring" style="animation-delay: 4s;"></div>
                 </div>
 
-                <div id="forecast-text" style="font-size:clamp(13px, 0.5vw + 10px, 18px); font-weight:800; color:#d32f2f; margin-top:15px; text-transform: uppercase; letter-spacing: 0.15em;">Forecast Status: Infernal Atmospheric Conditions Stable.</div>
+                <div id="forecast-text" style="font-size:13px; font-weight:800; color:#d32f2f; margin-top:15px; text-transform: uppercase; letter-spacing: 0.15em;">Forecast Status: Infernal Atmospheric Conditions Stable.</div>
 
                 <div class="blockade-banner">
                     <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his messenger bag... Petting Cerberus... Administrative rites in progress... High-Priority pining embargo...</span>
                 </div>
             </div>
         </div>
-        </section>
-
-    </div>
     </main>
-
 
     <footer class="footer">
         <div class="footer-line-strong">Hermes Postal Service · Official Logistics Portal V3.75</div>
@@ -1179,7 +517,6 @@
     </footer>
 
     <script>
-        /* --- PERSISTENT INTERACTIVE LOGIC V3.75 --- */
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec';
 
         const chandlerSuffixes = [" (Note: Hi Chandler)", " (Yooooo it's Chandler!!!)", " [Cutie Alert: Chandler detected]", " (Hi God it's me again)", ""];
@@ -1194,6 +531,7 @@
             "Alyssa is happy to see you!",
             "CHANDLER HIII OMG HIII ITS ME ALYSSAAA HIII."
         ];
+        
         const mapImages = ['underworld_weather_map_1.png', 'image_c20b71.jpg'];
         const alertMessages = ["Are you hydrated?", "Just making sure you're taking a deep breath. :)", "hey bestie:)", "You are smart, very kind, and are worthy of grace."];
 
@@ -1202,7 +540,7 @@
             "High-Frequency Audio Transcript (Intercepted Metadata)",
             "Sealed Divine Correspondence Packet (Fragile Integrity)",
             "Unsorted Underworld Mail Bundle (Mixed Sectors)",
-            "Cross‑Realm Delivery Envelope (Non-Standard Protocol)",
+            "Cross-Realm Delivery Envelope (Non-Standard Protocol)",
             "Priority Administrative Scroll (Urgent Authorization)",
             "Unlabeled Parcel (Hermes denies all administrative ownership)"
         ];
@@ -1253,7 +591,7 @@
             "The golden minnow will be drawn to the ocean by an overwhelming current.",
             "You shall be rewarded for your bravery with loyalty.",
             "She knows. She has always known. She will always know. She will show, if shown.",
-            "The lie is etched in the mirror's reflection. The truth will be revealed by the missing projection." 
+            "The lie is etched in the mirror's reflection. The truth will be revealed by the missing projection."
         ];
 
         const pingImpacts = {
@@ -1266,22 +604,22 @@
         };
 
         const releaseStatusOptions = ["Guardian Protocol Verified", "Administrative Hold (Pending Audit)", "Scheduled Release", "Released for Delivery (Under Protest)", "Gated: Awaiting Surface Sync", "Indefinite Delay: Courier lost bag"];
-        const logisticsDeltaOptions = ["Zero Latency (Priority Aisle)", "Delivered on time (within 10yr variance)", "Minimal Latency (Only 3 human lifetimes)", "Stuck in River Styx Traffic",  "Cerberus chewed bag", "Temporal Anomaly: Arrived before writing"];
+        const logisticsDeltaOptions = ["Zero Latency (Priority Aisle)", "Delivered on time (within 10yr variance)", "Minimal Latency (Only 3 human lifetimes)", "Stuck in River Styx Traffic", "Cerberus chewed bag", "Temporal Anomaly: Arrived before writing"];
         const courierOptions = ["H-01 (Hermes, Senior Admin)", "H-01 (Hermes, Status: Active/Drunk)", "H-01 (Hermes, Status: Napping)", "Courier Unit: Unassigned"];
         const statusPillOptions = ["Embargo Active", "Embargo Lifted", "System Unstable", "Audit in Progress"];
 
         let stagedPingType = null;
         let currentChosenButton = null;
-      
+
         function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-        /* --- POP-UP PROTOCOL --- */
         function triggerRandomPopup() {
             const overlay = document.getElementById('popup-overlay');
             const message = document.getElementById('popup-message');
             message.textContent = randomFrom(popupMessages);
             overlay.style.display = 'flex';
         }
+
         function triggerPopup() {
             const popup = document.getElementById('wholesome-alert');
             const text = document.getElementById('alert-text');
@@ -1291,42 +629,23 @@
             popup.style.display = 'block';
         }
 
-        function closePopup() {
-            document.getElementById('popup-overlay').style.display = 'none';
-        }
+        function closePopup() { document.getElementById('popup-overlay').style.display = 'none'; }
 
-        // Triggers the full-screen admin modal
-        setInterval(() => {
-            if (Math.random() < 0.3) triggerRandomPopup();
-        }, 45000); 
+        setInterval(() => { if (Math.random() < 0.3) triggerRandomPopup(); }, 45000);
+        setInterval(() => { if (Math.random() < 0.2) triggerPopup(); }, 60000);
 
-        // Triggers the "wholesome" floating toast
-        setInterval(() => {
-            if (Math.random() < 0.2) triggerPopup();
-        }, 60000);
-
-        /* --- UI LOGIC --- */
-         function initShipmentOverview() {
+        function initShipmentOverview() {
             const maybeEgg = () => Math.random() < 0.2 ? randomFrom(chandlerSuffixes) : "";
-            
             document.getElementById('release-status-field').textContent = randomFrom(releaseStatusOptions) + maybeEgg();
             document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions) + maybeEgg();
             document.getElementById('courier-id-field').textContent = randomFrom(courierOptions) + maybeEgg();
             document.getElementById('payload-field').textContent = randomFrom(payloadOptions) + maybeEgg();
-            document.getElementById('tier-field').textContent = "High-Priority Contact";
-            document.getElementById('condition-field').textContent = "Atmosphere: Protected. (System Note: Our High-Priority Contacts are our #1 Priority)";
-            
-            // Corrected template literal for the dynamic background image
             document.getElementById('map-visual').style.backgroundImage = `url(${randomFrom(mapImages)})`;
-            
             document.getElementById('hbot-greeting').textContent = randomFrom(hBotGreetings);
             document.getElementById('embargo-pill').textContent = randomFrom(statusPillOptions);
-            
-            if (Math.random() < 0.3) {
-                document.getElementById('admin-note').style.display = 'block';
-            }
-        } // Added the missing closing brace here
-        
+            if (Math.random() < 0.3) document.getElementById('admin-note').style.display = 'block';
+        }
+
         function handleChat() {
             const input = document.getElementById('user-input');
             const output = document.getElementById('chat-output');
@@ -1336,9 +655,10 @@
             input.value = "";
             output.scrollTop = output.scrollHeight;
         }
+
         function consultFates() {
             const output = document.getElementById('chat-output');
-            output.innerHTML += `<div style="color:#7b1fa2; font-weight:900; border-left:3px solid #7b1fa2; padding-left:10px; margin-top:20px;">[THE FATES]: \${randomFrom(prophecies)}</div>`;
+            output.innerHTML += `<div style="color:#7b1fa2; font-weight:900; border-left:3px solid #7b1fa2; padding-left:10px; margin-top:20px;">[THE FATES]: ${randomFrom(prophecies)}</div>`;
             output.innerHTML += `<div style="color:#7b1fa2; font-weight:900; border-left:3px solid #7b1fa2; padding-left:10px; margin-top:20px;">[THE FATES]: The threads lead back to a solid foundation. You are safe.</div>`;
             output.scrollTop = output.scrollHeight;
         }
@@ -1360,8 +680,7 @@
                 return;
             }
 
-            if (currentChosenButton) { currentChosenButton.classList.remove('metadata-staged'); }
-            
+            if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
             stagedPingType = type;
             currentChosenButton = element;
             element.classList.add('metadata-staged');
@@ -1369,20 +688,13 @@
 
             const impact = pingImpacts[type];
             heat.style.background = impact.gradient;
-            forecast.textContent = `Forecast Status: \${impact.forecast}`;
-            
+            forecast.textContent = `Forecast Status: ${impact.forecast}`;
             pill.textContent = impact.pill;
             pill.className = "status-pill " + (impact.pillClass || "");
-
             note.style.display = 'block';
             noteBody.textContent = impact.adminNote;
-
-            output.innerHTML += `<div style="color:#111; margin-top:20px; font-weight:900;"><i>[QA]: Signal '\${type}' staged. Awaiting confirmation... (Hi Chandler)</i></div>`;
+            output.innerHTML += `<div style="color:#111; margin-top:20px; font-weight:900;"><i>[QA]: Signal '${type}' staged. Awaiting confirmation... (Hi Chandler)</i></div>`;
             output.scrollTop = output.scrollHeight;
-            submitBtn.style.display = 'block';
-            document.getElementById('heat-layer').style.background = impact.gradient;
-            document.getElementById('forecast-text').textContent = `Forecast: \${impact.forecast}`;
-            document.getElementById('embargo-pill').textContent = impact.pill;
 
             if (type === '❤️ WELLNESS') {
                 const heart = document.getElementById('heart-alert');
@@ -1397,25 +709,18 @@
             const output = document.getElementById('chat-output');
             const submitBtn = document.getElementById('submit-ping-confirm');
             if (!stagedPingType) return;
-
             const typeToTransmit = stagedPingType;
             output.innerHTML += `<div style="color:#d32f2f; margin-top:25px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: ${typeToTransmit}... (Hi Chandler)</i></div>`;
             output.scrollTop = output.scrollHeight;
-
             try {
                 await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ user: 'Persephone', ping: typeToTransmit }) });
                 output.innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged. Calibration established for C.</div>`;
             } catch (err) {
                 output.innerHTML += `<div style="color:red; margin-top:15px; font-weight:900;">[ERROR]: Signal lost. (Hi Chandler)</div>`;
             }
-
             output.scrollTop = output.scrollHeight;
             submitBtn.style.display = 'none';
-
-            if (currentChosenButton) { 
-                currentChosenButton.classList.remove('metadata-staged'); 
-            }
-
+            if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
             stagedPingType = null;
             currentChosenButton = null;
         }
