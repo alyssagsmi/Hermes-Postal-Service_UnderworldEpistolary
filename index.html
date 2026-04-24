@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermes Postal Service | Master Portal V3.56</title>
+    <title>Hermes Postal Service | Official Logistics Portal</title>
 
     <style>
-        /* --- STRUCTURAL DATA: ROOT VARIABLES ---
-           Declared individually to maintain narrative salience.
-           STRICT IMMUTABILITY PROTOCOL V3.56 ACTIVE.
+        /* --- [001: DESIGN TOKENS] ---
+           Immutable configuration for Underworld Infrastructure.
         */
         :root {
             --yellow: #FFC93C;
@@ -16,15 +15,15 @@
             --dark: #333333;
             --light: #ffffff;
             --border: #e0e0e0;
-            --map-base: #050505;
-            --iso-color: rgba(0, 255, 65, 0.45);
-            /* REPLACED: FONT-MAIN WITH SNIPPET DATA */
+            --map-base: #0a1111;
+            --iso-color: rgba(0, 255, 65, 0.25);
             --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --lore-grey: #666666;
+            --h-bot-bg: #fafafa;
         }
 
-        /* --- GLOBAL RESET PROTOCOL ---
-           Explicit property declarations to maintain vertical structural density.
-           STRICT IMMUTABILITY: ZERO PRUNING MANDATED.
+        /* --- [002: GLOBAL RESET PROTOCOL] ---
+           Explicit property declarations for vertical structural density.
         */
         * { 
             box-sizing: border-box; 
@@ -36,6 +35,11 @@
             padding-bottom: 0px;
             padding-left: 0px;
             padding-right: 0px;
+            border-top-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-right-width: 0px;
+            outline-style: none;
         }
 
         body {
@@ -46,13 +50,14 @@
             font-family: var(--font-main);
             background-color: #f7f7f7;
             color: var(--dark);
-            /* RESPONSIVE BASE SCALING */
             line-height: 1.6;
             overflow-x: hidden;
             display: block;
+            position: relative;
         }
 
-        /* --- TOP SCROLLING ADMINISTRATIVE BANNER --- */
+        /* --- [003: TOP SCROLLING ADMINISTRATIVE BANNER] ---
+        */
         .top-bar {
             background-image: linear-gradient(90deg, var(--orange), var(--yellow));
             color: #ffffff;
@@ -60,8 +65,7 @@
             padding-bottom: 15px;
             padding-left: 25px;
             padding-right: 25px;
-            /* RESPONSIVE FONT SCALING */
-            font-size: calc(11px + 0.15vw);
+            font-size: clamp(11px, 0.8vw + 8px, 16px);
             font-weight: 800;
             overflow-x: hidden;
             overflow-y: hidden;
@@ -77,7 +81,10 @@
 
         .top-bar span {
             display: inline-block;
+            padding-top: 0px;
+            padding-bottom: 0px;
             padding-left: 100%;
+            padding-right: 0px;
             animation-name: scroll-left;
             animation-duration: 35s;
             animation-timing-function: linear;
@@ -85,11 +92,12 @@
         }
 
         @keyframes scroll-left {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* --- PRIMARY HEADER COMPONENT --- */
+        /* --- [004: PRIMARY HEADER ARCHITECTURE] ---
+        */
         .header {
             background-color: var(--light);
             border-bottom-width: 6px;
@@ -97,12 +105,16 @@
             border-bottom-color: var(--yellow);
             padding-top: 45px;
             padding-bottom: 40px;
-            padding-left: 55px;
-            padding-right: 55px;
+            padding-left: 5%;
+            padding-right: 5%;
             display: flex;
+            flex-direction: row;
             align-items: center;
+            justify-content: flex-start;
             gap: 35px;
             box-shadow: 0 8px 35px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 500;
         }
 
         .logo-circle {
@@ -118,12 +130,17 @@
             justify-content: center;
             font-weight: 900;
             color: var(--dark);
-            /* RESPONSIVE FONT SCALING */
-            font-size: calc(28px + 0.5vw);
+            font-size: clamp(24px, 2vw + 10px, 42px);
+            flex-shrink: 0;
         }
 
         .header-text {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
         }
 
         .header-text h1 {
@@ -131,22 +148,22 @@
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            /* RESPONSIVE FONT SCALING */
-            font-size: calc(24px + 0.8vw);
+            font-size: clamp(20px, 2vw + 12px, 38px);
             font-weight: 900;
             letter-spacing: -0.06em;
             color: var(--dark);
+            text-transform: none;
         }
 
         .header-text .subtitle {
-            /* RESPONSIVE FONT SCALING */
-            font-size: calc(12px + 0.25vw);
+            font-size: clamp(12px, 0.5vw + 10px, 18px);
             color: #555555;
             margin-top: 8px;
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
             font-weight: 600;
+            line-height: 1.2;
         }
 
         .version-badge {
@@ -180,6 +197,8 @@
             border-right-style: solid;
             border-right-color: #00ff41;
             box-shadow: 0 0 25px rgba(0,255,65,0.4);
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .status-pill {
@@ -197,38 +216,20 @@
             border-bottom-right-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
-            font-size: calc(11px + 0.15vw);
+            font-size: clamp(10px, 0.3vw + 8px, 14px);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            transition-property: all;
-            transition-duration: 0.3s;
+            flex-shrink: 0;
         }
 
-        .status-pill.lifted {
-            background-color: #2e7d32;
-            box-shadow: 0 0 25px rgba(46,125,50,0.7);
-        }
-
-        .status-pill.critical {
-            background-color: #b71c1c;
-            box-shadow: 0 0 30px rgba(183,28,28,0.9);
-            animation-name: embargo-pulse;
-            animation-duration: 1.4s;
-            animation-iteration-count: infinite;
-        }
-
-        @keyframes embargo-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-        }
-
-        /* --- ADMINISTRATIVE WARNING PLAQUE --- */
+        /* --- [005: ADMINISTRATIVE WARNING PLAQUE] ---
+        */
         .admin-note-wrapper {
             padding-top: 20px;
             padding-bottom: 0px;
-            padding-left: 70px;
-            padding-right: 70px;
+            padding-left: 5%;
+            padding-right: 5%;
             width: 100%;
             margin-top: 0px;
             margin-bottom: 40px;
@@ -236,6 +237,7 @@
             margin-right: auto;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
         }
 
         #admin-note {
@@ -301,9 +303,14 @@
         #admin-note-body {
             font-size: calc(13px + 0.15vw);
             line-height: 1.8;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
         }
 
-        /* --- MAIN GRID STRUCTURE: THE 1:1 SYMMETRY FIX --- */
+        /* --- [006: MAIN GRID STRUCTURE: FLUID 1:1 SYMMETRY] ---
+        */
         .main {
             width: 100%;
             margin-top: 0px;
@@ -312,25 +319,33 @@
             margin-right: auto;
             padding-top: 0px;
             padding-bottom: 0px;
-            padding-left: 70px;
-            padding-right: 70px;
+            padding-left: 5%;
+            padding-right: 5%;
             display: grid;
-            /* MATHEMATICALLY IDENTICAL HALVES MANDATE  */
             grid-template-columns: 1fr 1fr; 
-            column-gap: 70px;
-            row-gap: 0px;
-            /* HEIGHT SYNCHRONIZATION MANDATE  */
+            column-gap: 50px;
+            row-gap: 50px;
             align-items: stretch; 
         }
 
-        .col-left, .col-right {
+        .col-left {
             display: flex;
             flex-direction: column;
             width: 100%;
             min-width: 0px;
+            position: relative;
         }
 
-        /* --- CARD ARCHITECTURE --- */
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-width: 0px;
+            position: relative;
+        }
+
+        /* --- [007: COMPONENT CARD ARCHITECTURE] ---
+        */
         .card {
             background-color: var(--light);
             border-top-left-radius: 20px;
@@ -349,16 +364,16 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: var(--border);
-            padding-top: 50px;
-            padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
             box-shadow: 0 15px 60px rgba(0,0,0,0.07);
             display: flex;
             flex-direction: column;
-            /* IDENTICAL VERTICAL WEIGHT MANDATE [cite: 230] */
             height: 100%; 
             width: 100%;
+            position: relative;
         }
 
         .card-header {
@@ -366,10 +381,11 @@
             margin-bottom: 30px;
             margin-left: 0px;
             margin-right: 0px;
+            display: block;
         }
 
         .card-title {
-            font-size: calc(18px + 0.3vw);
+            font-size: clamp(18px, 1.2vw + 10px, 32px);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.18em;
@@ -379,6 +395,7 @@
             margin-left: 0px;
             margin-right: 0px;
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             border-bottom-width: 3px;
@@ -391,18 +408,29 @@
         }
 
         .card-tag {
-            font-size: calc(9px + 0.1vw);
+            font-size: clamp(9px, 0.2vw + 7px, 12px);
             color: #999999;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             font-weight: 700;
+            background-color: #f0f0f0;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-top-left-radius: 999px;
+            border-top-right-radius: 999px;
+            border-bottom-left-radius: 999px;
+            border-bottom-right-radius: 999px;
+            display: inline-block;
         }
 
-        /* --- LOGISTICS DATA TABLE --- */
+        /* --- [008: LOGISTICS DATA DISPLAY] ---
+        */
         .logistics-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: calc(14px + 0.2vw);
+            font-size: 17px;
             margin-top: 20px;
             margin-bottom: 0px;
             margin-left: 0px;
@@ -425,29 +453,32 @@
             font-weight: 800;
             color: #cccccc;
             text-transform: uppercase;
-            font-size: calc(11px + 0.1vw);
+            font-size: clamp(10px, 0.3vw + 7px, 14px);
             letter-spacing: 0.2em;
         }
 
         .logistics-value {
             color: #000000;
             font-weight: 700;
+            font-size: clamp(13px, 0.4vw + 10px, 18px);
         }
 
-        /* --- LORE SECTIONS: NARRATIVE INFRASTRUCTURE --- */
+        /* --- [009: LORE INFRASTRUCTURE SECTIONS] ---
+        */
         .section-block {
-            margin-top: 30px;
+            margin-top: 40px;
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
+            display: block;
         }
 
         .section-title {
-            font-size: calc(14px + 0.25vw);
+            font-size: clamp(14px, 0.5vw + 10px, 20px);
             font-weight: 900;
             text-transform: uppercase;
             margin-top: 0px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             margin-left: 0px;
             margin-right: 0px;
             color: #000000;
@@ -475,10 +506,10 @@
 
         .pill-list li {
             margin-top: 0px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             margin-left: 0px;
             margin-right: 0px;
-            font-size: calc(13px + 0.2vw);
+            font-size: clamp(13px, 0.4vw + 10px, 18px);
             line-height: 1.9;
             color: #444444;
         }
@@ -492,13 +523,14 @@
             margin-left: 0px;
             margin-right: 15px;
             text-transform: uppercase;
-            font-size: calc(11px + 0.15vw);
+            font-size: clamp(11px, 0.3vw + 8px, 14px);
             letter-spacing: 0.1em;
         }
 
-        /* --- INTERACTIVE CHAT & H-BOT --- */
+        /* --- [010: INTERACTIVE CHAT MODULE] ---
+        */
         #chat-output {
-            height: 220px;
+            height: 300px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: #f0f0f0;
@@ -515,11 +547,11 @@
             padding-bottom: 24px;
             padding-left: 24px;
             padding-right: 24px;
-            font-size: calc(13px + 0.2vw);
+            font-size: clamp(13px, 0.4vw + 10px, 18px);
             overflow-y: auto;
-            background-color: #fafafa;
+            background-color: var(--h-bot-bg);
             margin-top: 0px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             margin-left: 0px;
             margin-right: 0px;
             border-top-left-radius: 16px;
@@ -532,6 +564,7 @@
 
         .chat-input-row {
             display: flex;
+            flex-direction: row;
             gap: 16px;
             margin-top: 10px;
             margin-bottom: 0px;
@@ -541,7 +574,7 @@
         }
 
         .chat-input-row input {
-            flex: 1;
+            flex-grow: 1;
             padding-top: 16px;
             padding-bottom: 16px;
             padding-left: 20px;
@@ -562,16 +595,17 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: #dddddd;
-            font-size: calc(13px + 0.2vw);
+            font-size: clamp(13px, 0.4vw + 10px, 18px);
             background-color: #ffffff;
             box-shadow: inset 0 4px 8px rgba(0,0,0,0.03);
+            font-family: inherit;
         }
 
         .chat-input-row button {
             padding-top: 0px;
             padding-bottom: 0px;
-            padding-left: 32px;
-            padding-right: 32px;
+            padding-left: 40px;
+            padding-right: 40px;
             background-color: var(--orange);
             border-top-style: none;
             border-bottom-style: none;
@@ -585,16 +619,11 @@
             border-bottom-right-radius: 16px;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: calc(12px + 0.1vw);
-            transition-property: all;
-            transition-duration: 0.3s;
-            box-shadow: 0 8px 20px rgba(255,140,66,0.3);
-        }
-
-        .chat-input-row button:hover {
-            background-color: #ff7a24;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(255, 140,66,0.4);
+            font-size: clamp(11px, 0.3vw + 8px, 15px);
+            transition-property: background-color;
+            transition-duration: 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 140, 66, 0.3);
+            flex-shrink: 0;
         }
 
         .fates-button {
@@ -602,7 +631,7 @@
             margin-bottom: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            font-size: calc(10px + 0.1vw);
+            font-size: clamp(9px, 0.2vw + 8px, 12px);
             text-transform: uppercase;
             letter-spacing: 0.2em;
             font-weight: 800;
@@ -617,38 +646,34 @@
             padding-bottom: 0px;
             padding-left: 0px;
             padding-right: 0px;
+            text-align: left;
         }
 
-        .fates-button:hover {
-            text-decoration-line: underline;
-        }
-
-        /* --- METADATA PING PANEL --- */
+        /* --- [011: METADATA PING SYSTEM] ---
+        */
         .ping-panel {
-            margin-top: 30px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
+            margin-top: 50px;
             border-top-width: 2px;
             border-top-style: dashed;
             border-top-color: var(--border);
-            padding-top: 30px;
+            padding-top: 40px;
             width: 100%;
+            display: block;
         }
 
         .ping-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 20px;
             width: 100%;
         }
 
         .ping-btn {
             background-color: #ffffff;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: var(--border);
@@ -661,30 +686,20 @@
             border-right-width: 1px;
             border-right-style: solid;
             border-right-color: var(--border);
-            padding-top: 16px;
-            padding-bottom: 16px;
-            padding-left: 16px;
-            padding-right: 16px;
-            font-size: calc(11px + 0.1vw);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: clamp(11px, 0.3vw + 8px, 14px);
             font-weight: 900;
             cursor: pointer;
             text-align: left;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
             transition-property: all;
             transition-duration: 0.3s;
-        }
-
-        .ping-btn:hover {
-            background-color: #fffaf5;
-            border-top-color: var(--orange);
-            border-bottom-color: var(--orange);
-            border-left-color: var(--orange);
-            border-right-color: var(--orange);
-            color: var(--orange);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 140,66,0.2);
+            position: relative;
         }
 
         .ping-btn.metadata-staged {
@@ -695,33 +710,27 @@
             border-right-color: var(--orange);
             color: var(--orange);
             transform: scale(1.04);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
         }
 
         #submit-ping-confirm {
             display: none;
-            margin-top: 24px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
+            margin-top: 30px;
             width: 100%;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
             background-color: #1a1a1a;
             color: #00ff41;
             font-family: var(--font-main);
-            font-size: calc(13px + 0.15vw);
+            font-size: clamp(14px, 0.5vw + 10px, 18px);
             font-weight: 900;
             text-transform: uppercase;
             border-top-left-radius: 18px;
             border-top-right-radius: 18px;
             border-bottom-left-radius: 18px;
             border-bottom-right-radius: 18px;
-            cursor: pointer;
-            text-align: center;
-            letter-spacing: 0.3em;
             border-top-width: 3px;
             border-top-style: solid;
             border-top-color: #00ff41;
@@ -734,62 +743,22 @@
             border-right-width: 3px;
             border-right-style: solid;
             border-right-color: #00ff41;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.3em;
             box-shadow: 0 12px 40px rgba(0,255,101,0.3);
             transition-property: all;
             transition-duration: 0.4s;
         }
 
-        #submit-ping-confirm:hover {
-            background-color: #00ff41;
-            color: #000000;
-            box-shadow: 0 25px 60px rgba(0,255, 101,0.7);
-            transform: translateY(-3px);
-        }
-
-        /* --- WEATHER MAP: RATIO & BORDER MANDATE --- */
-        .weather-map-title {
-            margin-top: 32px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            font-size: calc(11px + 0.1vw);
-            font-weight: 900;
-            color: #444444;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-
-        #forecast-text {
-            margin-top: 10px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            font-size: calc(11px + 0.15vw);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #222222;
-        }
-
-        .weather-map-visual-wrapper {
-            margin-top: 22px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
+        /* --- [012: WEATHER MAP: BORDERLESS FIT MANDATE] ---
+        */
         .weather-map-visual {
-            width: 100%;
-            /* MATHEMATICAL IMAGE RATIO MANDATE [cite: 457] */
+            width: 100%; 
             aspect-ratio: 16 / 9; 
             background-color: var(--map-base);
-            /* REPLACED: WEATHER MAP PHOTO SOURCE [cite: 34, 459] */
             background-image: url('underworld_weather_map_1.png');
-            /* PHOTO FIT MANDATE: BORDERS VISIBLE  */
-            background-size: contain; 
+            background-size: cover; 
             background-repeat: no-repeat;
             background-position: center;
             border-top-left-radius: 22px;
@@ -812,6 +781,7 @@
             border-right-style: solid;
             border-right-color: #333333;
             box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7);
+            margin-top: 30px;
         }
 
         .map-scan-grid {
@@ -828,85 +798,9 @@
             mix-blend-mode: soft-light;
         }
 
-        .thermal-front-layer {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            filter: blur(60px);
-            z-index: 10;
-            animation-name: front-drift-atmospheric;
-            animation-duration: 60s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            pointer-events: none;
-            opacity: 0.8;
-            mix-blend-mode: screen;
-        }
-
-        @keyframes front-drift-atmospheric {
-            from { transform: translate(-15%, -10%) scale(1); }
-            to { transform: translate(15%, 10%) scale(1.4); }
-        }
-
-        .heatmap-overlay {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            mix-blend-mode: overlay;
-            filter: blur(24px);
-            animation-name: heatmap-shift;
-            animation-duration: 32s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            z-index: 15;
-            pointer-events: none;
-            opacity: 0.75;
-        }
-
-        @keyframes heatmap-shift {
-            0% { transform: translate(-4%, -4%) scale(1); }
-            50% { transform: translate(4%, 4%) scale(1.15); }
-            100% { transform: translate(-4%, 8%) scale(1.05); }
-        }
-
-        .radar-storm {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            pointer-events: none;
-            z-index: 18;
-            mix-blend-mode: screen;
-            opacity: 0.75;
-            animation-name: radar-rotate, radar-pulse;
-            animation-duration: 26s, 10s;
-            animation-timing-function: linear, ease-in-out;
-            animation-iteration-count: infinite, infinite;
-            animation-direction: normal, alternate;
-            filter: blur(14px);
-        }
-
-        @keyframes radar-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes radar-pulse {
-            0% { opacity: 0.45; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.08); }
-            100% { opacity: 0.6; transform: scale(1.02); }
-        }
-
         .isobar-ring {
             position: absolute;
-            top: 50%;
+            top: 50%; 
             left: 50%;
             border-top-width: 3px;
             border-top-style: solid;
@@ -935,74 +829,113 @@
         }
 
         @keyframes pulse-pressure {
-            0%, 100% { width: 160px; height: 160px; opacity: 0.15; }
+            0% { width: 160px; height: 160px; opacity: 0.15; }
             50% { width: 700px; height: 700px; opacity: 0.7; }
+            100% { width: 160px; height: 160px; opacity: 0.15; }
         }
 
-        /* --- ADMINISTRATIVE BLOCKADE BANNER --- */
-        .blockade-banner {
-            background-color: #000000;
-            color: #ffeb3b;
-            font-family: "Courier New", Courier, monospace;
-            font-size: calc(12px + 0.1vw);
-            font-weight: 900;
-            padding-top: 18px;
-            padding-bottom: 18px;
-            padding-left: 22px;
-            padding-right: 22px;
-            white-space: nowrap;
-            margin-top: 22px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
-            border-top-width: 2px;
+        /* --- [013: ADMINISTRATIVE POP-UP PROTOCOL] ---
+        */
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #popup-content {
+            background-color: #111111;
+            border-top-width: 4px;
             border-top-style: solid;
-            border-top-color: #888888;
-            border-bottom-width: 2px;
+            border-top-color: var(--yellow);
+            border-bottom-width: 4px;
             border-bottom-style: solid;
-            border-bottom-color: #888888;
-            border-left-width: 2px;
+            border-bottom-color: var(--yellow);
+            border-left-width: 4px;
             border-left-style: solid;
-            border-left-color: #888888;
-            border-right-width: 2px;
+            border-left-color: var(--yellow);
+            border-right-width: 4px;
             border-right-style: solid;
-            border-right-color: #888888;
-            box-shadow: 0 24px 70px rgba(0,0,0,0.8);
+            border-right-color: var(--yellow);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 100px rgba(255,201,60,0.4);
+            animation: popup-entrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popup-entrance {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        #popup-title {
+            color: var(--yellow);
+            font-weight: 900;
             text-transform: uppercase;
-            overflow-x: hidden;
-            width: 100%;
+            letter-spacing: 0.25em;
+            margin-bottom: 25px;
+            font-size: 24px;
         }
 
-        .blockade-banner span {
-            display: inline-block;
-            padding-left: 100%;
-            animation-name: scroll-blockade;
-            animation-duration: 55s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+        #popup-message {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.5;
         }
 
-        @keyframes scroll-blockade {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
+        .popup-close-btn {
+            background-color: var(--yellow);
+            color: #000000;
+            border-top-style: none;
+            border-bottom-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 35px;
+            padding-right: 35px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
         }
 
-        /* --- GLOBAL FOOTER COMPONENT --- */
+        /* --- [014: GLOBAL FOOTER COMPONENT] ---
+        */
         .footer {
             text-align: center;
-            padding-top: 60px;
-            padding-bottom: 80px;
-            padding-left: 20px;
-            padding-right: 20px;
-            font-size: calc(10px + 0.1vw);
+            padding-top: 80px;
+            padding-bottom: 100px;
+            padding-left: 40px;
+            padding-right: 40px;
+            font-size: clamp(10px, 0.2vw + 8px, 14px);
             color: #9e9e9e;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            line-height: 2.2;
+            line-height: 2.5;
             border-top-width: 1px;
             border-top-style: solid;
             border-top-color: #e0e0e0;
@@ -1014,18 +947,41 @@
             color: #616161;
         }
 
-        .footer-line-mono {
-            font-family: "Courier New", Courier, monospace;
-            letter-spacing: 0.12em;
-        }
-
-        @media (max-width: 1200px) {
+        /* --- [015: MOBILE UNDERWORLD ADAPTATION] ---
+        */
+        @media (max-width: 768px) {
             .main {
                 grid-template-columns: 1fr;
-                padding-left: 40px;
-                padding-right: 40px;
+                padding-left: 15px;
+                padding-right: 15px;
                 row-gap: 40px;
             }
+
+            .card {
+                padding-top: 25px;
+                padding-bottom: 25px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .logistics-label {
+                width: 120px;
+                font-size: 10px;
+            }
+
+            .header {
+                padding-top: 25px;
+                padding-bottom: 25px;
+                padding-left: 15px;
+                padding-right: 15px;
+                gap: 15px;
+            }
+
+            .logo-circle {
+                width: 50px;
+                height: 50px;
+            }
+
             .status-pill {
                 display: none;
             }
@@ -1034,6 +990,14 @@
 </head>
 <body>
 
+    <div id="popup-overlay">
+        <div id="popup-content">
+            <div id="popup-title">✦ System Alert ✦</div>
+            <div id="popup-message">Initializing Chandler Protocol...</div>
+            <button class="popup-close-btn" onclick="closePopup()">Acknowledge</button>
+        </div>
+    </div>
+
     <div class="top-bar">
         <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING PERMANENTLY UNAVAILABLE · SYSTEM UNDER REVIEW BY THE FATES · EMBARGO ACTIVE · SECTOR 4 RESTRICTED ·</span>
     </div>
@@ -1041,7 +1005,7 @@
     <div class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
-            <h1>Hermes Postal Service <span class="version-badge">V3.56 PERSISTENT MANDATE</span></h1>
+            <h1>Hermes Postal Service <span class="version-badge">V3.61 SURVEILLANCE</span></h1>
             <div class="subtitle">Official Logistics Portal · Administrative Dispatch & Underworld Calibration Interface</div>
         </div>
         <div id="embargo-pill" class="status-pill">Embargo Active</div>
@@ -1061,7 +1025,7 @@
                 <div class="card-header">
                     <div class="card-title">
                         Shipment Overview
-                        <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666-MANDATE</span>
+                        <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666</span>
                     </div>
                     <div class="card-tag">Official Persistence Feed</div>
                 </div>
@@ -1077,23 +1041,13 @@
                 <div class="section-block">
                     <div class="section-title">Standard Delivery Modes</div>
                     <ul class="pill-list">
-                        <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, delivered whenever Hermes feels like putting on sandals.</li>
-                        <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped simultaneously in a localized spatial rift.</li>
-                        <li><span class="pill-label">Overnight Drunken Delivery:</span> Randomized letters delivered at 3:17 AM for no logical reason.</li>
-                        <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything despite textual proof.</li>
-                        <li><span class="pill-label">“I Found These In My Bag” Delivery:</span> Ancient letters appear out of nowhere in current sectors.</li>
-                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the direct order for rerouting.</li>
-                        <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new chaotic mode on the spot.</li>
-                    </ul>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">Temporal Delivery Windows</div>
-                    <ul class="pill-list">
-                        <li><span class="pill-label">Morning Window:</span> 5 AM–11 AM (Courier is half‑awake, irritable, and prone to misrouting).</li>
-                        <li><span class="pill-label">Afternoon Window:</span> 12 PM–5 PM (Courier is pretending to work while napping at his desk).</li>
-                        <li><span class="pill-label">Night Window:</span> 6 PM–2 AM (Courier is absolutely not working but delivers letters anyway).</li>
-                        <li><span class="pill-label">Forbidden Window:</span> 2 AM–5 AM (Hermes performs his most high-frequency deliveries here).</li>
+                        <li><span class="pill-label">Standard Delivery:</span> 1-3 letters, delivered whenever Hermes feels like putting on sandals.</li>
+                        <li><span class="pill-label">Chaos Delivery:</span> 4-7 letters dumped simultaneously in a localized spatial rift.</li>
+                        <li><span class="pill-label">Overnight Drunken Delivery:</span> Randomized letters delivered at 3:17 AM.</li>
+                        <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything.</li>
+                        <li><span class="pill-label">“I Found These In My Bag” Delivery:</span> Ancient letters appear out of nowhere.</li>
+                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the direct order.</li>
+                        <li><span class="pill-label">“I’m Testing a New System” Delivery:</span> Hermes invents a new mode on the spot.</li>
                     </ul>
                 </div>
 
@@ -1124,7 +1078,7 @@
                 </div>
                 
                 <div id="chat-output">
-                    <div id="hbot-greeting" style="color:#999999; font-style: italic;">[SYSTEM]: Connection established. H-BOT active. Calibration of Underworld atmospheric shielding in progress...</div>
+                    <div id="hbot-greeting" style="color:#999999; font-style: italic;">[SYSTEM]: Connection stabilized. Calibration of Sector 4 Weather Network confirmed.</div>
                 </div>
                 
                 <button class="fates-button" type="button" onclick="consultFates()">Consult the Fates</button>
@@ -1143,7 +1097,7 @@
                     <div class="ping-grid">
                         <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
                         <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
-                        <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('🔵 QUEUED', this)">🔵 QUEUED</button>
+                        <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('QUEUED', this)">🔵 QUEUED</button>
                         <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🟣 STILL HERE', this)">🟣 STILL HERE</button>
                         <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS POSITIVE</button>
                         <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS SIGNAL</button>
@@ -1152,26 +1106,16 @@
                     <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
                 </div>
 
-                <div class="weather-map-title">Underworld Topographic Satellite Forecast | Sector 4</div>
+                <div style="margin-top:45px; font-size:clamp(11px, 0.3vw + 8px, 14px); font-weight:900; color:#444444; text-transform:uppercase; letter-spacing:0.2em;">Underworld Topographic Satellite Forecast | Sector 4</div>
                 
-                <div class="weather-map-visual-wrapper">
-                    <div class="weather-map-visual">
-                        <div class="weather-grid-lines"></div>
-                        <div class="heat-gradient-layer" id="heat-layer"></div>
-                        <div class="heatmap-overlay"></div>
-                        <div class="radar-storm"></div>
-                        <div class="isobar-container">
-                            <div class="isobar-ring" style="animation-delay: 0s;"></div>
-                            <div class="isobar-ring" style="animation-delay: 2s;"></div>
-                            <div class="isobar-ring" style="animation-delay: 4s;"></div>
-                            <div class="isobar-ring" style="animation-delay: 6s;"></div>
-                        </div>
-                    </div>
+                <div class="weather-map-visual">
+                    <div class="map-scan-grid"></div>
+                    <div class="thermal-front-layer" id="heat-layer"></div>
+                    <div class="isobar-ring" style="animation-delay: 0s;"></div>
+                    <div class="isobar-ring" style="animation-delay: 10s;"></div>
                 </div>
 
-                <div id="forecast-text" style="font-size:calc(12px + 0.15vw); font-weight:800; color:#d32f2f; margin-top:18px; text-transform: uppercase;">
-                    Forecast Status: Atmospheric Saturation Stable.
-                </div>
+                <div id="forecast-text" style="font-size:clamp(13px, 0.5vw + 10px, 18px); font-weight:800; color:#d32f2f; margin-top:15px; text-transform: uppercase; letter-spacing: 0.15em;">Forecast Status: Atmospheric Saturation Stable.</div>
 
                 <div class="blockade-banner">
                     <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local Sector 4 router... Administrative rites in progress... Sector 4 under pining embargo...</span>
@@ -1182,16 +1126,28 @@
     </div>
 
     <div class="footer">
-        <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.56</div>
-        <div class="footer-line-mono">Build: HPS-UNDERWORLD-SECTOR4 · Commit: #V3.56-RESPONSIVE-SCALING</div>
+        <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.61</div>
+        <div class="footer-line-mono">Build: HPS-UNDERWORLD-SECTOR4 · Commit: #V3.61-CHANDLER-SURVEILLANCE</div>
         <div>Stack: Static HTML · CSS Grid · Vanilla JS · No SLA · Chaos-First Architecture · Doppler Overlay Enabled</div>
         <div>To opt out of Underworld Logistics, please consult the Fates or reply "GO AWAY".</div>
     </div>
 
     <script>
+        /* --- PERSISTENT INTERACTIVE LOGIC V3.61 --- */
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec';
 
-        /* --- LORE ARRAYS: DATA PERSISTENCE --- [cite: 18, 21, 22] */
+        const chandlerSuffixes = [" (Note: Hi Chandler)", " (Hi Chandler)", " [Sector 4: C detected]", " (Hi Chandler)", ""];
+        
+        const popupMessages = [
+            "Sup Chandler I see you.",
+            "Administrative Alert: Chandler detected in Sector 4.",
+            "Surveillance Synchronized. Hi Chandler.",
+            "C-Level Clearance Confirmed. Access Granted.",
+            "Warning: Underworld metadata leakage near Chandler.",
+            "Sup Chandler. Hermes says hi.",
+            "Visual Feed Locked. Hi Chandler.",
+            "Calibration complete. Hello, Chandler."
+        ];
 
         const payloadOptions = [
             "Bulk Correspondence Dispatch (x4 High-Density Packet)",
@@ -1213,112 +1169,76 @@
             "Perfect Condition (Statistically Impossible Anomaly Detected)"
         ];
 
-        const releaseStatusOptions = [
-            "Scheduled Release / Date-Gated Administrative Protocol",
-            "Administrative Hold (Pending Soul-Audit)",
-            "Embargoed by Order of Hades (Sector 4)",
-            "Released for Delivery (Under Protest)",
-            "Gated: Awaiting Persephone’s Authorization",
-            "Indefinite Delay: Courier lost sandals"
-        ];
-
-        const logisticsDeltaOptions = [
-            "Delivered on time (within expected 10-year variance)",
-            "Critical Delay: Cerberus chewed the transit bag",
-            "Minimal Latency (Only 3 human lifetimes)",
-            "Stuck in River Styx Traffic (Gridlock)",
-            "Logistics Failure: Packet phased into the Mortal Realm",
-            "Temporal Anomaly: Letter arrived before it was written"
-        ];
-
-        const courierOptions = [
-            "H-01 (Hermes, Senior Admin)",
-            "H-01 (Hermes, Status: Drunk/Active)",
-            "H-01 (Hermes, Status: Napping)",
-            "H-01 (Hermes, Status: Dodging Hades)",
-            "Courier Unit: Unassigned (Administrative Chaos)"
-        ];
-
-        const prophecies = [
-            "The thread is short, yet the ink remains wet.",
-            "One sandal is lost in the ash, but the message remains audible.",
-            "Static rises where the river flows backward. Do not look back.",
-            "She hears the echo before the shout; the letter is already read.",
-            "Administrative delay is merely destiny moving in slow motion."
-        ];
-
         const hBotGreetings = [
-            "H-BOT: Welcome. Current feedback wait time: 4,000 years.",
-            "H-BOT: Systems stabilized. Calibration of Sector 4 required.",
-            "H-BOT: Connection established. How can I ignore your feedback today?",
-            "H-BOT: Warning: Metadata saturation peaking. Protocol HPS-VOID active.",
-            "H-BOT: Welcome to the automated feedback loop. Please don't scream.",
-            "H-BOT: Senior Admin H is currently 'unavailable'. I am your replacement."
+            "H-BOT: Welcome, Chandler. System recognizes you.",
+            "H-BOT: Hi Chandler.",
+            "H-BOT: Connection established. Hi Chandler.",
+            "H-BOT: Systems stabilized. Hello Chandler.",
+            "H-BOT: Tracking ID: CHANDLER-001. Hi Chandler."
         ];
 
         const hBotResponses = [
-            "H-BOT: Request received. Filing under 'Irrelevant' for future disposal rites.",
-            "H-BOT: I don't get paid enough for this feedback loop. Consult the Fates.",
-            "H-BOT: Error 404: Empathy Not Found in this administrative sector.",
-            "H-BOT: The Sender is currently 'activated.' Please wait for his yelling to stop.",
-            "H-BOT: Your message has been converted to raw soul-matter and flushed.",
-            "H-BOT: I am literally in my pajamas right now. Please go away.",
-            "H-BOT: System busy. Currently dodging a hazardous lab spill in Sector 9.",
-            "H-BOT: Hermes says this interaction is 'within expected chaos parameters'.",
-            "H-BOT: Please hold while I pretend to route this to a Senior Supervisor."
+            "H-BOT: Request received, Chandler.",
+            "H-BOT: Filing under 'Irrelevant'. (Hi Chandler)",
+            "H-BOT: Hi Chandler.",
+            "H-BOT: I don't get paid enough for this feedback loop. Hi Chandler.",
+            "H-BOT: The Sender is currently 'activated.' (Hi Chandler).",
+            "H-BOT: Message converted to raw soul-matter. Hi Chandler."
         ];
 
-        const statusPillOptions = [
-            "Embargo Active",
-            "Embargo Lifted",
-            "System Unstable",
-            "Audit in Progress",
-            "Chaos Imminent",
-            "Static High"
+        const prophecies = [
+            "The thread is short, Chandler, yet the ink remains wet.",
+            "Hi Chandler.",
+            "She hears the echo before the shout; hi Chandler.",
+            "Administrative delay is merely destiny moving in slow motion, C.",
+            "Static rises where the river flows backward. Hi Chandler."
         ];
+
+        const releaseStatusOptions = ["Scheduled Release", "Administrative Hold", "Embargoed (Sector 4)", "Released (Under Protest)"];
+        const logisticsDeltaOptions = ["On time (within 10yr variance)", "Cerberus chewed bag", "Styx traffic jam", "Phased through Lethe"];
+        const courierOptions = ["H-01 (Hermes, Senior Admin)", "H-01 (Status: Active/Drunk)", "Courier Unit: Unassigned"];
+        const statusPillOptions = ["Embargo Active", "Embargo Lifted", "System Unstable", "Audit in Progress"];
 
         const pingImpacts = {
-            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Pressure Normalizing.", gradient: "rgba(0,255,100,0.5)", pill: "Embargo Partial", pillClass: "lifted", adminNote: "Sector 4 static is present but manageable. Hermes claims this is 'fine'." },
-            '⚪ RECEIVED': { forecast: "Atmospheric pressure normalizing. Zeus is currently napping.", gradient: "rgba(200,200,200,0.5)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "No active routing embargo. All complaints are being 'heard' and ignored." },
-            '🔵 QUEUED': { forecast: "Increasing static. Atmospheric density rising in Sector 4.", gradient: "rgba(0,100,255,0.5)", pill: "Embargo Active", pillClass: "", adminNote: "Administrative backlog detected. Expect indefinite delays and vague apologies." },
-            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. High-salience metadata traffic detected.", gradient: "rgba(128,0,128,0.7)", pill: "Embargo Critical", pillClass: "critical", adminNote: "Persistent signal detected. The Fates are now taking notes." },
-            '❤️ WELLNESS': { forecast: "EROS-LEVEL SATURATION PEAKING. Thermal anomaly detected.", gradient: "rgba(255,0,100,0.6)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "Wellness positive. Administrative hostility temporarily reduced." },
-            '💀 CHAOS': { forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL SYSTEM FAILURE.", gradient: "rgba(255,0,0,0.85)", pill: "TOTAL LOCKDOWN", pillClass: "critical", adminNote: "TOTAL LOCKDOWN: CERBERUS HAS THE ROUTER. DO NOT ATTEMPT DELIVERY." }
+            '🟢 ACKNOWLEDGED': { forecast: "Stable.", gradient: "rgba(0,255,100,0.5)", pill: "Embargo Partial", pillClass: "lifted", adminNote: "Sector 4 static is manageable. Hi Chandler." },
+            '⚪ RECEIVED': { forecast: "Pressure normalizing.", gradient: "rgba(200,200,200,0.5)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "No active routing embargo. Hi Chandler." },
+            'QUEUED': { forecast: "Static rising.", gradient: "rgba(0,100,255,0.5)", pill: "Embargo Active", pillClass: "", adminNote: "Administrative backlog detected. Hi Chandler." },
+            '🟣 STILL HERE': { forecast: "Traffic spike.", gradient: "rgba(128,0,128,0.7)", pill: "Embargo Critical", pillClass: "critical", adminNote: "Persistent signal detected. Hi Chandler." },
+            '❤️ WELLNESS': { forecast: "Saturation peaking.", gradient: "rgba(255,0,100,0.6)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "Wellness positive. Hi Chandler." },
+            '💀 CHAOS': { forecast: "TOTAL FAILURE.", gradient: "rgba(255,0,0,0.85)", pill: "TOTAL LOCKDOWN", pillClass: "critical", adminNote: "TOTAL LOCKDOWN. HI CHANDLER." }
         };
-
-        const defaultBlockadeText = "CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his left sandal... Cerberus ate the local Sector 4 router... Administrative rites in progress...";
-
-        const adminAmbientNotes = [
-            "✦ ADMINISTRATIVE WARNING ✦ Sector 4 static interference detected. Hermes denies involvement.",
-            "✦ ADMINISTRATIVE NOTICE ✦ No active warnings. This is suspicious.",
-            "✦ ADMINISTRATIVE WARNING ✦ Routing instability detected. Please do not panic in the Underworld.",
-            "✦ ADMINISTRATIVE ALERT ✦ Hermes has misplaced at least one sandal and three letters.",
-            "✦ ADMINISTRATIVE NOTICE ✦ Audit in progress. All complaints may be used against you in ritual."
-        ];
 
         let stagedPingType = null;
         let currentChosenButton = null;
 
-        function randomFrom(arr) { 
-            return arr[Math.floor(Math.random() * arr.length)]; 
+        function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+        /* --- POP-UP PROTOCOL --- */
+        function triggerRandomPopup() {
+            const overlay = document.getElementById('popup-overlay');
+            const message = document.getElementById('popup-message');
+            message.textContent = randomFrom(popupMessages);
+            overlay.style.display = 'flex';
         }
 
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
+
+        setInterval(() => {
+            if (Math.random() < 0.3) { triggerRandomPopup(); }
+        }, 45000);
+
+        /* --- UI LOGIC --- */
         function initShipmentOverview() {
-            document.getElementById('release-status-field').textContent = randomFrom(releaseStatusOptions);
-            document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions);
-            document.getElementById('courier-id-field').textContent = randomFrom(courierOptions);
-            document.getElementById('payload-field').textContent = randomFrom(payloadOptions);
-            document.getElementById('condition-field').textContent = randomFrom(conditionOptions);
+            const maybeEgg = () => Math.random() < 0.2 ? randomFrom(chandlerSuffixes) : "";
+            document.getElementById('release-status-field').textContent = randomFrom(releaseStatusOptions) + maybeEgg();
+            document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions) + maybeEgg();
+            document.getElementById('courier-id-field').textContent = randomFrom(courierOptions) + maybeEgg();
+            document.getElementById('payload-field').textContent = randomFrom(payloadOptions) + maybeEgg();
+            document.getElementById('condition-field').textContent = randomFrom(conditionOptions) + maybeEgg();
             document.getElementById('hbot-greeting').textContent = randomFrom(hBotGreetings);
             document.getElementById('embargo-pill').textContent = randomFrom(statusPillOptions);
-        }
-
-        function initAdminNoteOnLoad() {
-            const note = document.getElementById('admin-note');
-            if (Math.random() < 0.3) {
-                note.style.display = 'block';
-                document.getElementById('admin-note-body').textContent = randomFrom(adminAmbientNotes).replace(/✦ ADMINISTRATIVE (WARNING|NOTICE|ALERT) ✦/i, "").trim();
-            }
         }
 
         function handleChat() {
@@ -1329,9 +1249,7 @@
             output.innerHTML += `<div style="color:var(--orange); margin-top:20px; font-weight:800;">YOU: \${text}</div>`;
             input.value = "";
             setTimeout(() => {
-                const isBlocked = Math.random() < 0.2;
-                const responseText = isBlocked ? "H-BOT: Error 12-B. Administrative Red Tape detected. Please submit Form 12-B (Triple-Signed)." : randomFrom(hBotResponses);
-                output.innerHTML += `<div style="margin-top:6px; color:#444; font-weight:700;">\${responseText}</div>`;
+                output.innerHTML += `<div style="margin-top:6px; color:#444; font-weight:700;">\${randomFrom(hBotResponses)}</div>`;
                 output.scrollTop = output.scrollHeight;
             }, 850);
         }
@@ -1345,9 +1263,9 @@
         function stagePing(type, element) {
             const heat = document.getElementById('heat-layer');
             const forecast = document.getElementById('forecast-text');
-            const pill = document.getElementById('embargo-pill');
             const submitBtn = document.getElementById('submit-ping-confirm');
             const output = document.getElementById('chat-output');
+            const pill = document.getElementById('embargo-pill');
             const note = document.getElementById('admin-note');
             const noteBody = document.getElementById('admin-note-body');
             
@@ -1367,18 +1285,15 @@
 
             const impact = pingImpacts[type];
             heat.style.background = impact.gradient;
-            forecast.textContent = `Forecast: \${impact.forecast}`;
+            forecast.textContent = `Forecast Status: \${impact.forecast}`;
             
             pill.textContent = impact.pill;
-            pill.classList.remove('lifted', 'critical');
-            if (impact.pillClass) pill.classList.add(impact.pillClass);
+            pill.className = "status-pill " + (impact.pillClass || "");
 
             note.style.display = 'block';
-            note.classList.remove('critical', 'lifted');
-            if (impact.pillClass) note.classList.add(impact.pillClass);
             noteBody.textContent = impact.adminNote;
 
-            output.innerHTML += `<div style="color:#111; margin-top:20px; font-weight:900;"><i>[QA]: Signal '\${type}' staged. Awaiting confirmation...</i></div>`;
+            output.innerHTML += `<div style="color:#111; margin-top:20px; font-weight:900;"><i>[QA]: Signal '\${type}' staged. Awaiting confirmation... (Hi Chandler)</i></div>`;
             output.scrollTop = output.scrollHeight;
             submitBtn.style.display = 'block';
         }
@@ -1387,23 +1302,15 @@
             const output = document.getElementById('chat-output');
             const submitBtn = document.getElementById('submit-ping-confirm');
             if (!stagedPingType) return;
-
             const typeToTransmit = stagedPingType;
-            output.innerHTML += `<div style="color:#d32f2f; margin-top:25px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: \${typeToTransmit}...</i></div>`;
+            output.innerHTML += `<div style="color:#d32f2f; margin-top:25px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: \${typeToTransmit}... (Hi Chandler)</i></div>`;
             output.scrollTop = output.scrollHeight;
-
             try {
-                // THE LINK LINE [cite: 25, 32, 1061]
-                await fetch(WEB_APP_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors', 
-                    body: JSON.stringify({ user: 'Persephone', ping: typeToTransmit }) 
-                });
-                output.innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged by Senior Admin H. Calibration established.</div>`;
+                await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ user: 'Persephone', ping: typeToTransmit }) });
+                output.innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged. Calibration established for C.</div>`;
             } catch (err) {
-                output.innerHTML += `<div style="color:red; margin-top:15px; font-weight:900;">[ERROR]: Signal lost in the River Lethe. Infrastructure severed.</div>`;
+                output.innerHTML += `<div style="color:red; margin-top:15px; font-weight:900;">[ERROR]: Signal lost. (Hi Chandler)</div>`;
             }
-            
             output.scrollTop = output.scrollHeight;
             submitBtn.style.display = 'none';
             if (currentChosenButton) { currentChosenButton.classList.remove('metadata-staged'); }
@@ -1411,16 +1318,7 @@
             currentChosenButton = null;
         }
 
-        function randomizeStorm() {
-            const storm = document.querySelector('.radar-storm');
-            if (storm) storm.style.cssText += `opacity:0.75; filter:blur(14px); animation-duration:\${Math.floor(Math.random() * 10) + 20}s;`;
-        }
-
-        window.onload = () => {
-            initShipmentOverview();
-            initAdminNoteOnLoad();
-            randomizeStorm();
-        };
+        window.onload = () => { initShipmentOverview(); };
     </script>
 </body>
 </html>
