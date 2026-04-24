@@ -323,7 +323,11 @@
              background: #1a1a1a; 
              border-radius: 18px; 
              padding: 25px; 
-             text-align: center; /* FORCES EVERYTHING TO CENTER */
+             text-align: center;
+             margin-top: 20px;
+             /* --- SOFT ELEVATION SHADOW --- */
+             box-shadow: 0 4px 15px rgba(0,0,0,0.35); 
+             border: 1px solid #333; /* Subtle border for definition */
          }
          
          #forecast-text { 
@@ -405,6 +409,36 @@
              text-transform: uppercase;
              letter-spacing: 0.1em;
              color: #000;
+         }
+         .sidebar-ad-wrapper {
+             margin-top: 30px;
+             padding-top: 20px;
+             border-top: 1px solid #eee;
+             text-align: center;
+         }
+         
+         .underworld-ad {
+             width: 180px; /* Small and unobtrusive size */
+             height: auto;
+             border-radius: 8px;
+             filter: grayscale(80%); /* Muted until hovered */
+             transition: all 0.4s ease;
+             cursor: pointer;
+             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+         }
+         
+         .underworld-ad:hover {
+             filter: grayscale(0%);
+             transform: scale(1.03);
+             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+         }
+         
+         .ad-caption {
+             font-size: 9px;
+             color: #bbb;
+             text-transform: uppercase;
+             letter-spacing: 0.1em;
+             margin-top: 8px;
          }
 
         #popup-overlay { display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.85); z-index: 9999; backdrop-filter: blur(10px); align-items: center; justify-content: center; }
@@ -521,6 +555,12 @@
                         <li>· This connection is ensured to be of the highest standard and quality.</li>
                     </ul>
                 </div>
+
+                <div class="sidebar-ad-wrapper">
+                    <img src="VisittheUnderworldAD.png" class="underworld-ad" alt="Visit the Underworld!">
+                    <div class="ad-caption">Advertisement</div>
+                </div>
+               
             </div>
         </div>
 
