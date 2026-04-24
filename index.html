@@ -271,8 +271,8 @@
         .chat-input-row input { flex: 1; padding: 16px 20px; border-radius: 16px; border: 1px solid #dddddd; font-size: calc(13px + 0.2vw); background-color: #ffffff; }
         .chat-input-row button { padding: 0 32px; background-color: var(--orange); border: none; color: #ffffff; font-weight: 900; border-radius: 16px; cursor: pointer; text-transform: uppercase; font-size: calc(12px + 0.1vw); transition: all 0.3s; box-shadow: 0 8px 20px rgba(255,140,66,0.3); }
 
-        .fates-button { margin-top: 15px; font-size: 15px; font-weight: 900; color: #4b0082; background: #fffec7; border: 3px solid #ffca28; padding: 12px 20px; border-radius: 999px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.18em; text-align: center; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s; }
-        .fates-button:hover { background: #fffcc2; border-color: #ffca28; color: #7b1fa2; transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .fates-button { display: inline-block; width: auto; margin: 20px 0; font-size: 13px; font-weight: 900; color: #7b1fa2; background: #e1bee7; border: 2px solid #7b1fa2; padding: 8px 15px; border-radius: 6px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.2s; }
+        .fates-button:hover { background: #ce93d8; transform: translateY(-2px); }
 
         .ping-panel { margin-top: 30px; border-top: 2px dashed var(--border); padding-top: 30px; }
         .ping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -428,16 +428,19 @@
         </div>
 
          <div class="col-right">
-             <div id="forecast-dashboard" class="widget-dashboard">
-                 <div id="forecast-text" style="color:var(--yellow);">Forecast Status: Underworld Atmospheric Shielding Stable.</div>
-                 <div class="weather-map-visual" id="map-visual">
-                     <div class="map-scan-grid"></div>
-                     </div>
-                 <div id="satellite-info-panel" class="logistics-value" style="color:#fafafa; font-weight:700;">
-                     <div style="color: var(--yellow); font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;">Satellite Feed | Sector 4</div>
-                     <div style="color: #fafafa;">HPS satellite feed 'Chaos-1' initialized. All systems normal. Plausible deniability active. Sector 4 is clear.</div>
-                 </div>
-             </div>
+               <div id="forecast-dashboard" class="widget-dashboard">
+                   <div style="font-size: 11px; color: var(--orange); font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 5px;">Olympus-09 Topographic Satellite | Sector 4</div>
+                   <div id="forecast-text" style="color: #ff3d00; font-size: 16px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">Forecast Status: Atmospheric Saturation Stable.</div>
+                   
+                   <div class="weather-map-visual" id="map-visual">
+                       <div class="map-scan-grid"></div>
+                   </div>
+               
+                   <div id="satellite-info-panel" style="text-align: left; padding-top: 15px; border-top: 1px dashed #444; margin-top: 10px;">
+                       <div style="color: var(--yellow); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; font-size: 11px;">Satellite Feed Log</div>
+                       <div style="color: #fafafa; font-size: 13px; line-height: 1.4;">HPS satellite feed 'Chaos-1' initialized. All systems normal. Plausible deniability active. Sector 4 is clear.</div>
+                   </div>
+               </div>
              <div class="card" style="padding-top: 30px;">
                  <div class="card-header">
                      <div class="card-title">Support Portal <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1</span></div>
@@ -447,7 +450,11 @@
                  <div id="chat-output">
                      <div id="hbot-greeting" style="color:#999999; font-style: italic;">[SYSTEM]: Connection established. Hi Chandler. Plausible deniability protocol active.</div>
                  </div>
-         
+
+                 <div style="text-align: left; margin-bottom: 15px;">
+                     <button class="fates-button" type="button" onclick="consultFates()">Consult the Fates</button>
+                 </div>
+                
                  <div class="chat-input-row">
                      <input type="text" id="user-input" placeholder="Enter support description...">
                      <button type="button" onclick="handleChat()">Send</button>
@@ -627,20 +634,24 @@
         setInterval(() => { if (Math.random() < 0.2) triggerPopup(); }, 60000);
 
         function initShipmentOverview() {
-            const maybeEgg = () => Math.random() < 0.2 ? randomFrom(chandlerSuffixes) : "";
-            document.getElementById('release-status-field').textContent = randomFrom(releaseStatusOptions) + maybeEgg();
-            document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions) + maybeEgg();
-            document.getElementById('courier-id-field').textContent = randomFrom(courierOptions) + maybeEgg();
-            document.getElementById('payload-field').textContent = randomFrom(payloadOptions) + maybeEgg();
-            document.getElementById('map-visual').style.backgroundImage = `url(${randomFrom(mapImages)})`;
-            document.getElementById('hbot-greeting').textContent = randomFrom(hBotGreetings);
-            document.getElementById('embargo-pill').textContent = randomFrom(statusPillOptions);
-            if (Math.random() < 0.3) document.getElementById('admin-note').style.display = 'block';
-           // Add these lines inside initShipmentOverview:
-            const mapImages = ['underworld_weather_map_1.png', 'image_c20b71.jpg']; // Ensure these paths match your files
-            document.getElementById('map-visual').style.backgroundImage = `url(${randomFrom(mapImages)})`;
-            document.getElementById('map-visual').style.backgroundSize = 'contain';
-        }
+             const maybeEgg = () => Math.random() < 0.2 ? randomFrom(chandlerSuffixes) : "";
+             document.getElementById('release-status-field').textContent = randomFrom(releaseStatusOptions) + maybeEgg();
+             document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions) + maybeEgg();
+             document.getElementById('courier-id-field').textContent = randomFrom(courierOptions) + maybeEgg();
+             document.getElementById('payload-field').textContent = randomFrom(payloadOptions) + maybeEgg();
+             document.getElementById('hbot-greeting').textContent = randomFrom(hBotGreetings);
+             document.getElementById('embargo-pill').textContent = randomFrom(statusPillOptions);
+             
+             if (Math.random() < 0.3) document.getElementById('admin-note').style.display = 'block';
+         
+             // Single source of truth for map imagery
+             const mapVisual = document.getElementById('map-visual');
+             const chosenMap = randomFrom(['underworld_weather_map_1.png', 'image_c20b71.jpg']);
+             mapVisual.style.backgroundImage = `url(${chosenMap})`;
+             mapVisual.style.backgroundSize = 'contain';
+             mapVisual.style.backgroundRepeat = 'no-repeat';
+             mapVisual.style.backgroundPosition = 'center';
+         }
 
         function handleChat() {
              const input = document.getElementById('user-input');
