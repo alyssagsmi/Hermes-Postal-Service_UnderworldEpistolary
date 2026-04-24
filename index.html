@@ -342,13 +342,19 @@
         .faq-item { margin-bottom: 15px; background: #f9f9f9; border: 1px solid #eeeeee; border-radius: 12px; overflow: hidden; transition: all 0.3s; }
         .faq-question { 
              font-weight: 900 !important; 
-             color: #ffffff; 
+             color: #111111 !important; /* DARK TEXT */
              font-size: 15px; 
              letter-spacing: 0.05em;
-             background: rgba(255,255,255,0.05);
-             padding: 10px;
-             border-radius: 4px;
+             background: #f5f5f5; /* LIGHT GREY PANEL */
+             padding: 15px;
+             border: 1px solid #ddd;
+             border-radius: 12px;
+             margin-bottom: 10px;
+             display: block;
+             cursor: pointer;
+             text-transform: uppercase;
          }
+        .faq-question:hover { background: #eeeeee; }
         .faq-answer { max-height: 0; padding: 0 25px; color: #666; font-size: 14px; transition: all 0.4s ease; opacity: 0; line-height: 1.8; }
         .faq-item.active .faq-answer { max-height: 400px; padding: 10px 25px 25px; opacity: 1; }
 
@@ -369,8 +375,21 @@
         .wholesome-popup::before { content: "SYSTEM ALERT"; display: block; background: linear-gradient(90deg, #4b0082, #9370db); color: white; padding: 4px 10px; font-size: 10px; font-weight: 900; }
         .wholesome-popup #alert-text { color: #000000 !important; padding: 15px; font-weight: 700; font-size: 14px; line-height: 1.4; }
         .wholesome-popup button { margin: 0 15px 15px 15px; padding: 5px 20px; background: #add8e6; border-top: 2px solid #fff; border-left: 2px solid #fff; border-bottom: 2px solid #444; border-right: 2px solid #444; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; color: #000; }
+
+       @keyframes heart-flight {
+             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+             100% { transform: translate(-50%, -400%) scale(2); opacity: 0; }
+         }
+         
+         .flying-heart {
+             position: absolute;
+             color: #ff85a2;
+             font-size: 30px;
+             pointer-events: none;
+             z-index: 10000;
+             animation: heart-flight 1.5s ease-out forwards;
+         }
         
-        .heart-popup { width: 150px; height: 150px; background: var(--dyad-pink); clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'); transform: scale(0); display: none; position: fixed; z-index: 10000; align-items: center; justify-content: center; color: #fff; font-weight: 900; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
         .footer { text-align: center; padding: 80px 40px 100px; color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.5; border-top: 1px solid #e0e0e0; background-color: #fafafa; }
         .footer-line-strong { font-weight: 900; color: #616161; }
@@ -385,7 +404,6 @@
 
     <div id="popup-overlay" style="display: none;"><div id="popup-content"><div id="popup-title">✦ System Alert ✦</div><div id="popup-message">Initializing Chandler Protocol...</div><button class="popup-close-btn" onclick="closePopup()">Acknowledge</button></div></div>
     <div id="wholesome-alert" class="wholesome-popup" style="display: none;"><div style="color:var(--yellow); font-weight:900; margin-bottom:5px;">◆ SUPPORT ALERT ◆</div><div id="alert-text" style="color:#fff; font-size:14px;"></div><button onclick="this.parentElement.style.display='none'">DISMISS</button></div>
-    <div id="heart-alert" class="heart-popup" style="display: none;">hey bestie:)</div>
 
     <div class="top-bar">
         <span>HERMES POSTAL SERVICE · UNDERWORLD LOGISTICS INFRASTRUCTURE · CHAOTIC DELIVERY GUARANTEED · TRACKING PERMANENTLY UNAVAILABLE · SYSTEM UNDER REVIEW BY THE FATES · EMBARGO ACTIVE · SECTOR 4 RESTRICTED · HI CHANDLER!!!</span>
@@ -728,11 +746,24 @@
             note.style.display = 'block';
             noteBody.textContent = impact.adminNote;
 
-            if (type === '❤️ WELLNESS') {
-                const heart = document.getElementById('heart-alert');
-                heart.style.transform = 'translate(-50%, -50%) scale(8)';
-                setTimeout(() => { heart.style.transform = 'translate(-50%, -50%) scale(0)'; }, 2500);
-            }
+            if (stagedPingType === '❤️ WELLNESS') {
+                    const btn = document.getElementById('submit-ping-confirm');
+                    const rect = btn.getBoundingClientRect();
+                    
+                    // Create the heart element
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤️';
+                    heart.className = 'flying-heart';
+                    
+                    // Position it at the button center
+                    heart.style.left = (rect.left + rect.width / 2) + 'px';
+                    heart.style.top = (rect.top + rect.height / 2) + 'px';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Cleanup
+                    setTimeout(() => heart.remove(), 1500);
+                }
         }
 
         async function transmitStagedPing() {
