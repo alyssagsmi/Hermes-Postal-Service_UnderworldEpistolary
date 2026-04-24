@@ -1393,53 +1393,6 @@
 
         let stagedPingType = null;
         let currentChosenButton = null;
-
-        /* --- Atmospherics: update heat layer, forecast text, and ticker text --- */
-        function updateAtmospherics(reset=false) {
-            const staged = document.querySelector('.ping-btn.metadata-staged');
-            const heatLayer = document.getElementById('heat-layer');
-            const forecastText = document.getElementById('forecast-text');
-            const blockadeText = document.getElementById('blockade-text');
-        
-            if (!heatLayer || !forecastText || !blockadeText) return;
-        
-            if (!staged || reset) {
-                // neutral state
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(255,140,0,0.55), transparent 80%)';
-                forecastText.textContent = 'Forecast: Stable infernal conditions.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: System functioning within expected chaos parameters ...';
-                return;
-            }
-        
-            const label = staged.textContent.trim().toUpperCase();
-            // map a few staged labels to atmospheric states
-            if (label.includes('ACKNOWLEDGED')) {
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(0,255,65,0.45), transparent 80%)';
-                forecastText.textContent = 'Forecast: Administrative ack received. Local static easing.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Acknowledgement registered. Hermes is checking his pockets ...';
-            } else if (label.includes('QUEUED')) {
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(255,200,0,0.55), transparent 80%)';
-                forecastText.textContent = 'Forecast: Queue backlog increasing. Expect delays.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Queue depth rising. Hermes is making a list and losing it ...';
-            } else if (label.includes('RECEIVED')) {
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(128,0,128,0.45), transparent 80%)';
-                forecastText.textContent = 'Forecast: Receipt confirmed. Routing nominal.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Receipt logged. Cerberus is chewing the paperwork ...';
-            } else if (label.includes('WELLNESS')) {
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(0,200,255,0.45), transparent 80%)';
-                forecastText.textContent = 'Forecast: Wellness positive. Morale improving.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Wellness check passed. Hermes drank tea.';
-            } else if (label.includes('STILL HERE') || label.includes('CHAOS')) {
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(255,80,0,0.65), transparent 80%)';
-                forecastText.textContent = 'Forecast: Localized chaos. Expect unpredictable routing.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Chaos signal active. Hermes is improvising.';
-            } else {
-                // fallback
-                heatLayer.style.backgroundImage = 'radial-gradient(circle at 45% 55%, rgba(255,140,0,0.55), transparent 80%)';
-                forecastText.textContent = 'Forecast: Monitoring.';
-                blockadeText.textContent = 'ADMINISTRATIVE BLOCKADE: Monitoring active.';
-            }
-        }
       
         function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
