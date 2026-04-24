@@ -196,15 +196,18 @@
       box-shadow: 0 22px 60px rgba(102,187,106,0.8);
     }
 
-    /* Main grid: equal sides */
-    .main {
+      /* Main grid: equal sides */
+      .main {
       max-width: 1800px;
       margin: 0 auto 120px auto;
       padding: 0 70px;
       display: grid;
-      grid-template-columns: 1fr 1fr; /* equal width */
+      grid-template-columns: 2fr 1fr; 
       column-gap: 70px;
-      align-items: stretch;          /* equal height cards */
+      align-items: start;
+  }
+    .col-left {
+        min-width: 0;
     }
 
     .col-left,
