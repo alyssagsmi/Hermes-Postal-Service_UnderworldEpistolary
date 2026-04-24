@@ -202,7 +202,7 @@
       margin: 0 auto 120px auto;
       padding: 0 70px;
       display: grid;
-      grid-template-columns: 2fr 1fr; 
+      grid-template-columns: 1fr 1fr; 
       column-gap: 70px;
       align-items: start;
   }
@@ -225,6 +225,7 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      width: 100%;
     }
 
     .card-header {
@@ -259,6 +260,7 @@
       border-collapse: collapse;
       font-size: 17px;
       margin-top: 20px;
+      table-layout: auto;
     }
 
     .logistics-table tr td {
@@ -267,7 +269,7 @@
     }
 
     .logistics-label {
-      width: 260px;
+      width: 100%;
       font-weight: 800;
       color: #cccccc;
       text-transform: uppercase;
@@ -319,7 +321,8 @@
 
     /* Chat / H-BOT */
     #chat-output {
-      height: 220px;
+      height: 200px;
+      width: 100%;
       border: 1px solid #f0f0f0;
       padding: 24px;
       font-size: 16px;
