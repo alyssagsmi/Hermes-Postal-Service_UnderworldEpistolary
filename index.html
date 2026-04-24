@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermes Postal Service | Master Portal V3.73</title>
+    <title>Hermes Postal Service | Master Portal V3.75</title>
 
     <style>
         /* --- STRUCTURAL DATA: ROOT VARIABLES ---
             Declared individually to maintain narrative salience.
-            STRICT IMMUTABILITY PROTOCOL V3.73 ACTIVE.
+            STRICT IMMUTABILITY PROTOCOL V3.75 ACTIVE.
         */
         :root {
             --yellow: #FFC93C;
@@ -18,6 +18,7 @@
             --border: #e0e0e0;
             --map-base: #050505;
             --iso-color: rgba(0, 255, 65, 0.45);
+            /* REPLACED: FONT-MAIN WITH SNIPPET DATA */
             --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --dyad-pink: #ff85a2;
         }
@@ -46,10 +47,10 @@
             font-family: var(--font-main);
             background-color: #f7f7f7;
             color: var(--dark);
+            /* RESPONSIVE BASE SCALING */
             line-height: 1.6;
             overflow-x: hidden;
             display: block;
-            position: relative;
         }
 
         /* --- TOP SCROLLING ADMINISTRATIVE BANNER --- */
@@ -60,6 +61,7 @@
             padding-bottom: 15px;
             padding-left: 25px;
             padding-right: 25px;
+            /* RESPONSIVE FONT SCALING */
             font-size: calc(11px + 0.15vw);
             font-weight: 800;
             overflow-x: hidden;
@@ -117,12 +119,20 @@
             justify-content: center;
             font-weight: 900;
             color: var(--dark);
+            /* RESPONSIVE FONT SCALING */
             font-size: calc(28px + 0.5vw);
+        }
+
+        .header-text {
+            display: block;
         }
 
         .header-text h1 {
             margin-top: 0px;
             margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            /* RESPONSIVE FONT SCALING */
             font-size: calc(24px + 0.8vw);
             font-weight: 900;
             letter-spacing: -0.06em;
@@ -130,9 +140,13 @@
         }
 
         .header-text .subtitle {
+            /* RESPONSIVE FONT SCALING */
             font-size: calc(12px + 0.25vw);
             color: #555555;
             margin-top: 8px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
             font-weight: 600;
         }
 
@@ -142,17 +156,46 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 11px;
             font-weight: 900;
-            padding: 6px 15px;
-            border-radius: 4px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            margin-top: 0px;
+            margin-bottom: 0px;
             margin-left: 20px;
-            border: 1px solid #00ff41;
+            margin-right: 0px;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: #00ff41;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #00ff41;
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: #00ff41;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: #00ff41;
             box-shadow: 0 0 25px rgba(0,255,65,0.4);
         }
 
         .status-pill {
+            margin-top: 0px;
+            margin-bottom: 0px;
             margin-left: auto;
-            padding: 15px 30px;
-            border-radius: 999px;
+            margin-right: 0px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-top-left-radius: 999px;
+            border-top-right-radius: 999px;
+            border-bottom-left-radius: 999px;
+            border-bottom-right-radius: 999px;
             background-color: var(--orange);
             color: #ffffff;
             font-size: calc(11px + 0.15vw);
@@ -162,8 +205,16 @@
             transition: all 0.3s;
         }
 
-        .status-pill.lifted { background-color: #2e7d32; box-shadow: 0 0 25px rgba(46,125,50,0.7); }
-        .status-pill.critical { background-color: #b71c1c; box-shadow: 0 0 30px rgba(183,28,28,0.9); animation: embargo-pulse 1.4s infinite; }
+        .status-pill.lifted {
+            background-color: #2e7d32;
+            box-shadow: 0 0 25px rgba(46,125,50,0.7);
+        }
+
+        .status-pill.critical {
+            background-color: #b71c1c;
+            box-shadow: 0 0 30px rgba(183,28,28,0.9);
+            animation: embargo-pulse 1.4s infinite;
+        }
 
         @keyframes embargo-pulse {
             0%, 100% { transform: scale(1); }
@@ -172,11 +223,9 @@
 
         /* --- ADMINISTRATIVE WARNING PLAQUE --- */
         .admin-note-wrapper {
-            padding-top: 20px;
-            padding-bottom: 0px;
-            padding-left: 70px;
-            padding-right: 70px;
-            width: 100%;
+            padding: 20px 70px 0 70px;
+            max-width: 1800px;
+            margin: 0 auto;
             margin-bottom: 40px;
             display: flex;
             justify-content: center;
@@ -184,41 +233,64 @@
 
         #admin-note {
             display: none;
-            background-color: #111111;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            background: #111111;
             color: #f5f5f5;
             border-radius: 18px;
             padding: 22px 28px;
             border: 2px solid #ffca28;
             box-shadow: 0 18px 45px rgba(0,0,0,0.7);
             position: relative;
-            max-width: 900px;
+            overflow: hidden;
             width: 100%;
             text-align: center;
         }
 
+        #admin-note::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.12), transparent 55%);
+            pointer-events: none;
+        }
+
         #admin-note-title {
-            font-size: calc(14px + 0.15vw);
+            font-size: 14px;
             letter-spacing: 0.25em;
             text-transform: uppercase;
             font-weight: 900;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #ffeb3b;
         }
 
         #admin-note-body {
-            font-size: calc(13px + 0.15vw);
+            font-size: 15px;
             line-height: 1.8;
+        }
+
+        #admin-note.critical {
+            border-color: #ff5252;
+            box-shadow: 0 22px 60px rgba(244,67,54,0.8);
+        }
+
+        #admin-note.lifted {
+            border-color: #66bb6a;
+            box-shadow: 0 22px 60px rgba(102,187,106,0.8);
         }
 
         /* --- MAIN GRID STRUCTURE: THE 1:1 SYMMETRY FIX --- */
         .main {
             width: 100%;
-            margin-bottom: 120px;
-            padding-left: 70px;
-            padding-right: 70px;
+            max-width: 1800px;
+            margin: 40px auto 140px auto;
+            padding: 0 70px;
             display: grid;
+            /* MATHEMATICALLY IDENTICAL HALVES MANDATE  */
             grid-template-columns: 1fr 1fr; 
             column-gap: 70px;
+            row-gap: 0px;
+            /* HEIGHT SYNCHRONIZATION MANDATE  */
             align-items: stretch; 
         }
 
@@ -242,7 +314,9 @@
             width: 100%;
         }
 
-        .card-header { margin-bottom: 30px; }
+        .card-header {
+            margin-bottom: 30px;
+        }
 
         .card-title {
             font-size: calc(18px + 0.3vw);
@@ -272,6 +346,7 @@
             border-collapse: collapse;
             font-size: calc(14px + 0.2vw);
             margin-top: 20px;
+            table-layout: auto;
         }
 
         .logistics-table tr td {
@@ -288,10 +363,15 @@
             letter-spacing: 0.2em;
         }
 
-        .logistics-value { color: #000000; font-weight: 700; }
+        .logistics-value {
+            color: #000000;
+            font-weight: 700;
+        }
 
-        /* --- LORE SECTIONS --- */
-        .section-block { margin-top: 30px; }
+        /* --- LORE SECTIONS: NARRATIVE INFRASTRUCTURE --- */
+        .section-block {
+            margin-top: 30px;
+        }
 
         .section-title {
             font-size: calc(14px + 0.25vw);
@@ -304,11 +384,28 @@
             padding-left: 30px;
         }
 
-        .pill-list { list-style-type: none; }
-        .pill-list li { margin-bottom: 16px; font-size: calc(13px + 0.2vw); line-height: 1.9; color: #444444; }
-        .pill-label { display: inline-block; font-weight: 900; color: var(--orange); margin-right: 15px; text-transform: uppercase; font-size: calc(11px + 0.15vw); letter-spacing: 0.1em; }
+        .pill-list {
+            list-style-type: none;
+        }
 
-        /* --- INTERACTIVE CHAT --- */
+        .pill-list li {
+            margin-bottom: 16px;
+            font-size: calc(13px + 0.2vw);
+            line-height: 1.9;
+            color: #444444;
+        }
+
+        .pill-label {
+            display: inline-block;
+            font-weight: 900;
+            color: var(--orange);
+            margin-right: 15px;
+            text-transform: uppercase;
+            font-size: calc(11px + 0.15vw);
+            letter-spacing: 0.1em;
+        }
+
+        /* --- INTERACTIVE CHAT & H-BOT --- */
         #chat-output {
             height: 220px;
             border: 1px solid #f0f0f0;
@@ -319,66 +416,311 @@
             margin-bottom: 20px;
             border-radius: 16px;
             line-height: 1.9;
+            width: 100%;
         }
 
-        .chat-input-row { display: flex; gap: 16px; margin-top: 10px; }
-        .chat-input-row input { flex: 1; padding: 16px 20px; border-radius: 16px; border: 1px solid #dddddd; font-size: calc(13px + 0.2vw); background-color: #ffffff; }
-        .chat-input-row button { padding: 0 32px; background-color: var(--orange); border: none; color: #ffffff; font-weight: 900; border-radius: 16px; cursor: pointer; text-transform: uppercase; font-size: calc(12px + 0.1vw); transition: all 0.3s; box-shadow: 0 8px 20px rgba(255,140,66,0.3); }
+        .chat-input-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
 
-        .fates-button { margin-top: 6px; font-size: calc(10px + 0.1vw); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 800; color: #7b1fa2; cursor: pointer; border: none; background: transparent; }
+        .chat-input-row input {
+            flex: 1;
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid #dddddd;
+            font-size: calc(13px + 0.2vw);
+            background-color: #ffffff;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.03);
+        }
 
-        /* --- METADATA PING PANEL --- */
-        .ping-panel { margin-top: 30px; border-top: 2px dashed var(--border); padding-top: 30px; }
-        .ping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .ping-btn { background-color: #ffffff; border-radius: 16px; border: 1px solid var(--border); padding: 16px; font-size: calc(11px + 0.1vw); font-weight: 900; cursor: pointer; text-align: left; text-transform: uppercase; letter-spacing: 0.15em; box-shadow: 0 6px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
-        .ping-btn:hover { background-color: #fffaf5; border-color: var(--orange); color: var(--orange); transform: translateY(-3px); }
-        .ping-btn.metadata-staged { background-color: #1a1a1a; border-color: var(--orange); color: var(--orange); transform: scale(1.04); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .chat-input-row button {
+            padding: 0 32px;
+            background-color: var(--orange);
+            border: none;
+            color: #ffffff;
+            font-weight: 900;
+            border-radius: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: calc(12px + 0.1vw);
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(255,140,66,0.3);
+        }
 
-        #submit-ping-confirm { display: none; margin-top: 24px; width: 100%; padding: 20px; background-color: #1a1a1a; color: #00ff41; font-family: var(--font-main); font-size: calc(13px + 0.15vw); font-weight: 900; text-transform: uppercase; border-radius: 18px; cursor: pointer; text-align: center; border: 3px solid #00ff41; box-shadow: 0 12px 40px rgba(0,255,101,0.3); transition: all 0.4s; }
+        .chat-input-row button:hover {
+            background-color: #ff7a24;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 140,66,0.4);
+        }
 
-        /* --- FAQ MODULE --- */
+        .fates-button {
+            margin-top: 18px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 800;
+            color: #7b1fa2;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        .fates-button:hover {
+            text-decoration: underline;
+        }
+
+        /* --- [NEW] WHOLESOME FAQ MODULE --- */
         .faq-block { margin-top: 35px; }
         .faq-item { margin-bottom: 12px; background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s; }
         .faq-question { padding: 15px 20px; font-weight: 800; cursor: pointer; font-size: 13px; text-transform: uppercase; display: flex; justify-content: space-between; }
-        .faq-answer { max-height: 0; padding: 0 20px; color: #666; font-size: 14px; transition: all 0.4s ease; opacity: 0; }
+        .faq-answer { max-height: 0; padding: 0 20px; color: #666; font-size: 14px; transition: all 0.4s ease; opacity: 0; overflow: hidden; }
         .faq-item.active .faq-answer { max-height: 350px; padding: 10px 20px 20px; opacity: 1; }
         .faq-item.active { border-color: var(--orange); background: #fff; }
 
-        /* --- WEATHER MAP: RATIO & BORDER MANDATE --- */
-        .weather-map-title { margin-top: 32px; font-size: calc(11px + 0.1vw); font-weight: 900; color: #444444; text-transform: uppercase; letter-spacing: 0.2em; }
-        .weather-map-visual { width: 100%; aspect-ratio: 16 / 9; background-color: var(--map-base); background-size: cover; background-repeat: no-repeat; background-position: center; border-radius: 22px; position: relative; overflow: hidden; border: 4px solid #333333; box-shadow: inset 0 0 160px rgba(0,0,0,0.9), 0 30px 80px rgba(0,0,0,0.7); margin-top: 20px; }
+        /* --- METADATA PING PANEL --- */
+        .ping-panel {
+            margin-top: 30px;
+            border-top: 2px dashed var(--border);
+            padding-top: 30px;
+            width: 100%;
+        }
 
-        .map-scan-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 2px); background-size: 70px 70px; z-index: 20; opacity: 0.35; mix-blend-mode: soft-light; }
-        .thermal-front-layer { position: absolute; inset: 0; filter: blur(60px); z-index: 10; animation: front-drift-atmospheric 60s linear infinite alternate; opacity: 0.8; mix-blend-mode: screen; }
-        @keyframes front-drift-atmospheric { from { transform: translate(-15%, -10%) scale(1); } to { transform: translate(15%, 10%) scale(1.4); } }
-        .isobar-ring { position: absolute; top: 50%; left: 50%; border: 3px solid var(--iso-color); border-radius: 50%; transform: translate(-50%,-50%); animation: pulse-pressure 20s ease-in-out infinite; z-index: 12; opacity: 0.4; }
-        @keyframes pulse-pressure { 0%, 100% { width: 160px; height: 160px; opacity: 0.15; } 50% { width: 700px; height: 700px; opacity: 0.7; } }
+        .ping-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+        }
 
-        /* --- OLD-TIMEY POP-UPS --- */
-        .wholesome-popup { display: none; position: fixed; background: #111; border: 2px solid var(--yellow); padding: 15px 25px; z-index: 9999; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.8); max-width: 280px; text-align: center; }
-        .wholesome-popup button { margin-top: 10px; padding: 5px 15px; background: var(--yellow); border: none; font-weight: 900; cursor: pointer; border-radius: 4px; font-size: 10px; text-transform: uppercase; }
-        
+        .ping-btn {
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 16px;
+            font-size: calc(11px + 0.1vw);
+            font-weight: 900;
+            cursor: pointer;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .ping-btn:hover {
+            background-color: #fffaf5;
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140,66,0.2);
+        }
+
+        .ping-btn.metadata-staged {
+            background-color: #1a1a1a;
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: scale(1.04);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        #submit-ping-confirm {
+            display: none;
+            margin-top: 24px;
+            width: 100%;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #00ff41;
+            font-family: var(--font-main);
+            font-size: calc(13px + 0.15vw);
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 18px;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.3em;
+            border: 3px solid #00ff41;
+            box-shadow: 0 12px 40px rgba(0,255,101,0.3);
+            transition: all 0.4s;
+        }
+
+        /* --- WEATHER MAP: SNIPPET MANDATE APPLIED --- */
+        .weather-map-title {
+            margin-top: 35px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #555555;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        #forecast-text {
+            margin-top: 18px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #222222;
+        }
+
+        .weather-map-visual-wrapper {
+            margin-top: 20px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .weather-map-visual {
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            height: 420px; 
+            background-color: var(--map-base);
+            background-image: url('underworld_weather_map_1.png');
+            background-size: contain; 
+            background-repeat: no-repeat;
+            background-position: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #333333;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.9);
+        }
+
+        .weather-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1.5px, transparent 1.5px);
+            background-size: 45px 45px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .isobar-container {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .isobar-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid var(--iso-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-pressure 10s ease-in-out infinite;
+            z-index: 12;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        @keyframes pulse-pressure {
+            0%, 100% { width: 120px; height: 120px; opacity: 0.1; }
+            50% { width: 500px; height: 500px; opacity: 0.7; }
+        }
+
+        .heat-gradient-layer {
+            position: absolute;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 35% 45%, rgba(255, 140, 0, 0.2), transparent 55%),
+                              radial-gradient(circle at 65% 55%, rgba(128, 0, 128, 0.2), transparent 55%);
+            filter: blur(60px);
+            z-index: 6;
+            animation: atmospheric-drift 25s ease-in-out infinite alternate;
+            pointer-events: none;
+            transition: all 2s;
+        }
+
+        @keyframes atmospheric-drift {
+            from { transform: translate(-8%, -8%) scale(1); }
+            to { transform: translate(8%, 8%) scale(1.1); }
+        }
+
+        .heatmap-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(255,80,0,0.3), transparent 70%),
+                              radial-gradient(circle at 70% 60%, rgba(255,0,0,0.2), transparent 70%);
+            mix-blend-mode: overlay;
+            filter: blur(24px);
+            animation: heatmap-shift 32s ease-in-out infinite alternate;
+            z-index: 15;
+            pointer-events: none;
+            opacity: 0.75;
+        }
+
+        @keyframes heatmap-shift {
+            0% { transform: translate(-4%, -4%) scale(1); }
+            50% { transform: translate(4%, 4%) scale(1.15); }
+            100% { transform: translate(-4%, 8%) scale(1.05); }
+        }
+
+        .radar-storm {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 18;
+            mix-blend-mode: screen;
+            opacity: 0.75;
+            background-image: radial-gradient(circle at 30% 40%, rgba(0,255,0,0.4), transparent 70%);
+            animation: radar-rotate 26s linear infinite, radar-pulse 10s ease-in-out infinite alternate;
+            filter: blur(14px);
+        }
+
+        @keyframes radar-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes radar-pulse { 0% { opacity: 0.45; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.08); } 100% { opacity: 0.6; transform: scale(1.02); } }
+
+        /* --- [NEW] WHOLESOME POP-UP STYLES --- */
+        .wholesome-popup { display: none; position: fixed; background: #111; border: 2px solid var(--yellow); padding: 15px 25px; z-index: 9999; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.8); max-width: 320px; text-align: center; }
+        .wholesome-popup button { margin-top: 15px; padding: 5px 15px; background: var(--yellow); border: none; font-weight: 900; cursor: pointer; border-radius: 4px; font-size: 10px; text-transform: uppercase; }
         .heart-popup { width: 150px; height: 150px; background: var(--dyad-pink); clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'); transform: scale(0); display: none; position: fixed; z-index: 10000; align-items: center; justify-content: center; color: #fff; font-weight: 900; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-        /* --- BLOCKADE BANNER --- */
-        .blockade-banner { background: #000; color: #ffeb3b; font-family: "Courier New", monospace; font-size: calc(12px + 0.1vw); font-weight: 900; padding: 18px 22px; white-space: nowrap; margin-top: 22px; border-radius: 18px; border: 2px solid #888; box-shadow: 0 24px 70px rgba(0,0,0,0.8); overflow: hidden; width: 100%; }
-        .blockade-banner span { display: inline-block; padding-left: 100%; animation: scroll-blockade 55s linear infinite; }
-        @keyframes scroll-blockade { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+        /* --- GLOBAL FOOTER COMPONENT --- */
+        .footer {
+            text-align: center;
+            padding: 60px 20px 80px;
+            font-size: calc(10px + 0.1vw);
+            color: #9e9e9e;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            line-height: 2.2;
+            border-top: 1px solid #e0e0e0;
+            background-color: #fafafa;
+        }
 
-        .footer { text-align: center; padding: 60px 20px 80px; font-size: calc(10px + 0.1vw); color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.2; border-top: 1px solid #e0e0e0; background: #fafafa; }
-        
+        .footer-line-strong { font-weight: 900; color: #616161; }
+        .footer-line-mono { font-family: "Courier New", Courier, monospace; letter-spacing: 0.12em; }
+
         @media (max-width: 1200px) {
             .main { grid-template-columns: 1fr; padding: 0 40px; }
             .status-pill { display: none; }
+            .admin-note-wrapper { padding: 20px 40px 0 40px; }
         }
     </style>
 </head>
 <body>
 
     <div id="wholesome-alert" class="wholesome-popup">
-        <div style="color:var(--yellow); font-weight:900; margin-bottom:5px;">✦ SUPPORT ALERT ✦</div>
-        <div id="alert-text" style="color:#fff; font-size:14px;"></div>
-        <button onclick="this.parentElement.style.display='none'">DISMISS</button>
+        <div style="color:var(--yellow); font-weight:900; margin-bottom:5px; text-transform: uppercase;">✦ Support Notice ✦</div>
+        <div id="alert-text" style="color:#fff; font-size:14px; line-height: 1.4;"></div>
+        <button onclick="this.parentElement.style.display='none'">Dismiss</button>
     </div>
 
     <div id="heart-alert" class="heart-popup">hey bestie:)</div>
@@ -390,7 +732,7 @@
     <header class="header">
         <div class="logo-circle">✉</div>
         <div class="header-text">
-            <h1>Hermes Postal Service <span class="version-badge">V3.73 HIGH-PRIORITY</span></h1>
+            <h1>Hermes Postal Service <span class="version-badge">V3.75 HIGH-PRIORITY</span></h1>
             <div class="subtitle">Official Logistics Portal · High-Priority Support & Underworld Calibration Interface</div>
         </div>
         <div id="embargo-pill" class="status-pill">Embargo Active</div>
@@ -405,10 +747,13 @@
 
     <main class="main">
 
-        <section class="col-left">
+        <div class="col-left">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Shipment Overview <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666</span></div>
+                    <div class="card-title">
+                        Shipment Overview
+                        <span style="font-size:11px;color:#cccccc;">LOG: HPS-VOID-SEQUENCE-666</span>
+                    </div>
                     <div class="card-tag">Verified Aisle-One Transit</div>
                 </div>
                 
@@ -429,9 +774,9 @@
                         <li><span class="pill-label">Standard Delivery:</span> 1–3 letters, delivered whenever Hermes feels like putting on sandals.</li>
                         <li><span class="pill-label">Chaos Delivery:</span> 4–7 letters dumped simultaneously in a localized spatial rift.</li>
                         <li><span class="pill-label">Overnight Drunken Delivery:</span> Randomized letters delivered at 3:17 AM.</li>
-                        <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything.</li>
+                        <li><span class="pill-label">“I Wasn’t Here” Delivery:</span> Hermes physically denies delivering anything despite textual proof.</li>
                         <li><span class="pill-label">“Bag Found” Delivery:</span> Ancient bestie-grade letters appear out of nowhere.</li>
-                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the order.</li>
+                        <li><span class="pill-label">“Hades Begged Me” Delivery:</span> Hermes pretends he didn’t hear the direct order for rerouting.</li>
                         <li><span class="pill-label">“Testing System” Delivery:</span> Hermes invents a new mode on the spot.</li>
                     </ul>
                 </div>
@@ -445,17 +790,24 @@
                         <li>· This connection is ensured to be of the highest standard and quality.</li>
                         <li>· Zeus weather advisories are to be ignored by Aisle-One staff.</li>
                         <li>· Eros flags all Dyad-synchronized packets for extra protection.</li>
-                        <li>· Hermes always maintains 100% plausible deniability.</li>
+                        <li>· Hermes always looks like he was somewhere he shouldn’t have been.</li>
+                        <li>· Hermes always maintains 100% plausible deniability regarding sector static.</li>
+                        <li>· Hermes always blames Hades for internal architectural system failures.</li>
+                        <li>· Hermes always blames Persephone for data leakage anomalies.</li>
                         <li>· Hermes always blames the Underworld postal infrastructure architecture.</li>
+                        <li>· Hermes always blames the weather (even in sectors where weather is impossible).</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="col-right">
+        <div class="col-right">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Support Portal <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1</span></div>
+                    <div class="card-title">
+                        Support & Quality Assurance Portal
+                        <span style="font-size:11px;color:#cccccc;">H-BOT V1.4.1 INTERFACE</span>
+                    </div>
                     <div class="card-tag">Direct Support Channel</div>
                 </div>
                 
@@ -466,12 +818,16 @@
                 <button class="fates-button" type="button" onclick="consultFates()">Consult the Fates</button>
                 
                 <div class="chat-input-row">
-                    <input type="text" id="user-input" placeholder="Enter support description...">
+                    <input type="text" id="user-input" placeholder="Enter support metadata description...">
                     <button type="button" onclick="handleChat()">Send</button>
                 </div>
 
                 <div class="ping-panel">
-                    <div class="section-title" style="font-size: 13px;">Metadata Feedback (Senior Admin Pager)</div>
+                    <div class="section-title" style="font-size: 13px;">Metadata Feedback (Direct Senior Admin Pager)</div>
+                    <div style="font-size: 10px; color: #d32f2f; font-weight: 900; margin-bottom: 20px; font-style: italic; text-transform: uppercase;">
+                        * WARNING: These signals bypass the support queue. Hermes monitors these directly.
+                    </div>
+                    
                     <div class="ping-grid">
                         <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
                         <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
@@ -480,6 +836,7 @@
                         <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS</button>
                         <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS</button>
                     </div>
+
                     <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing</button>
                 </div>
 
@@ -499,28 +856,38 @@
                     </div>
                 </div>
 
-                <div class="weather-map-visual" id="map-visual">
-                    <div class="map-scan-grid"></div>
-                    <div class="thermal-front-layer" id="heat-layer"></div>
-                    <div class="isobar-ring" style="animation-delay: 0s;"></div>
-                    <div class="isobar-ring" style="animation-delay: 4s;"></div>
+                <div class="weather-map-title">Underworld Topographic Satellite Forecast</div>
+                
+                <div class="weather-map-visual-wrapper">
+                    <div class="weather-map-visual" id="map-visual">
+                        <div class="weather-grid-lines"></div>
+                        <div class="heat-gradient-layer" id="heat-layer"></div>
+                        <div class="heatmap-overlay"></div>
+                        <div class="radar-storm"></div>
+                        <div class="isobar-container">
+                            <div class="isobar-ring" style="animation-delay: 0s;"></div>
+                            <div class="isobar-ring" style="animation-delay: 2.5s;"></div>
+                            <div class="isobar-ring" style="animation-delay: 5s;"></div>
+                            <div class="isobar-ring" style="animation-delay: 7.5s;"></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="forecast-text" style="font-size:calc(12px + 0.15vw); font-weight:800; color:#d32f2f; margin-top:18px; text-transform: uppercase;">Forecast Status: Stable Infernal Conditions.</div>
+                <div id="forecast-text">Forecast Status: Atmospheric Saturation Stable.</div>
 
                 <div class="blockade-banner">
-                    <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning... Hermes is searching for his messenger bag... Cerberus ate the router... Administrative rites in progress... High-Priority pining embargo...</span>
+                    <span id="blockade-text">CURRENT SYSTEM BLOCKADE: System functioning within expected chaos parameters... Hermes is searching for his messenger bag... Cerberus ate the local Sector 4 router... Administrative rites in progress... High-Priority pining embargo...</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-    </main>
+    </div>
 
-    <footer class="footer">
-        <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.73</div>
-        <div class="footer-line-mono">Build: HPS-UNDERWORLD-SEC4 · Commit: #V3.73-TOTAL-RESTORE</div>
+    <div class="footer">
+        <div class="footer-line-strong">Hermes Postal Service · Master Portal V3.75</div>
+        <div class="footer-line-mono">Build: HPS-UNDERWORLD-SEC4 · Commit: #V3.75-TOTAL-SYNC</div>
         <div>To opt out of Underworld Logistics, please consult the Fates or reply "GO AWAY".</div>
-    </footer>
+    </div>
 
     <script>
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec';
@@ -548,15 +915,15 @@
         ];
 
         const pingImpacts = {
-            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Pressure Normalizing.", gradient: "rgba(0,255,100,0.5)", pill: "Embargo Partial" },
-            '⚪ RECEIVED': { forecast: "Atmospheric pressure normalizing. Zeus is napping.", gradient: "rgba(200,200,200,0.5)", pill: "Embargo Lifted" },
-            '🔵 QUEUED': { forecast: "Increasing static. Atmospheric density rising.", gradient: "rgba(0,100,255,0.5)", pill: "Embargo Active" },
-            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. Traffic detected.", gradient: "rgba(128,0,128,0.7)", pill: "Embargo Critical" },
-            '❤️ WELLNESS': { forecast: "EROS-LEVEL SATURATION PEAKING. Anomaly detected.", gradient: "rgba(255,100,100,0.6)", pill: "Embargo Lifted" },
-            '💀 CHAOS': { forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL FAILURE.", gradient: "rgba(255,0,0,0.85)", pill: "TOTAL LOCKDOWN" }
+            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Pressure Normalizing.", gradient: "rgba(0,255,100,0.5)", pill: "Embargo Partial", adminNote: "Sector 4 static is manageable. Hermes claims this is 'fine'." },
+            '⚪ RECEIVED': { forecast: "Atmospheric pressure normalizing. Zeus is napping.", gradient: "rgba(200,200,200,0.5)", pill: "Embargo Lifted", adminNote: "No active routing embargo. Complaints are being ignored." },
+            '🔵 QUEUED': { forecast: "Increasing static. Atmospheric density rising.", gradient: "rgba(0,100,255,0.5)", pill: "Embargo Active", adminNote: "Administrative backlog detected. Expect apologies." },
+            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. Traffic detected.", gradient: "rgba(128,0,128,0.7)", pill: "Embargo Critical", adminNote: "Persistent signal detected. The Fates are taking notes." },
+            '❤️ WELLNESS': { forecast: "EROS-LEVEL SATURATION PEAKING. Anomaly detected.", gradient: "rgba(255,100,100,0.6)", pill: "Embargo Lifted", adminNote: "Wellness positive. Administrative hostility reduced." },
+            '💀 CHAOS': { forecast: "POSEIDON-LEVEL HURRICANE ACTIVE. TOTAL FAILURE.", gradient: "rgba(255,0,0,0.85)", pill: "TOTAL LOCKDOWN", adminNote: "CERBERUS HAS THE ROUTER. DO NOT ATTEMPT DELIVERY." }
         };
 
-        const releaseStatusOptions = ["Guardian Protocol Verified", "Administrative Hold (Pending Audit)", "Scheduled Release", "Released for Delivery (Under Protest)", "Gated: Awaiting Surface Sync", "Indefinite Delay: Courier lost bag"];
+        const releaseStatusOptions = ["Guardian Protocol Verified", "Administrative Hold (Pending Audit)", "Scheduled Release", "Released for Delivery (Under Protest)", "Gated: Awaiting Surface Sync", "Indefinite Delay: Courier lost sandals"];
         const logisticsDeltaOptions = ["Zero Latency (Priority Aisle)", "Delivered on time (within 10yr variance)", "Minimal Latency (Only 3 human lifetimes)", "Stuck in River Styx Traffic", "Temporal Anomaly: Arrived before writing"];
         const courierOptions = ["H-01 (Hermes, Senior Admin)", "H-01 (Hermes, Status: Active/Drunk)", "H-01 (Hermes, Status: Napping)", "Courier Unit: Unassigned"];
 
@@ -581,7 +948,6 @@
             document.getElementById('logistics-delta-field').textContent = randomFrom(logisticsDeltaOptions);
             document.getElementById('courier-id-field').textContent = randomFrom(courierOptions);
             document.getElementById('payload-field').textContent = randomFrom(payloadOptions);
-            document.getElementById('condition-field').textContent = "Atmosphere: Protected. (System Note: Our High-Priority Contacts are our #1 Priority)";
             document.getElementById('map-visual').style.backgroundImage = `url(\${randomFrom(mapImages)})`;
             if (Math.random() < 0.3) document.getElementById('admin-note').style.display = 'block';
         }
@@ -591,10 +957,10 @@
             const output = document.getElementById('chat-output');
             const text = input.value.trim();
             if (!text) return;
-            output.innerHTML += `<div style="color:var(--orange); margin-top:20px; font-weight:800;">YOU: \${text}</div>`;
+            output.innerHTML += `<div style="color:var(--orange); margin-top:30px; font-weight:900;">YOU: \${text}</div>`;
             input.value = "";
             setTimeout(() => {
-                output.innerHTML += `<div style="margin-top:6px; color:#444; font-weight:700;">\${randomFrom(hBotResponses)}</div>`;
+                output.innerHTML += `<div style="margin-top:18px; color:#000; font-weight:700;">\${randomFrom(hBotResponses)}</div>`;
                 output.scrollTop = output.scrollHeight;
             }, 850);
         }
@@ -637,7 +1003,7 @@
             if (!stagedPingType) return;
             try {
                 await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ user: 'Persephone', ping: stagedPingType }) });
-                document.getElementById('chat-output').innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged by Senior Admin H. Sync established.</div>`;
+                document.getElementById('chat-output').innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged. Sync established.</div>`;
             } catch (err) {}
             document.getElementById('submit-ping-confirm').style.display = 'none';
             if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
