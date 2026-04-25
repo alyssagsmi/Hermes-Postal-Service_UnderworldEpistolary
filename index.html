@@ -876,25 +876,45 @@
                 }
         }
 
-        async function transmitStagedPing() {
-            const output = document.getElementById('chat-output');
-            const submitBtn = document.getElementById('submit-ping-confirm');
-            if (!stagedPingType) return;
-            const typeToTransmit = stagedPingType;
-            output.innerHTML += `<div style="color:#d32f2f; margin-top:25px; font-weight:900;"><i>[SYSTEM]: Transmitting Metadata Signal: ${typeToTransmit}... (Hi Chandler)</i></div>`;
-            output.scrollTop = output.scrollHeight;
-            try {
-                await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ user: 'Persephone', ping: typeToTransmit }) });
-                output.innerHTML += `<div style="color:green; margin-top:15px; font-weight:900;">[SUCCESS]: Signal logged. Calibration established for Persephone.</div>`;
-            } catch (err) {
-                output.innerHTML += `<div style="color:red; margin-top:15px; font-weight:900;">[ERROR]: Signal lost. SEARCHING...</div>`;
-            }
-            output.scrollTop = output.scrollHeight;
-            submitBtn.style.display = 'none';
-            if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
-            stagedPingType = null;
-            currentChosenButton = null;
-        }
+         async function transmitStagedPing() {
+             // 1. Visual Easter Egg (Keep this part as is)
+             if (stagedPingType.includes('❤️')) {
+                 const btn = document.getElementById('submit-ping-confirm');
+                 const rect = btn.getBoundingClientRect();
+                 const heart = document.createElement('div');
+                 heart.innerHTML = '❤️';
+                 heart.className = 'flying-heart';
+                 heart.style.left = (rect.left + rect.width / 2) + 'px';
+                 heart.style.top = (rect.top + rect.height / 2) + 'px';
+                 document.body.appendChild(heart);
+                 setTimeout(() => heart.remove(), 1500);
+             }
+         
+             // 2. THE ALIGNED WEBHOOK TRIGGER
+             const webhookURL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec'; // The one from "Deploy"
+         
+             try {
+                 await fetch(webhookURL, {
+                     method: 'POST',
+                     mode: 'no-cors', // Critical for Google Scripts to avoid CORS errors
+                     headers: { 'Content-Type': 'application/json' },
+                     body: JSON.stringify({
+                         ping: stagedPingType, // MUST MATCH 'var pingType = data.ping'
+                         user: "Alyssa"        // MUST MATCH 'var user = data.user'
+                     })
+                 });
+                 console.log("Senior Admin Notified via Hermes Postal Service.");
+             } catch (err) {
+                 console.error("Signal Blocked.", err);
+             }
+         
+             // 3. UI Update (So she knows it sent)
+             const statusOutput = document.getElementById('chat-output');
+             const timestamp = new Date().toLocaleTimeString();
+             statusOutput.innerHTML += `<div style="color:#666; font-size:12px; font-style:italic; margin-top:10px;">[SIGNAL SENT]: ${stagedPingType} confirmed at ${timestamp}.</div>`;
+             
+             closePingModal();
+         }
 
         window.onload = () => { 
              initShipmentOverview(); 
