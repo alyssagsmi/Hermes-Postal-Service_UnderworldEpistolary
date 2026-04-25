@@ -411,26 +411,27 @@
              color: #000;
          }
          .sidebar-ad-wrapper {
-             margin-top: 30px;
+             margin-top: 25px;
              padding-top: 20px;
-             border-top: 1px solid #eee;
+             border-top: 2px dashed #eee; /* Clean separation */
              text-align: center;
          }
          
          .underworld-ad {
-             width: 180px; /* Small and unobtrusive size */
+             width: 100%; /* Fills the entire width of the left sidebar card */
+             max-width: 280px; /* Adjust this number to your preferred 'large' size */
              height: auto;
-             border-radius: 8px;
-             filter: grayscale(80%); /* Muted until hovered */
-             transition: all 0.4s ease;
-             cursor: pointer;
-             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+             border-radius: 12px;
+             filter: none !important; /* REMOVES THE GRAYSCALE */
+             transition: transform 0.3s ease;
+             cursor: default;
+             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+             display: block;
+             margin: 0 auto; /* Centers it in the sidebar */
          }
          
          .underworld-ad:hover {
-             filter: grayscale(0%);
-             transform: scale(1.03);
-             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+             transform: scale(1.02); /* Very subtle pop on hover */
          }
          
          .ad-caption {
