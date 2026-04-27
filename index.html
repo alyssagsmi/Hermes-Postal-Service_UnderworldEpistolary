@@ -475,19 +475,17 @@
         .wholesome-popup #alert-text { color: #000000 !important; padding: 15px; font-weight: 700; font-size: 14px; line-height: 1.4; }
         .wholesome-popup button { margin: 0 15px 15px 15px; padding: 5px 20px; background: #add8e6; border-top: 2px solid #fff; border-left: 2px solid #fff; border-bottom: 2px solid #444; border-right: 2px solid #444; font-weight: 900; cursor: pointer; font-size: 11px; text-transform: uppercase; color: #000; }
 
-      @keyframes heart-flight {
-          0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-          100% { transform: translate(-50%, -500%) scale(2.5); opacity: 0; }
+        .flying-emoji {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 99999;
+            animation: emoji-flight 1.5s ease-out forwards;
       }
       
-      .flying-heart {
-          position: fixed; /* 'fixed' ensures it stays relative to the screen, not the card */
-          color: #ff85a2;
-          font-size: 35px;
-          pointer-events: none;
-          z-index: 99999; /* Forces it to the absolute top layer */
-          animation: heart-flight 1.5s ease-out forwards;
-          text-shadow: 0 0 10px rgba(255, 133, 162, 0.5);
+        @keyframes emoji-flight {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -600%) scale(2); opacity: 0; }
       }
         
 
@@ -881,28 +879,28 @@
              const statusOutput = document.getElementById('chat-output');
              const timestamp = new Date().toLocaleTimeString();
          
-             // --- 1. THE HEART FLIGHT (FIXED POSITIONING) ---
-             if (stagedPingType && stagedPingType.includes('❤️')) {
+             // 1. UNIVERSAL EMOJI FLIGHT (Replaces the heart-only logic)
+             if (stagedPingType) {
                  const btn = document.getElementById('submit-ping-confirm');
                  if (btn) {
                      const rect = btn.getBoundingClientRect();
-                     const heart = document.createElement('div');
-                     heart.innerHTML = '❤️';
-                     heart.className = 'flying-heart';
+                     const emojiDisplay = document.createElement('div');
+                     emojiDisplay.className = 'flying-emoji'; // Ensure this matches your CSS
                      
-                     // Calculate center using the viewport-relative rect
-                     const centerX = rect.left + (rect.width / 2);
-                     const centerY = rect.top + (rect.height / 2);
+                     // This logic "grabs" the emoji from the text (e.g., "🌙 AWAY" -> "🌙")
+                     const emojiMatch = stagedPingType.match(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g);
+                     emojiDisplay.innerHTML = emojiMatch ? emojiMatch[0] : '📩'; 
                      
-                     heart.style.left = centerX + 'px';
-                     heart.style.top = centerY + 'px';
+                     // Positioning at button center
+                     emojiDisplay.style.left = (rect.left + rect.width / 2) + 'px';
+                     emojiDisplay.style.top = (rect.top + rect.height / 2) + 'px';
                      
-                     document.body.appendChild(heart);
-                     setTimeout(() => heart.remove(), 1600);
+                     document.body.appendChild(emojiDisplay);
+                     setTimeout(() => emojiDisplay.remove(), 1600);
                  }
              }
          
-             // --- 2. UNIVERSAL SIGNAL DISPATCH ---
+             // 2. THE GMAIL DISPATCH (HERMES POSTAL SERVICE)
              const webhookURL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec';
              const params = new URLSearchParams();
              params.append('ping', stagedPingType);
@@ -910,19 +908,22 @@
          
              try {
                  fetch(webhookURL, { method: 'POST', mode: 'no-cors', body: params });
-             } catch (err) { console.error("Hermes Blocked:", err); }
+                 console.log("Signal dispatched.");
+             } catch (err) {
+                 console.error("Signal blocked.", err);
+             }
          
-             // --- 3. UI FEEDBACK ---
+             // 3. UI RESET & FEEDBACK
              statusOutput.innerHTML += `<div style="color:#666; font-size:12px; font-style:italic; margin-top:10px;">[SIGNAL SENT]: ${stagedPingType} confirmed at ${timestamp}.</div>`;
              statusOutput.scrollTop = statusOutput.scrollHeight;
              
-             // Reset buttons
              if (document.getElementById('submit-ping-confirm')) document.getElementById('submit-ping-confirm').style.display = 'none';
              if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
+             
              stagedPingType = null;
              currentChosenButton = null;
+             closePingModal();
          }
-
         window.onload = () => { 
              initShipmentOverview(); 
              triggerRandomPopup(); 
