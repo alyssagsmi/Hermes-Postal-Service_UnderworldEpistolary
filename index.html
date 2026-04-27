@@ -889,67 +889,43 @@
         }
 
          async function transmitStagedPing() {
-             const statusOutput = document.getElementById('chat-output');
-             const timestamp = new Date().toLocaleTimeString();
-         
-             // --- 1. THE CUTE PINK WELLNESS HEART (RESTORED) ---
-             if (stagedPingType && stagedPingType.includes('❤️')) {
-                 const btn = document.getElementById('submit-ping-confirm');
-                 if (btn) {
-                     const rect = btn.getBoundingClientRect();
-                     const heart = document.createElement('div');
-                     heart.innerHTML = '❤️';
-                     heart.className = 'flying-heart'; // Ensure this matches your PINK CSS
-                     
-                     heart.style.left = (rect.left + rect.width / 2) + 'px';
-                     heart.style.top = (rect.top + rect.height / 2) + 'px';
-                     
-                     document.body.appendChild(heart);
-                     setTimeout(() => heart.remove(), 1600);
-                 }
-             } 
-             // --- OPTIONAL: UNIVERSAL EMOJI FOR OTHERS ---
-             else if (stagedPingType) {
-                 const btn = document.getElementById('submit-ping-confirm');
-                 if (btn) {
-                     const rect = btn.getBoundingClientRect();
-                     const emojiDisplay = document.createElement('div');
-                     emojiDisplay.className = 'flying-emoji'; // Standard logic for ⚠️, 🌙, etc.
-                     const emojiMatch = stagedPingType.match(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g);
-                     emojiDisplay.innerHTML = emojiMatch ? emojiMatch[0] : '📩';
-                     emojiDisplay.style.left = (rect.left + rect.width / 2) + 'px';
-                     emojiDisplay.style.top = (rect.top + rect.height / 2) + 'px';
-                     document.body.appendChild(emojiDisplay);
-                     setTimeout(() => emojiDisplay.remove(), 1600);
-                 }
-             }
-         
-             // --- 2. THE UNIVERSAL TRANSMISSION ---
-             const webhookURL = 'https://script.google.com/macros/s/AKfycbyOBEFJ15F3Dl21ga9BXd4YZh3Uq956JGcUzcqjK0Tc0kBpgwLxUuqMJ4txsBnQKzl_/exec';
-         
-             const params = new URLSearchParams();
-             params.append('ping', stagedPingType);
-             params.append('user', 'Alyssa');
-         
-             try {
-                 fetch(webhookURL, {
-                     method: 'POST',
-                     mode: 'no-cors', 
-                     body: params 
-                 });
-             } catch (err) {
-                 console.error("Signal Blocked.", err);
-             }
-         
-             // --- 3. UI CLEANUP ---
-             statusOutput.innerHTML += `<div style="color:#666; font-size:12px; font-style:italic; margin-top:10px;">[SIGNAL SENT]: ${stagedPingType} confirmed at ${timestamp}.</div>`;
-             statusOutput.scrollTop = statusOutput.scrollHeight;
-             
-             if (document.getElementById('submit-ping-confirm')) document.getElementById('submit-ping-confirm').style.display = 'none';
-             if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
-             stagedPingType = null;
-             currentChosenButton = null;
-         }
+          // 1. SPECIFIC PINK HEART LOGIC (Runs first)
+          if (stagedPingType && (stagedPingType.includes('WELLNESS') || stagedPingType.includes('❤️'))) {
+              const btn = document.getElementById('submit-ping-confirm');
+              const rect = btn.getBoundingClientRect();
+              const heart = document.createElement('div');
+              heart.innerHTML = '❤️';
+              heart.className = 'flying-heart'; // USES THE GLOWY PINK CSS
+              heart.style.left = (rect.left + rect.width / 2) + 'px';
+              heart.style.top = (rect.top + rect.height / 2) + 'px';
+              document.body.appendChild(heart);
+              setTimeout(() => heart.remove(), 2000);
+          } 
+          // 2. UNIVERSAL LOGIC (For everything else)
+          else {
+              const btn = document.getElementById('submit-ping-confirm');
+              const rect = btn.getBoundingClientRect();
+              const emoji = document.createElement('div');
+              emoji.className = 'flying-emoji';
+              const match = stagedPingType.match(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g);
+              emoji.innerHTML = match ? match[0] : '📩';
+              emoji.style.left = (rect.left + rect.width / 2) + 'px';
+              emoji.style.top = (rect.top + rect.height / 2) + 'px';
+              document.body.appendChild(emoji);
+              setTimeout(() => emoji.remove(), 2000);
+          }
+      
+          // 3. THE TRANSMISSION
+          const webhookURL = 'https://script.google.com/macros/s/AKfycbyOBEFJ15F3Dl21ga9BXd4YZh3Uq956JGcUzcqjK0Tc0kBpgwLxUuqMJ4txsBnQKzl_/exec';
+          const params = new URLSearchParams();
+          params.append('ping', stagedPingType);
+          params.append('user', 'Alyssa');
+      
+          fetch(webhookURL, { method: 'POST', mode: 'no-cors', body: params });
+      
+          // UI Cleanup...
+          closePingModal();
+      }
         window.onload = () => { 
              initShipmentOverview(); 
              triggerRandomPopup(); 
