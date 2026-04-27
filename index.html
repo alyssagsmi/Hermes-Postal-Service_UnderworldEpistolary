@@ -481,13 +481,26 @@
             pointer-events: none;
             z-index: 99999;
             animation: emoji-flight 1.5s ease-out forwards;
-      }
+         }
       
         @keyframes emoji-flight {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
             100% { transform: translate(-50%, -600%) scale(2); opacity: 0; }
-      }
-        
+         }
+        .flying-heart {
+            position: fixed;
+            color: #ff85a2; /* The Pink Mandate */
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 99999;
+            text-shadow: 0 0 15px rgba(255, 133, 162, 0.6);
+            animation: heart-flight 1.5s ease-out forwards;
+         }
+         
+         @keyframes heart-flight {
+             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+             100% { transform: translate(-50%, -600%) scale(2.5); opacity: 0; }
+         }
 
         .footer { text-align: center; padding: 80px 40px 100px; color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.5; border-top: 1px solid #e0e0e0; background-color: #fafafa; }
         .footer-line-strong { font-weight: 900; color: #616161; }
@@ -879,50 +892,63 @@
              const statusOutput = document.getElementById('chat-output');
              const timestamp = new Date().toLocaleTimeString();
          
-             // 1. UNIVERSAL EMOJI FLIGHT (Replaces the heart-only logic)
-             if (stagedPingType) {
+             // --- 1. THE CUTE PINK WELLNESS HEART (RESTORED) ---
+             if (stagedPingType && stagedPingType.includes('❤️')) {
+                 const btn = document.getElementById('submit-ping-confirm');
+                 if (btn) {
+                     const rect = btn.getBoundingClientRect();
+                     const heart = document.createElement('div');
+                     heart.innerHTML = '❤️';
+                     heart.className = 'flying-heart'; // Ensure this matches your PINK CSS
+                     
+                     heart.style.left = (rect.left + rect.width / 2) + 'px';
+                     heart.style.top = (rect.top + rect.height / 2) + 'px';
+                     
+                     document.body.appendChild(heart);
+                     setTimeout(() => heart.remove(), 1600);
+                 }
+             } 
+             // --- OPTIONAL: UNIVERSAL EMOJI FOR OTHERS ---
+             else if (stagedPingType) {
                  const btn = document.getElementById('submit-ping-confirm');
                  if (btn) {
                      const rect = btn.getBoundingClientRect();
                      const emojiDisplay = document.createElement('div');
-                     emojiDisplay.className = 'flying-emoji'; // Ensure this matches your CSS
-                     
-                     // This logic "grabs" the emoji from the text (e.g., "🌙 AWAY" -> "🌙")
+                     emojiDisplay.className = 'flying-emoji'; // Standard logic for ⚠️, 🌙, etc.
                      const emojiMatch = stagedPingType.match(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g);
-                     emojiDisplay.innerHTML = emojiMatch ? emojiMatch[0] : '📩'; 
-                     
-                     // Positioning at button center
+                     emojiDisplay.innerHTML = emojiMatch ? emojiMatch[0] : '📩';
                      emojiDisplay.style.left = (rect.left + rect.width / 2) + 'px';
                      emojiDisplay.style.top = (rect.top + rect.height / 2) + 'px';
-                     
                      document.body.appendChild(emojiDisplay);
                      setTimeout(() => emojiDisplay.remove(), 1600);
                  }
              }
          
-             // 2. THE GMAIL DISPATCH (HERMES POSTAL SERVICE)
-             const webhookURL = 'https://script.google.com/macros/s/AKfycbyAP06oAGGL9Lb-lN5V9hoUdQMCiRE4YozG0vV4n1mv7XNC9ihcCr_yvINLHZwHU3A/exec';
+             // --- 2. THE UNIVERSAL TRANSMISSION ---
+             const webhookURL = 'https://script.google.com/macros/s/AKfycbyOBEFJ15F3Dl21ga9BXd4YZh3Uq956JGcUzcqjK0Tc0kBpgwLxUuqMJ4txsBnQKzl_/exec';
+         
              const params = new URLSearchParams();
              params.append('ping', stagedPingType);
              params.append('user', 'Alyssa');
          
              try {
-                 fetch(webhookURL, { method: 'POST', mode: 'no-cors', body: params });
-                 console.log("Signal dispatched.");
+                 fetch(webhookURL, {
+                     method: 'POST',
+                     mode: 'no-cors', 
+                     body: params 
+                 });
              } catch (err) {
-                 console.error("Signal blocked.", err);
+                 console.error("Signal Blocked.", err);
              }
          
-             // 3. UI RESET & FEEDBACK
+             // --- 3. UI CLEANUP ---
              statusOutput.innerHTML += `<div style="color:#666; font-size:12px; font-style:italic; margin-top:10px;">[SIGNAL SENT]: ${stagedPingType} confirmed at ${timestamp}.</div>`;
              statusOutput.scrollTop = statusOutput.scrollHeight;
              
              if (document.getElementById('submit-ping-confirm')) document.getElementById('submit-ping-confirm').style.display = 'none';
              if (currentChosenButton) currentChosenButton.classList.remove('metadata-staged');
-             
              stagedPingType = null;
              currentChosenButton = null;
-             closePingModal();
          }
         window.onload = () => { 
              initShipmentOverview(); 
