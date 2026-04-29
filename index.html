@@ -502,6 +502,32 @@
              100% { transform: translate(-50%, -600%) scale(2.5); opacity: 0; }
          }
 
+         /* Gold Star sparkle */
+         .flying-emoji.star {
+             animation: sparkle 1.2s ease-out forwards;
+         }
+         
+         @keyframes sparkle {
+             0% { transform: scale(0.5) rotate(0deg); opacity: 1; }
+             50% { transform: scale(1.4) rotate(20deg); opacity: 1; }
+             100% { transform: scale(0.8) rotate(-10deg); opacity: 0; }
+         }
+         
+         /* LMAO wiggle */
+         .flying-emoji.lmao {
+             animation: wiggle 0.8s ease-out forwards;
+         }
+         
+         @keyframes wiggle {
+             0% { transform: rotate(0deg); }
+             25% { transform: rotate(10deg); }
+             50% { transform: rotate(-10deg); }
+             75% { transform: rotate(6deg); }
+             100% { transform: rotate(0deg); opacity: 0; }
+         }
+
+
+       
         .footer { text-align: center; padding: 80px 40px 100px; color: #9e9e9e; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2.5; border-top: 1px solid #e0e0e0; background-color: #fafafa; }
         .footer-line-strong { font-weight: 900; color: #616161; }
 
@@ -617,14 +643,19 @@
                     <div style="font-size: 10px; color: #d32f2f; font-weight: 900; margin-bottom: 20px; font-style: italic; text-transform: uppercase;">
                         * WARNING: These signals bypass the support queue. Hermes monitors these directly.
                     </div>
-                    <div class="ping-grid">
-                        <button id="ping-btn-ACK" class="ping-btn" onclick="stagePing('🟢 ACKNOWLEDGED', this)">🟢 ACKNOWLEDGED</button>
-                        <button id="ping-btn-REC" class="ping-btn" onclick="stagePing('⚪ RECEIVED', this)">⚪ RECEIVED</button>
-                        <button id="ping-btn-QUE" class="ping-btn" onclick="stagePing('🔵 QUEUED', this)">🔵 QUEUED</button>
-                        <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🟣 STILL HERE', this)">🟣 STILL HERE</button>
-                        <button id="ping-btn-WEL" class="ping-btn" onclick="stagePing('❤️ WELLNESS', this)">❤️ WELLNESS</button>
-                        <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS</button>
-                    </div>
+                    <div style="font-size: 9px; color: #b71c1c; margin-bottom: 20px; font-style: italic;">
+                         ⚠️ Routing Notice: Alyssa really gets these notifications — every single one — so spam away (Discord will stop you before she gets overwhelmed).
+                     </div>
+
+                     <div class="ping-grid">
+                         <button id="ping-btn-CHK" class="ping-btn" onclick="stagePing('✔️ CHECKING IN', this)">✔️ CHECKING IN</button>
+                         <button id="ping-btn-FEE" class="ping-btn" onclick="stagePing('❤️ FEELING', this)">❤️ FEELING</button>
+                         <button id="ping-btn-STI" class="ping-btn" onclick="stagePing('🌙 STILL HERE', this)">🌙 STILL HERE</button>
+                         <button id="ping-btn-GLD" class="ping-btn" onclick="stagePing('⭐ GOLD STAR FOR YOU', this)">⭐ GOLD STAR FOR YOU</button>
+                         <button id="ping-btn-LMA" class="ping-btn" onclick="stagePing('😂 LMAO', this)">😂 LMAO</button>
+                         <button id="ping-btn-CHA" class="ping-btn" onclick="stagePing('💀 CHAOS', this)">💀 CHAOS</button>
+                     </div>
+
                     <button id="submit-ping-confirm" type="button" onclick="transmitStagedPing()">Tell Us How We're Doing!</button>
                 </div>
 
@@ -760,14 +791,56 @@
             "The lie is etched in the mirror's reflection. The truth will be revealed by the missing projection."
         ];
 
-        const pingImpacts = {
-            '🟢 ACKNOWLEDGED': { forecast: "Conditions Stable. Pressure Normalizing.", gradient: "rgba(0,255,100,0.5)", pill: "Embargo Partial", pillClass: "lifted", adminNote: "Sector 4 static is manageable. Hi Chandler." },
-            '⚪ RECEIVED': { forecast: "Atmospheric pressure normalizing. Zeus is napping.", gradient: "rgba(200,200,200,0.5)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "No active routing embargo. Hi Chandler." },
-            '🔵 QUEUED': { forecast: "Static rising. Atmospheric density increasing.", gradient: "rgba(0,100,255,0.5)", pill: "Embargo Active", pillClass: "", adminNote: "Administrative backlog detected. Hi Chandler." },
-            '🟣 STILL HERE': { forecast: "DEEP THERMAL BLOOM. Traffic detected.", gradient: "rgba(128,0,128,0.7)", pill: "Embargo Critical", pillClass: "critical", adminNote: "Persistent signal detected. Hi Chandler." },
-            '❤️ WELLNESS': { forecast: "EROS-SATURATION LEVEL PEAKING. Anomaly detected.", gradient: "rgba(255,0,100,0.6)", pill: "Embargo Lifted", pillClass: "lifted", adminNote: "Wellness positive. Hi Chandler." },
-            '💀 CHAOS': { forecast: "TOTAL FAILURE. CHAOS IMMINENT.", gradient: "rgba(255,0,0,0.85)", pill: "TOTAL LOCKDOWN", pillClass: "critical", adminNote: "TOTAL LOCKDOWN. HI CHANDLER." }
-        };
+         const pingImpacts = {
+             '✔️ CHECKING IN': { 
+                 forecast: "Signal stable. Connection confirmed.", 
+                 gradient: "rgba(0,255,100,0.5)", 
+                 pill: "Embargo Partial", 
+                 pillClass: "lifted", 
+                 adminNote: "Check‑in received. Hermes nods approvingly." 
+             },
+         
+             '❤️ FEELING': { 
+                 forecast: "AFFECTIVE SURGE DETECTED. Emotional resonance rising.", 
+                 gradient: "rgba(255,0,100,0.6)", 
+                 pill: "Embargo Lifted", 
+                 pillClass: "lifted", 
+                 adminNote: "Emotional signal registered. Hermes is pretending not to smile." 
+             },
+         
+             '🌙 STILL HERE': { 
+                 forecast: "Quiet orbit detected. Presence steady.", 
+                 gradient: "rgba(128,0,128,0.7)", 
+                 pill: "Embargo Critical", 
+                 pillClass: "critical", 
+                 adminNote: "Persistent presence confirmed. Hermes logs the heartbeat." 
+             },
+         
+             '⭐ GOLD STAR FOR YOU': { 
+                 forecast: "Positive reinforcement surge. Morale elevated.", 
+                 gradient: "rgba(255,215,0,0.6)", 
+                 pill: "Embargo Lifted", 
+                 pillClass: "lifted", 
+                 adminNote: "Award issued. Hermes places it on the cosmic fridge." 
+             },
+         
+             '😂 LMAO': { 
+                 forecast: "HUMOR SPIKE DETECTED. Atmosphere brightening.", 
+                 gradient: "rgba(0,150,255,0.5)", 
+                 pill: "Embargo Active", 
+                 pillClass: "", 
+                 adminNote: "Laughter logged. Hermes pretends to stay professional." 
+             },
+         
+             '💀 CHAOS': { 
+                 forecast: "SYSTEM DESTABILIZED. CHAOS IMMINENT.", 
+                 gradient: "rgba(255,0,0,0.85)", 
+                 pill: "TOTAL LOCKDOWN", 
+                 pillClass: "critical", 
+                 adminNote: "TOTAL LOCKDOWN. Hermes is screaming into a clipboard." 
+             }
+         };
+
 
         const releaseStatusOptions = ["Guardian Protocol Verified", "Administrative Hold (Pending Audit)", "Scheduled Release", "Released for Delivery (Under Protest)", "Gated: Awaiting Surface Sync", "Indefinite Delay: Courier lost bag"];
         const logisticsDeltaOptions = ["Zero Latency (Priority Aisle)", "Delivered on time (within 10yr variance)", "Minimal Latency (Only 3 human lifetimes)", "Stuck in River Styx Traffic", "Cerberus chewed bag", "Temporal Anomaly: Arrived before writing"];
