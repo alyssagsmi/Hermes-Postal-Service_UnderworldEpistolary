@@ -915,13 +915,43 @@
               setTimeout(() => emoji.remove(), 2000);
           }
       
-          // 3. THE TRANSMISSION
-          const webhookURL = 'https://script.google.com/macros/s/AKfycbyOBEFJ15F3Dl21ga9BXd4YZh3Uq956JGcUzcqjK0Tc0kBpgwLxUuqMJ4txsBnQKzl_/exec';
-          const params = new URLSearchParams();
-          params.append('ping', stagedPingType);
-          params.append('user', 'Alyssa');
-      
-          fetch(webhookURL, { method: 'POST', mode: 'no-cors', body: params });
+         // 3. THE TRANSMISSION (D*scord Webhook)
+         const webhookURL = "https://discord.com/api/webhooks/1498857789114552481/DC6ftqTpQYaTqUseeh87UrgQd6f32w-sh3uIEbZKpTTWzE1s59pA1-OhALquTrr7nHH_";
+         
+         fetch(webhookURL, {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify({
+                 username: "Chandler",
+                 avatar_url: "https://emojiapi.dev/api/v1/1f319.png", // 🌙
+                 embeds: [
+                     {
+                         title: "System Status Delivery",
+                         description: `**${stagedPingType}**`,
+                         color: 0xD36BF0, // purply-pink
+                         fields: [
+                             {
+                                 name: "Routing Node",
+                                 value: "Chandler — Underworld Administrative Relay"
+                             },
+                             {
+                                 name: "Status Code",
+                                 value: stagedPingType
+                             }
+                         ],
+                         author: {
+                             name: "Hermes Postal Service — System Administrator",
+                             icon_url: "https://emojiapi.dev/api/v1/1f47b.png"
+                         },
+                         footer: {
+                             text: "Underworld Systems Network — Emerald Circuit Active"
+                         },
+                         timestamp: new Date().toISOString()
+                     }
+                 ]
+             })
+         });
+
       
           // UI Cleanup...
           closePingModal();
